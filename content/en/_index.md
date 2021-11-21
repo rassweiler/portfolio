@@ -1,5 +1,0 @@
----
-title: "Kyle Rassweiler: A simple portfolio"
-featured_image: 'images/Portfolio-Backdrop-01.png'
-description: "The last resume you'll need, hopefully"
----

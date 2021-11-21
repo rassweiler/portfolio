@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Easy Install Guide For Arch Linux Using BTRFS | Kyle Rassweiler</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Arch Snapper BTRFS Install Guide">
+    <meta name="generator" content="Hugo 0.89.3" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    
+
+    
+<link rel="stylesheet" href="/wwww.kylerassweiler.ca/ananke/css/main.min.f2c8c669af1137cbb670f1d5ccf34ef1509213e26f8a449e8455d03e2acc62fd.css" >
+
+
+
+  
+
+
+    
+      
+<link rel="shortcut icon" href="/wwww.kylerassweiler.ca/images/favicon.ico" type="image/x-icon" />
+
+
+    
+
+    
+    
+    <meta property="og:title" content="Easy Install Guide For Arch Linux Using BTRFS" />
+<meta property="og:description" content="Arch Snapper BTRFS Install Guide" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="wwww.kylerassweiler.ca/software/arch-install/" /><meta property="article:section" content="Software" />
+<meta property="article:published_time" content="2021-11-20T10:58:08-04:00" />
+<meta property="article:modified_time" content="2021-11-20T10:58:08-04:00" /><meta property="og:site_name" content="Kyle Rassweiler" />
+
+<meta itemprop="name" content="Easy Install Guide For Arch Linux Using BTRFS">
+<meta itemprop="description" content="Arch Snapper BTRFS Install Guide"><meta itemprop="datePublished" content="2021-11-20T10:58:08-04:00" />
+<meta itemprop="dateModified" content="2021-11-20T10:58:08-04:00" />
+<meta itemprop="wordCount" content="1633">
+<meta itemprop="keywords" content="Hardware,Arch,Linux,BTRFS,Snapper," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Easy Install Guide For Arch Linux Using BTRFS"/>
+<meta name="twitter:description" content="Arch Snapper BTRFS Install Guide"/>
+
+      
+    
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('wwww.kylerassweiler.ca/images/archinstall-bg.svg');">
+    <div class="pb3-m pb6-l bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="wwww.kylerassweiler.ca/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        <img src="/images/LogoXSmall.png" class="w100 mw5-ns" alt="Kyle Rassweiler" />
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="wwww.kylerassweiler.ca/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="wwww.kylerassweiler.ca/software/" title="Software page">
+              Software
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="wwww.kylerassweiler.ca/hardware/" title="Hardware page">
+              Hardware
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="wwww.kylerassweiler.ca/design/" title="Design page">
+              Design
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+<a href="https://www.youtube.com/user/Krassweiler" target="_blank" class="link-transition youtube link dib z-999 pt3 pt0-l mr1" title="Youtube link" rel="noopener" aria-label="follow on Youtube——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.527,41.34c-0.278,0-0.478,0.078-0.6,0.244  c-0.121,0.156-0.18,0.424-0.18,0.796v0.896h1.543V42.38c0-0.372-0.062-0.64-0.185-0.796C42.989,41.418,42.792,41.34,42.527,41.34z   M36.509,41.309c0.234,0,0.417,0.076,0.544,0.23c0.123,0.155,0.185,0.383,0.185,0.682v4.584c0,0.286-0.053,0.487-0.153,0.611  c-0.1,0.127-0.256,0.189-0.47,0.189c-0.148,0-0.287-0.033-0.421-0.096c-0.135-0.062-0.274-0.171-0.415-0.313v-5.531  c0.119-0.122,0.239-0.213,0.36-0.271C36.26,41.335,36.383,41.309,36.509,41.309z M41.748,44.658v1.672  c0,0.468,0.057,0.792,0.17,0.974c0.118,0.181,0.313,0.269,0.592,0.269c0.289,0,0.491-0.076,0.606-0.229  c0.114-0.153,0.175-0.489,0.175-1.013v-0.405h1.795v0.456c0,0.911-0.217,1.596-0.657,2.059c-0.435,0.459-1.089,0.687-1.958,0.687  c-0.781,0-1.398-0.242-1.847-0.731c-0.448-0.486-0.676-1.157-0.676-2.014v-3.986c0-0.768,0.249-1.398,0.742-1.882  c0.493-0.484,1.128-0.727,1.911-0.727c0.799,0,1.413,0.225,1.843,0.674c0.429,0.448,0.642,1.093,0.642,1.935v2.264H41.748z   M38.623,48.495c-0.271,0.336-0.669,0.501-1.187,0.501c-0.343,0-0.646-0.062-0.912-0.192c-0.267-0.129-0.519-0.327-0.746-0.601  v0.681h-1.764V36.852h1.764v3.875c0.237-0.27,0.485-0.478,0.748-0.616c0.267-0.143,0.534-0.212,0.805-0.212  c0.554,0,0.975,0.189,1.265,0.565c0.294,0.379,0.438,0.933,0.438,1.66v4.926C39.034,47.678,38.897,48.159,38.623,48.495z   M30.958,48.884v-0.976c-0.325,0.361-0.658,0.636-1.009,0.822c-0.349,0.191-0.686,0.282-1.014,0.282  c-0.405,0-0.705-0.129-0.913-0.396c-0.201-0.266-0.305-0.658-0.305-1.189v-7.422h1.744v6.809c0,0.211,0.037,0.362,0.107,0.457  c0.077,0.095,0.196,0.141,0.358,0.141c0.128,0,0.292-0.062,0.488-0.188c0.197-0.125,0.375-0.283,0.542-0.475v-6.744h1.744v8.878  H30.958z M24.916,38.6v10.284h-1.968V38.6h-2.034v-1.748h6.036V38.6H24.916z M32.994,32.978c0-0.001,12.08,0.018,13.514,1.45  c1.439,1.435,1.455,8.514,1.455,8.555c0,0-0.012,7.117-1.455,8.556C45.074,52.969,32.994,53,32.994,53s-12.079-0.031-13.516-1.462  c-1.438-1.435-1.441-8.502-1.441-8.556c0-0.041,0.004-7.12,1.441-8.555C20.916,32.996,32.994,32.977,32.994,32.978z M42.52,29.255  h-1.966v-1.08c-0.358,0.397-0.736,0.703-1.13,0.909c-0.392,0.208-0.771,0.312-1.14,0.312c-0.458,0-0.797-0.146-1.027-0.437  c-0.229-0.291-0.345-0.727-0.345-1.311v-8.172h1.962v7.497c0,0.231,0.045,0.399,0.127,0.502c0.08,0.104,0.216,0.156,0.399,0.156  c0.143,0,0.327-0.069,0.548-0.206c0.22-0.137,0.423-0.312,0.605-0.527v-7.422h1.966V29.255z M31.847,27.588  c0.139,0.147,0.339,0.219,0.6,0.219c0.266,0,0.476-0.075,0.634-0.223c0.157-0.152,0.235-0.358,0.235-0.618v-5.327  c0-0.214-0.08-0.387-0.241-0.519c-0.16-0.131-0.37-0.196-0.628-0.196c-0.241,0-0.435,0.065-0.586,0.196  c-0.148,0.132-0.225,0.305-0.225,0.519v5.327C31.636,27.233,31.708,27.439,31.847,27.588z M30.408,19.903  c0.528-0.449,1.241-0.674,2.132-0.674c0.812,0,1.48,0.237,2.001,0.711c0.517,0.473,0.777,1.083,0.777,1.828v5.051  c0,0.836-0.255,1.491-0.762,1.968c-0.513,0.476-1.212,0.714-2.106,0.714c-0.858,0-1.547-0.246-2.064-0.736  c-0.513-0.492-0.772-1.152-0.772-1.983v-5.068C29.613,20.954,29.877,20.351,30.408,19.903z M24.262,16h-2.229l2.634,8.003v5.252  h2.213v-5.5L29.454,16h-2.25l-1.366,5.298h-0.139L24.262,16z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30  S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://www.linkedin.com/in/kylerassweiler/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/rassweiler" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Easy Install Guide For Arch Linux Using BTRFS</h1>
+          
+            <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+              Arch Snapper BTRFS Install Guide
+            </h2>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw9 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        SOFTWARE
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=wwww.kylerassweiler.ca/wwww.kylerassweiler.ca/software/arch-install/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=wwww.kylerassweiler.ca/wwww.kylerassweiler.ca/software/arch-install/&amp;text=Easy%20Install%20Guide%20For%20Arch%20Linux%20Using%20BTRFS" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=wwww.kylerassweiler.ca/wwww.kylerassweiler.ca/software/arch-install/&amp;title=Easy%20Install%20Guide%20For%20Arch%20Linux%20Using%20BTRFS" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Easy Install Guide For Arch Linux Using BTRFS</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              Kyle Rassweiler
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-11-20T10:58:08-04:00">November 20, 2021</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>This guide is for installing arch linux (UEFI) with a BTRFS file system including subvolumes. This guide also covers using snapper and grub to create bootable snapshots.</p>
+<hr>
+<h2 id="step--0---install-iso-to-usb">Step  0 - Install ISO to USB:</h2>
+<p>After downloading the latest <a href="https://archlinux.org/download/">Arch ISO</a> you will need to install it to a usb using a program like <a href="https://github.com/balena-io/etcher">Balena Etcher</a>. Plug the usb into the machine you want to install arch to and boot into the usb.</p>
+<h2 id="step--1---give-root-a-password-then-get-the-local-ip">Step  1 - Give root a password then get the local ip:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">passwd
+
+ip address show
+</code></pre></div><h2 id="step--3---ssh-into-the-target-machine-from-your-main">Step  3 - SSH into the target machine from your main:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">ssh root@xxx.xxx.xxx.xxx
+</code></pre></div><h2 id="step--4---update-the-timezone">Step  4 - Update the timezone:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">timedatectl set-ntp true
+</code></pre></div><h2 id="step--5---update-the-mirrors">Step  5 - Update the mirrors:</h2>
+<p>This step has returned an error on me the last few times I&rsquo;ve tried but is safe to skip.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">reflector -c Canada -c US -a <span style="color:#ae81ff">12</span> --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+pacman -Syy
+</code></pre></div><h2 id="step-6---find-your-device">Step 6 - Find your device:</h2>
+<p>Use lsblk to dyplay your disk information, normally the drive will listed as SDA or SDB.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">lsblk
+
+gdisk /dev/XXX
+</code></pre></div><p>Replace XXX with the target device.</p>
+<h2 id="step-7---create-boot-partition">Step 7 - Create Boot Partition:</h2>
+<p>Use the n command to create a new partition on the disk, use the default partition number, use the default first sector, offset the last sector by 512M, and give it a efi flag of ef00.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">n
+
+default
+
+default
+
++512M
+
+ef00
+</code></pre></div><h2 id="step-8---create-swap-partition-optional">Step 8 - Create Swap Partition (Optional):</h2>
+<p>Creating a swap partion is optional, if this step is skipped adjust the partion numbers in the future commands.</p>
+<p>Use the n command to create a new partition on the disk, use the default partition number, use the default first sector, offset the last sector by 2G, and give it a linux-swap flag of 8200.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">n
+
+default
+
+default
+
++2G
+
+<span style="color:#ae81ff">8200</span>
+</code></pre></div><h2 id="step-9---create-main-partition-and-write-changes">Step 9 - Create Main Partition And Write Changes:</h2>
+<p>Use the n command to create a new partition on the disk, use the default partition number, use the default first sector, since we are using the remainder of the disk we can use the default last sector, and use the default flag for linux filesystem.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">n
+
+default
+
+default
+
+default
+
+w
+
+y
+</code></pre></div><h2 id="step-10---setup-partition-filesystems-and-subvolumes">Step 10 - Setup Partition Filesystems And Subvolumes:</h2>
+<p>If you skipped the swap partition then skip the mkswap and swapon and use the right partition number for the btrfs volume.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">mkfs.fat -F32 /dev/vda1
+
+mkswap /dev/vda2
+
+swapon /dev/vda2
+
+mkfs.btrfs /dev/vda3
+
+mount /dev/vda3 /mnt
+
+btrfs su cr /mnt/@
+
+btrfs su cr /mnt/@home
+
+btrfs su cr /mnt/@snapshots
+
+btrfs su cr /mnt/@var_log
+</code></pre></div><h2 id="step-11---remount-partitions-individually">Step 11 - Remount Partitions Individually:</h2>
+<p>In order to setup the systems fstab we need to remount the partitions individually with the proper settings.</p>
+<p>Use lsblk to verify all partitions and volumes were mounted.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">umount /mnt
+
+mount -o noatime,compress<span style="color:#f92672">=</span>lzo,space_cache<span style="color:#f92672">=</span>v2,subvol<span style="color:#f92672">=</span>@ /dev/vda3 /mnt
+
+mkdir -p /mnt/<span style="color:#f92672">{</span>boot,home,.snapshots,var/log<span style="color:#f92672">}</span>
+
+mount -o noatime,compress<span style="color:#f92672">=</span>lzo,space_cache<span style="color:#f92672">=</span>v2,subvol<span style="color:#f92672">=</span>@home /dev/vda3 /mnt/home
+
+mount -o noatime,compress<span style="color:#f92672">=</span>lzo,space_cache<span style="color:#f92672">=</span>v2,subvol<span style="color:#f92672">=</span>@snapshots /dev/vda3 /mnt/.snapshots
+
+mount -o noatime,compress<span style="color:#f92672">=</span>lzo,space_cache<span style="color:#f92672">=</span>v2,subvol<span style="color:#f92672">=</span>@var_log /dev/vda3 /mnt/var/log
+
+mount /dev/vda1 /mnt/boot
+
+lsblk
+</code></pre></div><h2 id="step-12---add-desired-packages-may-have-error-about-missing-file-fsckbtrfs">Step 12 - Add desired packages (May have error about missing file fsck.btrfs):</h2>
+<p>Choose your base linux, linux-lts, linux-zen.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware nano intel-ucode cifs-utils reflector
+</code></pre></div><h2 id="step-13---generate-fstab">Step 13 - Generate fstab:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+</code></pre></div><h2 id="step-14---enter-system">Step 14 - Enter system:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">arch-chroot /mnt
+</code></pre></div><h2 id="step-15---setup-system-time">Step 15 - Setup System Time:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">timedatectl list-timezones | grep Toronto
+
+ln -sf /usr/share/zoneinfo/America/Toronto /etc/localtime
+
+hwclock --systohc
+</code></pre></div><h2 id="step-16---setup-locale-generator">Step 16 - Setup Locale Generator:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">nano /etc/locale.gen
+</code></pre></div><p>Uncomment your desired locales</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#ae81ff">en_CA.UTF-8</span>
+</code></pre></div><h2 id="step-17---generate-locale">Step 17 - Generate Locale:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">locale-gen
+</code></pre></div><h2 id="step-18---update-mirrors">Step 18 - Update Mirrors:</h2>
+<p><em>I&rsquo;m currently getting an <code>unable to rate error</code> that needs investigating. This step can be skipped.</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">reflector -c Canada -c US -a <span style="color:#ae81ff">12</span> --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+pacman -Syy
+</code></pre></div><h2 id="step-19---create-locale-config">Step 19 - Create Locale Config:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">nano /etc/locale.conf
+</code></pre></div><p>Insert you chosen language from step 16</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#ae81ff">LANG=en_CA.UTF-8</span>
+</code></pre></div><h2 id="step-20---create-hostname-file">Step 20 - Create Hostname File:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">nano /etc/hostname
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#ae81ff">NAME</span>
+</code></pre></div><h2 id="step-21---setup-hosts">Step 21 - Setup Hosts:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">nano /etc/hosts
+</code></pre></div><p>Add the following entries replacing NAME with your hostname</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#ae81ff">127.0.0.1</span>       <span style="color:#ae81ff">localhost</span>
+::<span style="color:#ae81ff">1</span>             <span style="color:#ae81ff">localhost</span>
+<span style="color:#ae81ff">127.0.1.1</span>       <span style="color:#ae81ff">NAME.localdomain NAME</span>
+</code></pre></div><h2 id="step-22---set-root-password-for-actual-system">Step 22 - Set Root Password For Actual System:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">passwd
+</code></pre></div><h2 id="step-23---install-general-packages">Step 23 - Install General Packages:</h2>
+<p>Remove the items within brackets if not needed, or remove the squarebracket portion if needed</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">pacman -S grub efibootmgr networkmanager network-manager-applet dialog <span style="color:#f92672">[</span>FOR WIFI <span style="color:#f92672">(</span>wpa_supplicant<span style="color:#f92672">)]</span> mtools dosfstools git reflector snapper snap-pac <span style="color:#f92672">[</span>FOR BLUETOOTH <span style="color:#f92672">(</span>bluez bluez-utils pulseaudio-bluetooth<span style="color:#f92672">)]</span> <span style="color:#f92672">[</span>FOR PRINTING <span style="color:#f92672">(</span>cups hplip<span style="color:#f92672">)]</span> xdg-utils xdg-user-dirs alsa-utils pulseaudio inetutils base-devel openssh grub-customizer code os-prober sudo
+</code></pre></div><h2 id="step-24---add-btrfs-to-cpio-modules">Step 24 - Add btrfs to CPIO Modules:</h2>
+<p><em>Need to investigate difference between placing it in modules vs binaries, may also need other items in modules.</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">nano /etc/mkinitcpio.conf
+</code></pre></div><p>Insert <code>btrfs</code> into the brackets for modules</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># MODULES</span>
+<span style="color:#75715e"># The following modules are loaded before any boot hooks are</span>
+<span style="color:#75715e"># run.  Advanced users may wish to specify all system modules</span>
+<span style="color:#75715e"># in this array.  For instance:</span>
+<span style="color:#ae81ff">MODULES=(btrfs)</span>
+</code></pre></div><p>run mkinit for the chosen kernel (linux, linux-lts, linux-zen)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">mkinitcpio -p linux-zen
+</code></pre></div><h2 id="step-25---istall-grub">Step 25 - Istall Grub:</h2>
+<p>Grub is the system that will locate and boot any os on your drive.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">grub-install --target<span style="color:#f92672">=</span>x86_64-efi --efi-directory<span style="color:#f92672">=</span>/boot --bootloader-id<span style="color:#f92672">=</span>GRUB
+
+grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre></div><h2 id="step-26---autostart-systems">Step 26 - Autostart Systems:</h2>
+<p>This will start the networking and ssh on boot allowing us to ssh into the machine.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">systemctl enable NetworkManager
+
+systemctl enable sshd
+</code></pre></div><h2 id="step-27---create-user">Step 27 - Create User:</h2>
+<p>Adding the user to the audio and video groups may not be necessary, this was done for gaming with multiple xorg servers.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">useradd -mG wheel NAME
+
+usermod -aG audio NAME
+
+usermod -aG video NAME
+
+passwd NAME
+</code></pre></div><h2 id="step-28---allow-wheel-as-root">Step 28 - Allow Wheel As Root:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">EDITOR<span style="color:#f92672">=</span>nano visudo
+</code></pre></div><p>Uncomment the following</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#ae81ff">%wheel ALL=(ALL) ALL</span>
+</code></pre></div><h2 id="step-29---finish-setup-and-reboot">Step 29 - Finish Setup And Reboot:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">exit
+
+umount -a
+
+reboot
+</code></pre></div><h2 id="step-30---ssh-into-machine-as-new-user">Step 30 - SSH Into Machine As New User:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">ssh NAME@xxx.xxx.xxx.xxx
+</code></pre></div><h2 id="step-31---fix-snapshots">Step 31 - Fix Snapshots:</h2>
+<p>This step allows the non root user to manage all the snapshots</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo umount /.snapshots
+
+sudo rm -r /.snapshots
+
+sudo snapper -c root create-config /
+
+sudo btrfs su del /.snapshots
+
+sudo mkdir /.snapshots
+
+sudo mount -a
+
+sudo chmod <span style="color:#ae81ff">750</span> /.snapshots
+
+sudo chmod a+rx /.snapshots
+
+sudo chown :kr /.snapshots
+</code></pre></div><h2 id="step-32---modify-snapper-settings">Step 32 - Modify Snapper Settings:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo nano /etc/snapper/configs/root
+</code></pre></div><p>Make the following changes based on preference, and make sure to add the new user to the allowed list.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#ae81ff">ALLOW_USERS=&#34;NAME&#34;</span>
+<span style="color:#ae81ff">TIMELINE_LIMIT_HOURLY=&#34;5&#34;</span>
+<span style="color:#ae81ff">TIMELINE_LIMIT_DAILY=&#34;7&#34;</span>
+<span style="color:#ae81ff">TIMELINE_LIMIT_WEEKLY=&#34;0&#34;</span>
+<span style="color:#ae81ff">TIMELINE_LIMIT_MONTHLY=&#34;0&#34;</span>
+<span style="color:#ae81ff">TIMELINE_LIMIT_YEARLY=&#34;0&#34;</span>
+</code></pre></div><h2 id="step-32---enable-snapper">Step 32 - Enable Snapper:</h2>
+<p>Snapper is what creates the btrfs snapshots allowing us to roll back changes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo systemctl enable --now snapper-timeline.timer
+
+sudo systemctl enable --now snapper-cleanup.timer
+</code></pre></div><h2 id="step-33---access-aur">Step 33 - Access AUR:</h2>
+<p>The arch user repository has some handy GUI packages for interacting with snapshots.</p>
+<p>There are a few options for accessing the aur, here are two options (<strong>I prefer paru</strong>).</p>
+<h3 id="step-33a---install-yay">Step 33.A - Install YAY</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">git clone https://aur.archlinux.org/yay
+
+cd yay
+
+makepkg -si PKGBUILD
+
+cd ..
+</code></pre></div><h3 id="step-33b---install-paru">Step 33.B - Install Paru</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">git clone https://aur.archlinux.org/paru.git
+
+cd paru
+
+makepkg -si
+
+cd ..
+</code></pre></div><h2 id="step-34---install-snapper-packages-from-aur">Step 34 - Install Snapper Packages From Aur</h2>
+<p>These packages will help with visually managing snapshots and booting into them.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">yay|paru -S snap-pac-grub snapper-gui
+</code></pre></div><h2 id="step-35---install-generic-packages">Step 35 - Install Generic Packages:</h2>
+<p>Many of these are personal preference.</p>
+<p><code>feh</code> will handle the wallpaper (can also use nitrogen)</p>
+<p><code>thunar</code> is the file browser</p>
+<p><code>alacritty</code> is the terminal emulator</p>
+<p><code>fish</code> is the shell</p>
+<p><code>rofi</code> is a package launcher similar to dmenu</p>
+<p><code>arandr</code> is for setting up displays (this is handy for i3wm)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo pacman -S xorg xorg-server alacritty thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget pulseaudio pulseaudio-alsa numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk
+</code></pre></div><h3 id="step-36---find-graphics-card">Step 36 - Find Graphics Card:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">lspci -k | grep -A <span style="color:#ae81ff">2</span> -E <span style="color:#e6db74">&#34;(VGA|3D)&#34;</span>
+</code></pre></div><h2 id="step-37---install-graphics">Step 37 - Install Graphics:</h2>
+<p>Install the packages for your hardware</p>
+<h3 id="step-37a---nvidia">Step 37.A - Nvidia:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo pacman -S nvidia nvidia-utils nvidia-settings nvidia-dkms
+</code></pre></div><h3 id="step-37b---amd">Step 37.B - AMD:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo pacman -S amdvlk mesa
+</code></pre></div><h2 id="step-38---install-de-manager">Step 38 - Install DE Manager:</h2>
+<p>There are a few options for managers</p>
+<h3 id="step-38a---lightdm">Step 38.A - Lightdm:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">paru -S lightdm-webkit-theme-aether
+
+sudo systemctl enable lightdm
+</code></pre></div><h3 id="step-38b---sddm">Step 38.B - SDDM:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo pacman -S sddm
+
+sudo systemctl enable sddm.service
+</code></pre></div><h2 id="step-39---install-your-de-of-choice">Step 39 - Install Your DE OF Choice:</h2>
+<p>There are a few options for desktop environments</p>
+<p>My preference is i3wm for simplicity, or KDE Plasma <em>cause you fancy gurl</em>.</p>
+<h3 id="step-39a---i3">Step 39.A - i3:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo pacman -S i3-gaps i3blocks i3status
+</code></pre></div><h3 id="step-39b---kde-plasma">Step 39.B - KDE PLASMA:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo pacman -S plasma plasma-wayland-session kde-applications
+</code></pre></div><h3 id="step-39c---awesome">Step 39.C - Awesome:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo pacman -S awesome
+</code></pre></div><h2 id="step-40---set-shell">Step 40 - Set Shell:</h2>
+<p>the default is bash, I prefer fish&hellip; but know that some commands will need to be changed to run in fish.</p>
+<p>Example Bash/zsh:<code>chsh -s $(which fish)</code> vs fish: <code>chsh -s (which zsh)</code></p>
+<h3 id="step-40a---set-zsh-shell">Step 40.A - Set ZSH Shell:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">chsh -s <span style="color:#66d9ef">$(</span>which zsh<span style="color:#66d9ef">)</span>
+</code></pre></div><h3 id="step-40b---set-fish-shell">Step 40.B - Set Fish Shell:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">chsh -s <span style="color:#66d9ef">$(</span>which fish<span style="color:#66d9ef">)</span>
+</code></pre></div><h2 id="step-41---setup-pacman-hooks-for-snapper">Step 41 - Setup Pacman Hooks For Snapper:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo mkdir /etc/pacman.d/hooks
+
+sudo nano /etc/pacman.d/hooks/50-bootbackup.hook
+</code></pre></div><p>Paste in the hook information.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">[<span style="color:#ae81ff">Trigger]</span>
+<span style="color:#ae81ff">Operation = Upgrade</span>
+<span style="color:#ae81ff">Operation = Install</span>
+<span style="color:#ae81ff">Operation = Remove</span>
+<span style="color:#ae81ff">Type = Path</span>
+<span style="color:#ae81ff">Target = boot/*</span>
+
+[<span style="color:#ae81ff">Action]</span>
+<span style="color:#ae81ff">Depends = rsync</span>
+<span style="color:#ae81ff">Description = Backing up /boot...</span>
+<span style="color:#ae81ff">When = PreTransaction</span>
+<span style="color:#ae81ff">Exec = /usr/bin/rsync -a --delete /boot /.bootbackup</span>
+</code></pre></div><h2 id="step-42---generate-ssh-key-and-add-to-agent-optional">Step 42 - Generate SSH Key And add To Agent (Optional):</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sh-keygen -t rsa -b <span style="color:#ae81ff">4096</span> -C <span style="color:#e6db74">&#34;your_email@example.com&#34;</span>
+</code></pre></div><p>Fish:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">eval <span style="color:#f92672">(</span>ssh-agent -s<span style="color:#f92672">)</span>
+
+exec ssh-agent fish
+</code></pre></div><p>ZSH:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>ssh-agent -s<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+
+exec ssh-agent zsh
+</code></pre></div><p>Add the key to the shell</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">ssh-add -K ~/.ssh/id_ed25519
+</code></pre></div><h2 id="step-43---copy-configs-from-git-optional">Step 43 - COPY CONFIGS FROM GIT (Optional):</h2>
+<p>These are my own mashed together configs, mostly from my i3wm system. There are also some backgrounds in the repo.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">git clone https://github.com/rassweiler/config.git
+</code></pre></div><p>Overwrite the .config and .local folders in your user directory and reboot the system.</p>
+<h2 id="step-44---enable-multilib-optional">Step 44 - Enable Multilib (Optional):</h2>
+<p>This will allow us to install steam, wine, and lutris</p>
+<p>Edit the pacman configuration</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo nano /etc/pacman.conf
+</code></pre></div><p>uncomment Multilib and the include</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">[<span style="color:#ae81ff">multilib]</span>
+<span style="color:#ae81ff">Include = /etc/pacman.d/mirrorlist</span>
+</code></pre></div><h2 id="step-45---update-the-system">Step 45 - Update The System:</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo pacman -Syu
+</code></pre></div><h2 id="step-46---install-gaming-optional">Step 46 - Install Gaming (Optional):</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo pacman -S steam wine lutris
+
+paru -S proton proton-ge-custom
+</code></pre></div><h2 id="step-47---tuning-optional">Step 47 - Tuning (Optional):</h2>
+<h3 id="step-46a---pulse-audio">Step 46.A - Pulse Audio:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">sudo nano /etc/pulse/daemon.conf
+</code></pre></div><p>Change settings</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#ae81ff">high-priority = yes</span>
+<span style="color:#ae81ff">nice-level = -11</span>
+
+<span style="color:#ae81ff">realtime-scheduling = yes</span>
+<span style="color:#ae81ff">realtime-priority = 5</span>
+</code></pre></div><ul class="pa0">
+  
+   <li class="list">
+     <a href="/wwww.kylerassweiler.ca/tags/hardware" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Hardware</a>
+   </li>
+  
+   <li class="list">
+     <a href="/wwww.kylerassweiler.ca/tags/arch" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Arch</a>
+   </li>
+  
+   <li class="list">
+     <a href="/wwww.kylerassweiler.ca/tags/linux" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Linux</a>
+   </li>
+  
+   <li class="list">
+     <a href="/wwww.kylerassweiler.ca/tags/btrfs" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">BTRFS</a>
+   </li>
+  
+   <li class="list">
+     <a href="/wwww.kylerassweiler.ca/tags/snapper" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Snapper</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="wwww.kylerassweiler.ca/software/ltt-ddc-00/">Daily Driver Challenge Hard(er) Mode Part 0</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-dark-gray bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="wwww.kylerassweiler.ca/" >
+    &copy;  Kyle Rassweiler 2021 
+  </a>
+    <div>
+
+
+
+
+
+
+<a href="https://www.youtube.com/user/Krassweiler" target="_blank" class="link-transition youtube link dib z-999 pt3 pt0-l mr1" title="Youtube link" rel="noopener" aria-label="follow on Youtube——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M42.527,41.34c-0.278,0-0.478,0.078-0.6,0.244  c-0.121,0.156-0.18,0.424-0.18,0.796v0.896h1.543V42.38c0-0.372-0.062-0.64-0.185-0.796C42.989,41.418,42.792,41.34,42.527,41.34z   M36.509,41.309c0.234,0,0.417,0.076,0.544,0.23c0.123,0.155,0.185,0.383,0.185,0.682v4.584c0,0.286-0.053,0.487-0.153,0.611  c-0.1,0.127-0.256,0.189-0.47,0.189c-0.148,0-0.287-0.033-0.421-0.096c-0.135-0.062-0.274-0.171-0.415-0.313v-5.531  c0.119-0.122,0.239-0.213,0.36-0.271C36.26,41.335,36.383,41.309,36.509,41.309z M41.748,44.658v1.672  c0,0.468,0.057,0.792,0.17,0.974c0.118,0.181,0.313,0.269,0.592,0.269c0.289,0,0.491-0.076,0.606-0.229  c0.114-0.153,0.175-0.489,0.175-1.013v-0.405h1.795v0.456c0,0.911-0.217,1.596-0.657,2.059c-0.435,0.459-1.089,0.687-1.958,0.687  c-0.781,0-1.398-0.242-1.847-0.731c-0.448-0.486-0.676-1.157-0.676-2.014v-3.986c0-0.768,0.249-1.398,0.742-1.882  c0.493-0.484,1.128-0.727,1.911-0.727c0.799,0,1.413,0.225,1.843,0.674c0.429,0.448,0.642,1.093,0.642,1.935v2.264H41.748z   M38.623,48.495c-0.271,0.336-0.669,0.501-1.187,0.501c-0.343,0-0.646-0.062-0.912-0.192c-0.267-0.129-0.519-0.327-0.746-0.601  v0.681h-1.764V36.852h1.764v3.875c0.237-0.27,0.485-0.478,0.748-0.616c0.267-0.143,0.534-0.212,0.805-0.212  c0.554,0,0.975,0.189,1.265,0.565c0.294,0.379,0.438,0.933,0.438,1.66v4.926C39.034,47.678,38.897,48.159,38.623,48.495z   M30.958,48.884v-0.976c-0.325,0.361-0.658,0.636-1.009,0.822c-0.349,0.191-0.686,0.282-1.014,0.282  c-0.405,0-0.705-0.129-0.913-0.396c-0.201-0.266-0.305-0.658-0.305-1.189v-7.422h1.744v6.809c0,0.211,0.037,0.362,0.107,0.457  c0.077,0.095,0.196,0.141,0.358,0.141c0.128,0,0.292-0.062,0.488-0.188c0.197-0.125,0.375-0.283,0.542-0.475v-6.744h1.744v8.878  H30.958z M24.916,38.6v10.284h-1.968V38.6h-2.034v-1.748h6.036V38.6H24.916z M32.994,32.978c0-0.001,12.08,0.018,13.514,1.45  c1.439,1.435,1.455,8.514,1.455,8.555c0,0-0.012,7.117-1.455,8.556C45.074,52.969,32.994,53,32.994,53s-12.079-0.031-13.516-1.462  c-1.438-1.435-1.441-8.502-1.441-8.556c0-0.041,0.004-7.12,1.441-8.555C20.916,32.996,32.994,32.977,32.994,32.978z M42.52,29.255  h-1.966v-1.08c-0.358,0.397-0.736,0.703-1.13,0.909c-0.392,0.208-0.771,0.312-1.14,0.312c-0.458,0-0.797-0.146-1.027-0.437  c-0.229-0.291-0.345-0.727-0.345-1.311v-8.172h1.962v7.497c0,0.231,0.045,0.399,0.127,0.502c0.08,0.104,0.216,0.156,0.399,0.156  c0.143,0,0.327-0.069,0.548-0.206c0.22-0.137,0.423-0.312,0.605-0.527v-7.422h1.966V29.255z M31.847,27.588  c0.139,0.147,0.339,0.219,0.6,0.219c0.266,0,0.476-0.075,0.634-0.223c0.157-0.152,0.235-0.358,0.235-0.618v-5.327  c0-0.214-0.08-0.387-0.241-0.519c-0.16-0.131-0.37-0.196-0.628-0.196c-0.241,0-0.435,0.065-0.586,0.196  c-0.148,0.132-0.225,0.305-0.225,0.519v5.327C31.636,27.233,31.708,27.439,31.847,27.588z M30.408,19.903  c0.528-0.449,1.241-0.674,2.132-0.674c0.812,0,1.48,0.237,2.001,0.711c0.517,0.473,0.777,1.083,0.777,1.828v5.051  c0,0.836-0.255,1.491-0.762,1.968c-0.513,0.476-1.212,0.714-2.106,0.714c-0.858,0-1.547-0.246-2.064-0.736  c-0.513-0.492-0.772-1.152-0.772-1.983v-5.068C29.613,20.954,29.877,20.351,30.408,19.903z M24.262,16h-2.229l2.634,8.003v5.252  h2.213v-5.5L29.454,16h-2.25l-1.366,5.298h-0.139L24.262,16z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30  S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://www.linkedin.com/in/kylerassweiler/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+<a href="https://github.com/rassweiler" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

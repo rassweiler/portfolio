@@ -1,6 +1,10 @@
 baseURL = 'https://wwww.kylerassweiler.ca'
 languageCode = 'en-us'
 title = 'Kyle Rassweiler'
+subtitle = "A sleek software portfolio"
+owner = "Kyle Rassweiler"
+keywords = "Kyle Rassweiler Portfolio"
+copyright = "Kyle Rassweiler"
 theme = 'ananke'
 #RelativeURLs = true
 #CanonifyURLs = true
@@ -12,6 +16,12 @@ enableRobotsTXT = true
   changefreq = "monthly"
   priority = 0.5
   filename = "sitemap.xml"
+
+[languages]
+  [languages.en]
+    title = "Kyle Rassweiler"
+    weight = 1
+    contentDir = "content/"
 
 [params]
   author = "Kyle Rassweiler"
@@ -37,80 +47,26 @@ enableRobotsTXT = true
   recent_posts_number = 3
   skillSection = "Skills"
   mainSections = ["Software"]
+  custom_css = ["custom.css"]
 
-[languages]
-  [languages.en]
-    languageName = "English"
-    title = "Kyle Rassweiler"
-    subtitle = "A sleek software portfolio"
-    owner = "Kyle Rassweiler"
-    keywords = "Kyle Rassweiler Portfolio"
-    copyright = "Kyle Rassweiler"
-    menuMore = "Show more"
-    readMore = "Read more"
-    readOtherPosts = "Read other posts"
-    newerPosts = "Newer posts"
-    olderPosts = "Older posts"
-    missingContentMessage = "Page not found..."
-    missingBackButtonLabel = "Back to home page"
-    contentDir = "content/en"
-
-    [languages.en.params.logo]
-      logoText = "Kyle Rassweiler"
-      logoHomeLink = "/"
-
-    [languages.en.menu]
-      [[languages.en.menu.main]]
-        identifier = "about"
-        name = "About"
-        url = "/about"
-      [[languages.en.menu.main]]
-        identifier = "software"
-        name = "Software"
-        url = "/software"
-      [[languages.en.menu.main]]
-        identifier = "design"
-        name = "Design"
-        url = "/design"
-      [[languages.en.menu.main]]
-        identifier = "hardware"
-        name = "Hardware"
-        url = "/hardware"
-
-  # [languages.fr]
-  #   languageName = "French"
-  #   title = "Kyle Rassweiler"
-  #   subtitle = "Portefeuille logiciel"
-  #   owner = "Kyle Rassweiler"
-  #   keywords = "Kyle Rassweiler Portefeuille"
-  #   copyright = "Kyle Rassweiler 2021"
-  #   menuMore = "View Plus"
-  #   readMore = "Lire Plus"
-  #   readOtherPosts = "Read other posts"
-  #   newerPosts = "Nouvaux Postes"
-  #   olderPosts = "Vieux Postes"
-  #   missingContentMessage = "Page n'existe pas..."
-  #   missingBackButtonLabel = "Retourne au page d'accueil"
-  #   contentDir = "content/fr"
-
-  #   [languages.fr.params.logo]
-  #     logoText = "Kyle Rassweiler"
-  #     logoHomeLink = "/"
-
-  #   [languages.fr.menu]
-  #     [[languages.fr.menu.main]]
-  #       identifier = "about"
-  #       name = "à propos"
-  #       url = "/fr/about"
-  #     [[languages.fr.menu.main]]
-  #       identifier = "software"
-  #       name = "logiciel"
-  #       url = "/fr/software"
-  #     [[languages.fr.menu.main]]
-  #       identifier = "design"
-  #       name = "dessin"
-  #       url = "/fr/design"
-  #     [[languages.fr.menu.main]]
-  #       identifier = "hardware"
-  #       name = "matériel"
-  #       url = "/fr/hardware"
+[menu]
+[[menu.main]]
+  identifier = 'About'
+  name = 'About'
+  url = '/about/'
+  weight = -110
+[[menu.main]]
+  identifier = 'Software'
+  name = 'Software'
+  url = '/software/'
+  weight = -109
+[[menu.main]]
+  identifier = 'Hardware'
+  name = 'Hardware'
+  url = '/hardware/'
+  weight = -108
+[[menu.main]]
+  identifier = 'Design'
+  name = 'Design'
+  url = '/design/'
+  weight = -107

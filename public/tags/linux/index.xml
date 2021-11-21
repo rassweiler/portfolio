@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Kyle Rassweiler</title>
+    <link>wwww.kylerassweiler.ca/tags/linux/</link>
+    <description>Recent content in Linux on Kyle Rassweiler</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Kyle Rassweiler</copyright>
+    <lastBuildDate>Sat, 20 Nov 2021 10:58:08 -0400</lastBuildDate><atom:link href="wwww.kylerassweiler.ca/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Daily Driver Challenge Hard(er) Mode Part 0</title>
+      <link>wwww.kylerassweiler.ca/software/ltt-ddc-00/</link>
+      <pubDate>Sat, 20 Nov 2021 10:58:08 -0400</pubDate>
+      
+      <guid>wwww.kylerassweiler.ca/software/ltt-ddc-00/</guid>
+      <description>&lt;p&gt;The Linus Tech Tips Daily Driver Challenge is an attempt at using a linux system as your main rig. The hard(er) mode version is using Arch and i3wm as the os of choice.&lt;/p&gt;
+&lt;p&gt;Part 0 of this challenge will be testing the feasibility of arch-gaming using a kvm virtual machine. After successfully installing the os I will test installing and playing games through steam.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Easy Install Guide For Arch Linux Using BTRFS</title>
+      <link>wwww.kylerassweiler.ca/software/arch-install/</link>
+      <pubDate>Sat, 20 Nov 2021 10:58:08 -0400</pubDate>
+      
+      <guid>wwww.kylerassweiler.ca/software/arch-install/</guid>
+      <description>&lt;p&gt;This guide is for installing arch linux (UEFI) with a BTRFS file system including subvolumes. This guide also covers using snapper and grub to create bootable snapshots.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
