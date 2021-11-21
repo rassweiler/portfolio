@@ -29,3 +29,20 @@
 #TableOfContents ul li {
   margin-bottom: 1em;
 }
+
+.skill-flex-box{
+  display: inline-flex;
+  max-width: 60%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.skill-flex-item{
+  height: 100px;
+  margin: 1rem;
+}
+
+.skill-image{
+  max-height: 100%;
+  max-width: 100%;
+}

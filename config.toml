@@ -1,9 +1,9 @@
-baseURL = 'wwww.kylerassweiler.ca'
+baseURL = 'https://wwww.kylerassweiler.ca'
 languageCode = 'en-us'
 title = 'Kyle Rassweiler'
 theme = 'ananke'
-RelativeURLs = true
-CanonifyURLs = true
+#RelativeURLs = true
+#CanonifyURLs = true
 DefaultContentLanguage = "en"
 paginate = 10
 enableRobotsTXT = true
@@ -14,59 +14,29 @@ enableRobotsTXT = true
   filename = "sitemap.xml"
 
 [params]
-  # dir name of your main content (default is `content/posts`).
-  # the list of set content will show up on your index page (baseurl).
-  contentTypeName = "posts"
-
-  # ["orange", "blue", "red", "green", "pink"]
-  themeColor = "orange"
-
-  # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 4
-
-  # show selector to switch language
-  showLanguageSelector = true
-
-  # set theme to full screen width
-  fullWidthTheme = false
-
-  # center theme with default width
-  centerTheme = true
-
-  # if your resource directory contains an image called `cover.(jpg|png|webp)`,
-  # then the file will be used as a cover automatically.
-  # With this option you don't have to put the `cover` param in a front-matter.
-  autoCover = true
-
-  # set post to show the last updated
-  # If you use git, you can set `enableGitInfo` to `true` and then post will automatically get the last updated
-  showLastUpdated = false
-
-  # set a custom favicon (default is a `themeColor` square)
-  # favicon = "favicon.ico"
-
-  # Provide a string as a prefix for the last update date. By default, it looks like this: 2020-xx-xx [Updated: 2020-xx-xx] :: Author
-  # updatedDatePrefix = "Updated"
-
-  # set all headings to their default size (depending on browser settings)
-  # it's set to `true` by default
-  # oneHeadingSize = false
-  
   author = "Kyle Rassweiler"
   favicon = "/images/favicon.ico"
   site_logo = "/images/LogoXSmall.png"
   youtube = "https://www.youtube.com/user/Krassweiler"
+  odysee = "https://odysee.com/@kylerassweiler"
   github = "https://github.com/rassweiler"
   gitlab = ""
+  twitter = ""
   linkedin = "https://www.linkedin.com/in/kylerassweiler/"
   featured_image = "/images/cover.png"
-
-[params.twitter]
-  # set Twitter handles for Twitter cards
-  # see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#card-and-content-attribution
-  # do not include @
-  creator = "Kyle Rassweiler"
-  site = ""
+  description = "A sleek software portfolio"
+  facebook = ""
+  instagram = ""
+  mastodon = ""
+  slack = ""
+  stackoverflow = ""
+  rss = ""
+  tiktok = ""
+  # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
+  background_color_class = "bg-dark-gray"
+  recent_posts_number = 3
+  skillSection = "Skills"
+  mainSections = ["Software"]
 
 [languages]
   [languages.en]
@@ -106,40 +76,41 @@ enableRobotsTXT = true
         identifier = "hardware"
         name = "Hardware"
         url = "/hardware"
-  [languages.fr]
-    languageName = "French"
-    title = "Kyle Rassweiler"
-    subtitle = "Portefeuille logiciel"
-    owner = "Kyle Rassweiler"
-    keywords = "Kyle Rassweiler Portefeuille"
-    copyright = "Kyle Rassweiler 2021"
-    menuMore = "View Plus"
-    readMore = "Lire Plus"
-    readOtherPosts = "Read other posts"
-    newerPosts = "Nouvaux Postes"
-    olderPosts = "Vieux Postes"
-    missingContentMessage = "Page n'existe pas..."
-    missingBackButtonLabel = "Retourne au page d'accueil"
-    contentDir = "content/fr"
 
-    [languages.fr.params.logo]
-      logoText = "Kyle Rassweiler"
-      logoHomeLink = "/"
+  # [languages.fr]
+  #   languageName = "French"
+  #   title = "Kyle Rassweiler"
+  #   subtitle = "Portefeuille logiciel"
+  #   owner = "Kyle Rassweiler"
+  #   keywords = "Kyle Rassweiler Portefeuille"
+  #   copyright = "Kyle Rassweiler 2021"
+  #   menuMore = "View Plus"
+  #   readMore = "Lire Plus"
+  #   readOtherPosts = "Read other posts"
+  #   newerPosts = "Nouvaux Postes"
+  #   olderPosts = "Vieux Postes"
+  #   missingContentMessage = "Page n'existe pas..."
+  #   missingBackButtonLabel = "Retourne au page d'accueil"
+  #   contentDir = "content/fr"
 
-    [languages.fr.menu]
-      [[languages.fr.menu.main]]
-        identifier = "about"
-        name = "à propos"
-        url = "/fr/about"
-      [[languages.fr.menu.main]]
-        identifier = "software"
-        name = "logiciel"
-        url = "/fr/software"
-      [[languages.fr.menu.main]]
-        identifier = "design"
-        name = "dessin"
-        url = "/fr/design"
-      [[languages.fr.menu.main]]
-        identifier = "hardware"
-        name = "matériel"
-        url = "/fr/hardware"
+  #   [languages.fr.params.logo]
+  #     logoText = "Kyle Rassweiler"
+  #     logoHomeLink = "/"
+
+  #   [languages.fr.menu]
+  #     [[languages.fr.menu.main]]
+  #       identifier = "about"
+  #       name = "à propos"
+  #       url = "/fr/about"
+  #     [[languages.fr.menu.main]]
+  #       identifier = "software"
+  #       name = "logiciel"
+  #       url = "/fr/software"
+  #     [[languages.fr.menu.main]]
+  #       identifier = "design"
+  #       name = "dessin"
+  #       url = "/fr/design"
+  #     [[languages.fr.menu.main]]
+  #       identifier = "hardware"
+  #       name = "matériel"
+  #       url = "/fr/hardware"

@@ -5,10 +5,10 @@ other = "Plus"
 other = "Tous les {{.Title }}"
 
 [recentTitle]
-other = "{{.Title }} récents"
+other = "Projets {{.Title }} Récents"
 
 [readMore]
-other = "lire plus"
+other = "Lire plus"
 
 [whatsInThis]
 other = "Ce qui est dans {{ .Type }}"
