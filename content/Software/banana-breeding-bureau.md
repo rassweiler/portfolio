@@ -1,9 +1,9 @@
 ---
 date: 2021-11-14T10:58:08-04:00
-description: "Banana Breeding Bureau"
+title: "Banana Breeding Bureau"
+description: "Simple Godot Web Game"
 featured_image: "/images/bbb-bg.svg"
-tags: ["Game","Godot","Linux"]
-title: "Easy Install Guide For Arch Linux Using BTRFS"
+tags: ["Game","Godot","Linux", "HTML5"]
 ---
 
 A simple web game built using [Godot](https://godotengine.org/) and [Blender](https://www.blender.org/).
