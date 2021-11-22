@@ -2,7 +2,7 @@
 date: 2021-11-20T10:58:08-04:00
 description: "Arch Snapper BTRFS Install Guide"
 featured_image: "/images/archinstall-bg.svg"
-tags: ["Hardware","Arch","Linux","BTRFS","Snapper"]
+tags: ["OS","Arch","Linux","BTRFS","Snapper"]
 title: "Easy Install Guide For Arch Linux Using BTRFS"
 ---
 
