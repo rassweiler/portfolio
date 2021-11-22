@@ -44,10 +44,12 @@ enableRobotsTXT = true
   tiktok = ""
   # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
   background_color_class = "bg-dark-gray"
+  body_classes = "avenir bg-custom"
   recent_posts_number = 3
   skillSection = "Skills"
   mainSections = ["Software"]
   custom_css = ["custom.css"]
+  date_format = "2006-01-06"
 
 [menu]
 [[menu.main]]

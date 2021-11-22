@@ -14,3 +14,50 @@
     max-height: 100%;
     max-width: 100%;
   }
+
+  .bg-custom {
+    background-color: #c5c6d7;
+  }
+
+  .list {
+    margin: 0.25rem;
+  }
+
+  .tags-flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .facebook, .twitter, .linkedin, .github, .youtube {
+    fill: cornflowerblue;
+  }
+
+  .card {
+    border-radius: 0.25rem;
+  }
+
+  .summary {
+    height: 100%;
+    padding: 0.5rem;
+  }
+
+  .summary-container {
+    height: 22rem;
+  }
+
+  .summary-image-span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow:hidden;
+  }
+
+  .summary-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+
+  .summary-image{
+    object-fit: cover;
+  }

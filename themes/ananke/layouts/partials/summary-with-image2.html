@@ -1,0 +1,24 @@
+{{ $featured_image := partial "func/GetFeaturedImage.html" . }}
+<article class="summary">
+    <div class="summary-container flex flex-column flex-row-ns">
+      {{ if $featured_image }}
+          {{/* Trimming the slash and adding absURL make sure the image works no matter where our site lives */}}
+        {{ $featured_image := (trim $featured_image "/") | absURL }}
+        <span class="summary-image-span pr3-ns mb4 mb0-ns w-100 w-40-ns">
+          <a href="{{.RelPermalink}}" class="summary-link db grow">
+            <img src="{{ $featured_image }}" class="summary-image" alt="image from {{ .Title }}">
+          </a>
+        </span>
+      {{ end }}
+      <span class="blah w-100{{ if $featured_image }} w-60-ns pl3-ns{{ end }}">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="{{.RelPermalink}}" class="color-inherit dim link">
+            {{ .Title }}
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links mid-gray">
+          {{ .Summary }}
+        </div>
+      </span>
+    </div>
+</article>
