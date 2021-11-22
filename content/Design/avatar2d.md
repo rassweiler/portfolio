@@ -1,9 +1,9 @@
 ---
 date: 2021-04-09T10:58:08-04:00
-description: "2D Avatar"
-featured_image: "images/YoutubePersona-bg.png"
+title: "2D Avatar"
+description: "Chad Gasswheeler: A janky 2d avatar"
+featured_image: "/images/YoutubePersona-bg.png"
 tags: ["Design","Youtube","Avatar"]
-title: "Chad Gasswheeler: A janky 2d avatar"
 ---
 
 <!--more-->
