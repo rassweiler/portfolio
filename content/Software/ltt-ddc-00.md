@@ -1,5 +1,5 @@
 ---
-date: 2021-11-20T10:58:08-04:00
+date: 2021-11-19T10:58:08-04:00
 title: "Daily Driver Challenge Hard(er) Mode Part 0"
 description: "Part 0 of the daily driver challenge from Linus Tech Tips"
 featured_image: "/images/lttddc-00-bg.jpg"

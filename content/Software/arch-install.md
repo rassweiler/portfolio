@@ -1,9 +1,9 @@
 ---
 date: 2021-11-20T10:58:08-04:00
-description: "Arch Snapper BTRFS Install Guide"
+title: "Arch Snapper BTRFS Install Guide"
+description: "Easy Install Guide For Arch Linux Using BTRFS"
 featured_image: "/images/archinstall-bg.svg"
 tags: ["OS","Arch","Linux","BTRFS","Snapper"]
-title: "Easy Install Guide For Arch Linux Using BTRFS"
 ---
 
 This guide is for installing arch linux (UEFI) with a BTRFS file system including subvolumes. This guide also covers using snapper and grub to create bootable snapshots.

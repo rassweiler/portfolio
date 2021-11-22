@@ -1,5 +1,5 @@
 ---
-date: 2021-11-15T10:58:08-04:00
+date: 2021-11-20T10:58:08-04:00
 title: "KRello"
 description: "A Generic Trello Clone"
 featured_image: "/images/krello-bg.png"
