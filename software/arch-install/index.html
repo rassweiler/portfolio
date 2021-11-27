@@ -18,7 +18,7 @@
 <meta itemprop=name content="Arch Snapper BTRFS Install Guide">
 <meta itemprop=description content="Easy Install Guide For Arch Linux Using BTRFS"><meta itemprop=datePublished content="2021-11-20T10:58:08-04:00">
 <meta itemprop=dateModified content="2021-11-20T10:58:08-04:00">
-<meta itemprop=wordCount content="1633">
+<meta itemprop=wordCount content="1689">
 <meta itemprop=keywords content="OS,Arch,Linux,BTRFS,Snapper,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Arch Snapper BTRFS Install Guide">
 <meta name=twitter:description content="Easy Install Guide For Arch Linux Using BTRFS">
@@ -328,9 +328,9 @@ cd paru
 makepkg -si
 
 cd ..
-</code></pre></div><h2 id=step-34---install-snapper-packages-from-aur>Step 34 - Install Snapper Packages From Aur</h2>
-<p>These packages will help with visually managing snapshots and booting into them.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>yay|paru -S snap-pac-grub snapper-gui
+</code></pre></div><h2 id=step-34---install-packages-from-aur>Step 34 - Install Packages From Aur</h2>
+<p>These packages will help with visually managing snapshots and booting into them. And librewolf is a hardened fork of firefox.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>yay|paru -S snap-pac-grub snapper-gui librewolf streamdeck-ui
 </code></pre></div><h2 id=step-35---install-generic-packages>Step 35 - Install Generic Packages:</h2>
 <p>Many of these are personal preference.</p>
 <p><code>feh</code> will handle the wallpaper (can also use nitrogen)</p>
@@ -339,8 +339,13 @@ cd ..
 <p><code>fish</code> is the shell</p>
 <p><code>rofi</code> is a package launcher similar to dmenu</p>
 <p><code>arandr</code> is for setting up displays (this is handy for i3wm)</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S xorg xorg-server alacritty thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget pulseaudio pulseaudio-alsa numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk
-</code></pre></div><h3 id=step-36---find-graphics-card>Step 36 - Find Graphics Card:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S xorg xorg-server alacritty thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libgnome-keyring
+</code></pre></div><h2 id=step-355---install-audio-packages>Step 35.5 - Install Audio Packages:</h2>
+<h3 id=step-355a---pulse-audio>Step 35.5.A - Pulse Audio:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pulseaudio pulseaudio-alsa
+</code></pre></div><h3 id=step-355b---pipewire-audio>Step 35.5.B - Pipewire Audio:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum easyeffects|noisetorch
+</code></pre></div><h2 id=step-36---find-graphics-card>Step 36 - Find Graphics Card:</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>lspci -k | grep -A <span style=color:#ae81ff>2</span> -E <span style=color:#e6db74>&#34;(VGA|3D)&#34;</span>
 </code></pre></div><h2 id=step-37---install-graphics>Step 37 - Install Graphics:</h2>
 <p>Install the packages for your hardware</p>
@@ -405,8 +410,9 @@ exec ssh-agent zsh
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>ssh-add -K ~/.ssh/id_ed25519
 </code></pre></div><h2 id=step-43---copy-configs-from-git-optional>Step 43 - COPY CONFIGS FROM GIT (Optional):</h2>
 <p>These are my own mashed together configs, mostly from my i3wm system. There are also some backgrounds in the repo.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>git clone https://github.com/rassweiler/config.git
-</code></pre></div><p>Overwrite the .config and .local folders in your user directory and reboot the system.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>git clone https://github.com/rassweiler/dotfiles.git <span style=color:#f92672>&amp;&amp;</span> cd dotfiles <span style=color:#f92672>&amp;&amp;</span> ./install
+</code></pre></div><p><del>Overwrite the .config and .local folders in your user directory and reboot the system.</del></p>
+<p>The repo now uses dotbot to symlink all configs.</p>
 <h2 id=step-44---enable-multilib-optional>Step 44 - Enable Multilib (Optional):</h2>
 <p>This will allow us to install steam, wine, and lutris</p>
 <p>Edit the pacman configuration</p>
