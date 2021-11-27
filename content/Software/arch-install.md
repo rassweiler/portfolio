@@ -433,12 +433,12 @@ makepkg -si
 cd ..
 ```
 
-## Step 34 - Install Snapper Packages From Aur
+## Step 34 - Install Packages From Aur
 
-These packages will help with visually managing snapshots and booting into them.
+These packages will help with visually managing snapshots and booting into them. And librewolf is a hardened fork of firefox.
 
 ```zsh
-yay|paru -S snap-pac-grub snapper-gui
+yay|paru -S snap-pac-grub snapper-gui librewolf streamdeck-ui
 ```
 
 ## Step 35 - Install Generic Packages:
@@ -458,10 +458,24 @@ Many of these are personal preference.
 `arandr` is for setting up displays (this is handy for i3wm)
 
 ```zsh
-sudo pacman -S xorg xorg-server alacritty thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget pulseaudio pulseaudio-alsa numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk
+sudo pacman -S xorg xorg-server alacritty thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libgnome-keyring
 ```
 
-### Step 36 - Find Graphics Card:
+## Step 35.5 - Install Audio Packages:
+
+### Step 35.5.A - Pulse Audio:
+
+```zsh
+sudo pacman -S pulseaudio pulseaudio-alsa
+```
+
+### Step 35.5.B - Pipewire Audio:
+
+```zsh
+sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum easyeffects|noisetorch
+```
+
+## Step 36 - Find Graphics Card:
 
 ```zsh
 lspci -k | grep -A 2 -E "(VGA|3D)"
@@ -603,10 +617,12 @@ ssh-add -K ~/.ssh/id_ed25519
 These are my own mashed together configs, mostly from my i3wm system. There are also some backgrounds in the repo.
 
 ```zsh
-git clone https://github.com/rassweiler/config.git
+git clone https://github.com/rassweiler/dotfiles.git && cd dotfiles && ./install
 ```
 
-Overwrite the .config and .local folders in your user directory and reboot the system.
+~~Overwrite the .config and .local folders in your user directory and reboot the system.~~
+
+The repo now uses dotbot to symlink all configs.
 
 ## Step 44 - Enable Multilib (Optional):
 
