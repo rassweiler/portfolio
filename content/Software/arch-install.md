@@ -263,7 +263,7 @@ passwd
 Remove the items within brackets if not needed, or remove the squarebracket portion if needed
 
 ```zsh
-pacman -S grub efibootmgr networkmanager network-manager-applet dialog [FOR WIFI (wpa_supplicant)] mtools dosfstools git reflector snapper snap-pac [FOR BLUETOOTH (bluez bluez-utils pulseaudio-bluetooth)] [FOR PRINTING (cups hplip)] xdg-utils xdg-user-dirs alsa-utils pulseaudio inetutils base-devel openssh grub-customizer code os-prober sudo
+pacman -S grub efibootmgr networkmanager network-manager-applet dialog [FOR WIFI (wpa_supplicant)] mtools dosfstools git reflector snapper snap-pac [FOR BLUETOOTH (bluez bluez-utils pulseaudio-bluetooth)] [FOR PRINTING (cups hplip)] xdg-utils xdg-user-dirs alsa-utils inetutils base-devel openssh grub-customizer code os-prober sudo
 ```
 
 ## Step 24 - Add btrfs to CPIO Modules:
@@ -449,16 +449,38 @@ Many of these are personal preference.
 
 `thunar` is the file browser
 
-`alacritty` is the terminal emulator
-
 `fish` is the shell
 
 `rofi` is a package launcher similar to dmenu
 
 `arandr` is for setting up displays (this is handy for i3wm)
 
+`gnome-keyring` and `libgnome-keyring` are needed for authing nextcloud on startup
+
 ```zsh
-sudo pacman -S xorg xorg-server alacritty thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libgnome-keyring
+sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libgnome-keyring
+```
+
+## Step 35.1 - Install Browser Packages (librewolf & firefox for netflix):
+
+```zsh
+sudo pacman -S firefox
+
+paru -S librewolf
+```
+
+## Step 35.2 - Install Terminal:
+
+### Step 35.2.A - Alacritty:
+
+```zsh
+sudo pacman -S alacritty
+```
+
+### Step 35.2.B - WezTerm:
+
+```zsh
+paru -S wezterm
 ```
 
 ## Step 35.5 - Install Audio Packages:
