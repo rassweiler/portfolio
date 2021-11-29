@@ -18,7 +18,7 @@
 <meta itemprop=name content="Arch Snapper BTRFS Install Guide">
 <meta itemprop=description content="Easy Install Guide For Arch Linux Using BTRFS"><meta itemprop=datePublished content="2021-11-20T10:58:08-04:00">
 <meta itemprop=dateModified content="2021-11-20T10:58:08-04:00">
-<meta itemprop=wordCount content="1689">
+<meta itemprop=wordCount content="1730">
 <meta itemprop=keywords content="OS,Arch,Linux,BTRFS,Snapper,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Arch Snapper BTRFS Install Guide">
 <meta name=twitter:description content="Easy Install Guide For Arch Linux Using BTRFS">
@@ -233,7 +233,7 @@ pacman -Syy
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>passwd
 </code></pre></div><h2 id=step-23---install-general-packages>Step 23 - Install General Packages:</h2>
 <p>Remove the items within brackets if not needed, or remove the squarebracket portion if needed</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>pacman -S grub efibootmgr networkmanager network-manager-applet dialog <span style=color:#f92672>[</span>FOR WIFI <span style=color:#f92672>(</span>wpa_supplicant<span style=color:#f92672>)]</span> mtools dosfstools git reflector snapper snap-pac <span style=color:#f92672>[</span>FOR BLUETOOTH <span style=color:#f92672>(</span>bluez bluez-utils pulseaudio-bluetooth<span style=color:#f92672>)]</span> <span style=color:#f92672>[</span>FOR PRINTING <span style=color:#f92672>(</span>cups hplip<span style=color:#f92672>)]</span> xdg-utils xdg-user-dirs alsa-utils pulseaudio inetutils base-devel openssh grub-customizer code os-prober sudo
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>pacman -S grub efibootmgr networkmanager network-manager-applet dialog <span style=color:#f92672>[</span>FOR WIFI <span style=color:#f92672>(</span>wpa_supplicant<span style=color:#f92672>)]</span> mtools dosfstools git reflector snapper snap-pac <span style=color:#f92672>[</span>FOR BLUETOOTH <span style=color:#f92672>(</span>bluez bluez-utils pulseaudio-bluetooth<span style=color:#f92672>)]</span> <span style=color:#f92672>[</span>FOR PRINTING <span style=color:#f92672>(</span>cups hplip<span style=color:#f92672>)]</span> xdg-utils xdg-user-dirs alsa-utils inetutils base-devel openssh grub-customizer code os-prober sudo
 </code></pre></div><h2 id=step-24---add-btrfs-to-cpio-modules>Step 24 - Add btrfs to CPIO Modules:</h2>
 <p><em>Need to investigate difference between placing it in modules vs binaries, may also need other items in modules.</em></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>nano /etc/mkinitcpio.conf
@@ -335,11 +335,20 @@ cd ..
 <p>Many of these are personal preference.</p>
 <p><code>feh</code> will handle the wallpaper (can also use nitrogen)</p>
 <p><code>thunar</code> is the file browser</p>
-<p><code>alacritty</code> is the terminal emulator</p>
 <p><code>fish</code> is the shell</p>
 <p><code>rofi</code> is a package launcher similar to dmenu</p>
 <p><code>arandr</code> is for setting up displays (this is handy for i3wm)</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S xorg xorg-server alacritty thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libgnome-keyring
+<p><code>gnome-keyring</code> and <code>libgnome-keyring</code> are needed for authing nextcloud on startup</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libgnome-keyring
+</code></pre></div><h2 id=step-351---install-browser-packages-librewolf--firefox-for-netflix>Step 35.1 - Install Browser Packages (librewolf & firefox for netflix):</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S firefox
+
+paru -S librewolf
+</code></pre></div><h2 id=step-352---install-terminal>Step 35.2 - Install Terminal:</h2>
+<h3 id=step-352a---alacritty>Step 35.2.A - Alacritty:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S alacritty
+</code></pre></div><h3 id=step-352b---wezterm>Step 35.2.B - WezTerm:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>paru -S wezterm
 </code></pre></div><h2 id=step-355---install-audio-packages>Step 35.5 - Install Audio Packages:</h2>
 <h3 id=step-355a---pulse-audio>Step 35.5.A - Pulse Audio:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pulseaudio pulseaudio-alsa
