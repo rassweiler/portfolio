@@ -18,7 +18,7 @@
 <meta itemprop=name content="Arch Snapper BTRFS Install Guide">
 <meta itemprop=description content="Easy Install Guide For Arch Linux Using BTRFS"><meta itemprop=datePublished content="2021-11-20T10:58:08-04:00">
 <meta itemprop=dateModified content="2021-11-20T10:58:08-04:00">
-<meta itemprop=wordCount content="1730">
+<meta itemprop=wordCount content="1658">
 <meta itemprop=keywords content="OS,Arch,Linux,BTRFS,Snapper,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Arch Snapper BTRFS Install Guide">
 <meta name=twitter:description content="Easy Install Guide For Arch Linux Using BTRFS">
@@ -68,9 +68,9 @@ Design
 </nav>
 <div class="tc-l pv6 ph3 ph4-ns">
 <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Arch Snapper BTRFS Install Guide</h1>
-<h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+<div class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
 Easy Install Guide For Arch Linux Using BTRFS
-</h2>
+</div>
 </div>
 </div>
 </header>
@@ -294,7 +294,7 @@ sudo chmod <span style=color:#ae81ff>750</span> /.snapshots
 
 sudo chmod a+rx /.snapshots
 
-sudo chown :kr /.snapshots
+sudo chown :NAME /.snapshots
 </code></pre></div><h2 id=step-32---modify-snapper-settings>Step 32 - Modify Snapper Settings:</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo nano /etc/snapper/configs/root
 </code></pre></div><p>Make the following changes based on preference, and make sure to add the new user to the allowed list.</p>
@@ -330,7 +330,7 @@ makepkg -si
 cd ..
 </code></pre></div><h2 id=step-34---install-packages-from-aur>Step 34 - Install Packages From Aur</h2>
 <p>These packages will help with visually managing snapshots and booting into them. And librewolf is a hardened fork of firefox.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>yay|paru -S snap-pac-grub snapper-gui librewolf streamdeck-ui
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>yay|paru -S snap-pac-grub snapper-gui
 </code></pre></div><h2 id=step-35---install-generic-packages>Step 35 - Install Generic Packages:</h2>
 <p>Many of these are personal preference.</p>
 <p><code>feh</code> will handle the wallpaper (can also use nitrogen)</p>
@@ -340,55 +340,57 @@ cd ..
 <p><code>arandr</code> is for setting up displays (this is handy for i3wm)</p>
 <p><code>gnome-keyring</code> and <code>libgnome-keyring</code> are needed for authing nextcloud on startup</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libgnome-keyring
-</code></pre></div><h2 id=step-351---install-browser-packages-librewolf--firefox-for-netflix>Step 35.1 - Install Browser Packages (librewolf & firefox for netflix):</h2>
+</code></pre></div><h2 id=step-36---install-browser-packages-librewolf--firefox-for-netflix>Step 36 - Install Browser Packages (librewolf & firefox for netflix):</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S firefox
 
 paru -S librewolf
-</code></pre></div><h2 id=step-352---install-terminal>Step 35.2 - Install Terminal:</h2>
-<h3 id=step-352a---alacritty>Step 35.2.A - Alacritty:</h3>
+</code></pre></div><h2 id=step-37---install-terminal>Step 37 - Install Terminal:</h2>
+<h3 id=step-37a---alacritty>Step 37.A - Alacritty:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S alacritty
-</code></pre></div><h3 id=step-352b---wezterm>Step 35.2.B - WezTerm:</h3>
+</code></pre></div><h3 id=step-37b---wezterm>Step 37.B - WezTerm:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>paru -S wezterm
-</code></pre></div><h2 id=step-355---install-audio-packages>Step 35.5 - Install Audio Packages:</h2>
-<h3 id=step-355a---pulse-audio>Step 35.5.A - Pulse Audio:</h3>
+</code></pre></div><h2 id=step-38---install-audio-packages>Step 38 - Install Audio Packages:</h2>
+<h3 id=step-38a---pulse-audio>Step 38.A - Pulse Audio:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pulseaudio pulseaudio-alsa
-</code></pre></div><h3 id=step-355b---pipewire-audio>Step 35.5.B - Pipewire Audio:</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum easyeffects|noisetorch
-</code></pre></div><h2 id=step-36---find-graphics-card>Step 36 - Find Graphics Card:</h2>
+</code></pre></div><h3 id=step-38b---pipewire-audio>Step 38.B - Pipewire Audio:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum qjackctl easyeffects|noisetorch pipewire-jack-dropin
+
+paru -S noisetorch pipewire-jack-dropin
+</code></pre></div><h2 id=step-39---find-graphics-card>Step 39 - Find Graphics Card:</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>lspci -k | grep -A <span style=color:#ae81ff>2</span> -E <span style=color:#e6db74>&#34;(VGA|3D)&#34;</span>
-</code></pre></div><h2 id=step-37---install-graphics>Step 37 - Install Graphics:</h2>
+</code></pre></div><h2 id=step-40---install-graphics>Step 40 - Install Graphics:</h2>
 <p>Install the packages for your hardware</p>
-<h3 id=step-37a---nvidia>Step 37.A - Nvidia:</h3>
+<h3 id=step-40a---nvidia>Step 40.A - Nvidia:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S nvidia nvidia-utils nvidia-settings nvidia-dkms
-</code></pre></div><h3 id=step-37b---amd>Step 37.B - AMD:</h3>
+</code></pre></div><h3 id=step-40b---amd>Step 40.B - AMD:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S amdvlk mesa
-</code></pre></div><h2 id=step-38---install-de-manager>Step 38 - Install DE Manager:</h2>
+</code></pre></div><h2 id=step-41---install-de-manager>Step 41 - Install DE Manager:</h2>
 <p>There are a few options for managers</p>
-<h3 id=step-38a---lightdm>Step 38.A - Lightdm:</h3>
+<h3 id=step-41a---lightdm>Step 41.A - Lightdm:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>paru -S lightdm-webkit-theme-aether
 
 sudo systemctl enable lightdm
-</code></pre></div><h3 id=step-38b---sddm>Step 38.B - SDDM:</h3>
+</code></pre></div><h3 id=step-41b---sddm>Step 41.B - SDDM:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S sddm
 
 sudo systemctl enable sddm.service
-</code></pre></div><h2 id=step-39---install-your-de-of-choice>Step 39 - Install Your DE OF Choice:</h2>
+</code></pre></div><h2 id=step-42---install-your-de-of-choice>Step 42 - Install Your DE OF Choice:</h2>
 <p>There are a few options for desktop environments</p>
 <p>My preference is i3wm for simplicity, or KDE Plasma <em>cause you fancy gurl</em>.</p>
-<h3 id=step-39a---i3>Step 39.A - i3:</h3>
+<h3 id=step-42a---i3>Step 42.A - i3:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S i3-gaps i3blocks i3status
-</code></pre></div><h3 id=step-39b---kde-plasma>Step 39.B - KDE PLASMA:</h3>
+</code></pre></div><h3 id=step-42b---kde-plasma>Step 42.B - KDE PLASMA:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S plasma plasma-wayland-session kde-applications
-</code></pre></div><h3 id=step-39c---awesome>Step 39.C - Awesome:</h3>
+</code></pre></div><h3 id=step-42c---awesome>Step 42.C - Awesome:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S awesome
-</code></pre></div><h2 id=step-40---set-shell>Step 40 - Set Shell:</h2>
+</code></pre></div><h2 id=step-43---set-shell>Step 43 - Set Shell:</h2>
 <p>the default is bash, I prefer fish&mldr; but know that some commands will need to be changed to run in fish.</p>
 <p>Example Bash/zsh:<code>chsh -s $(which fish)</code> vs fish: <code>chsh -s (which zsh)</code></p>
-<h3 id=step-40a---set-zsh-shell>Step 40.A - Set ZSH Shell:</h3>
+<h3 id=step-43a---set-zsh-shell>Step 43.A - Set ZSH Shell:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>chsh -s <span style=color:#66d9ef>$(</span>which zsh<span style=color:#66d9ef>)</span>
-</code></pre></div><h3 id=step-40b---set-fish-shell>Step 40.B - Set Fish Shell:</h3>
+</code></pre></div><h3 id=step-43b---set-fish-shell>Step 43.B - Set Fish Shell:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>chsh -s <span style=color:#66d9ef>$(</span>which fish<span style=color:#66d9ef>)</span>
-</code></pre></div><h2 id=step-41---setup-pacman-hooks-for-snapper>Step 41 - Setup Pacman Hooks For Snapper:</h2>
+</code></pre></div><h2 id=step-44---setup-pacman-hooks-for-snapper>Step 44 - Setup Pacman Hooks For Snapper:</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo mkdir /etc/pacman.d/hooks
 
 sudo nano /etc/pacman.d/hooks/50-bootbackup.hook
@@ -405,10 +407,10 @@ sudo nano /etc/pacman.d/hooks/50-bootbackup.hook
 <span style=color:#ae81ff>Description = Backing up /boot...</span>
 <span style=color:#ae81ff>When = PreTransaction</span>
 <span style=color:#ae81ff>Exec = /usr/bin/rsync -a --delete /boot /.bootbackup</span>
-</code></pre></div><h2 id=step-42---generate-ssh-key-and-add-to-agent-optional>Step 42 - Generate SSH Key And add To Agent (Optional):</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sh-keygen -t rsa -b <span style=color:#ae81ff>4096</span> -C <span style=color:#e6db74>&#34;your_email@example.com&#34;</span>
+</code></pre></div><h2 id=step-45---generate-ssh-key-and-add-to-agent-optional>Step 45 - Generate SSH Key And add To Agent (Optional):</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>ssh-keygen -t rsa -b <span style=color:#ae81ff>4096</span> -C <span style=color:#e6db74>&#34;your_email@example.com&#34;</span>
 </code></pre></div><p>Fish:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>eval <span style=color:#f92672>(</span>ssh-agent -s<span style=color:#f92672>)</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>eval <span style=color:#e6db74>&#34;(ssh-agent -s)&#34;</span>
 
 exec ssh-agent fish
 </code></pre></div><p>ZSH:</p>
@@ -417,33 +419,12 @@ exec ssh-agent fish
 exec ssh-agent zsh
 </code></pre></div><p>Add the key to the shell</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>ssh-add -K ~/.ssh/id_ed25519
-</code></pre></div><h2 id=step-43---copy-configs-from-git-optional>Step 43 - COPY CONFIGS FROM GIT (Optional):</h2>
+</code></pre></div><h2 id=step-46---copy-configs-from-git-optional>Step 46 - COPY CONFIGS FROM GIT (Optional):</h2>
 <p>These are my own mashed together configs, mostly from my i3wm system. There are also some backgrounds in the repo.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>git clone https://github.com/rassweiler/dotfiles.git <span style=color:#f92672>&amp;&amp;</span> cd dotfiles <span style=color:#f92672>&amp;&amp;</span> ./install
-</code></pre></div><p><del>Overwrite the .config and .local folders in your user directory and reboot the system.</del></p>
-<p>The repo now uses dotbot to symlink all configs.</p>
-<h2 id=step-44---enable-multilib-optional>Step 44 - Enable Multilib (Optional):</h2>
-<p>This will allow us to install steam, wine, and lutris</p>
-<p>Edit the pacman configuration</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo nano /etc/pacman.conf
-</code></pre></div><p>uncomment Multilib and the include</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml>[<span style=color:#ae81ff>multilib]</span>
-<span style=color:#ae81ff>Include = /etc/pacman.d/mirrorlist</span>
-</code></pre></div><h2 id=step-45---update-the-system>Step 45 - Update The System:</h2>
+</code></pre></div><p><del>Overwrite the .config and .local folders in your user directory and reboot the system.</del>(The repo now uses dotbot to symlink all configs)</p>
+<h2 id=step-47---update-the-system>Step 47 - Update The System:</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -Syu
-</code></pre></div><h2 id=step-46---install-gaming-optional>Step 46 - Install Gaming (Optional):</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S steam wine lutris
-
-paru -S proton proton-ge-custom
-</code></pre></div><h2 id=step-47---tuning-optional>Step 47 - Tuning (Optional):</h2>
-<h3 id=step-46a---pulse-audio>Step 46.A - Pulse Audio:</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo nano /etc/pulse/daemon.conf
-</code></pre></div><p>Change settings</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>high-priority = yes</span>
-<span style=color:#ae81ff>nice-level = -11</span>
-
-<span style=color:#ae81ff>realtime-scheduling = yes</span>
-<span style=color:#ae81ff>realtime-priority = 5</span>
 </code></pre></div><ul class="pa0 tags-flex">
 <li class=list>
 <a href=/tags/os class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">OS</a>
