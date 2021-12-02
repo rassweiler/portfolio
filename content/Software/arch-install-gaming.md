@@ -1,12 +1,12 @@
 ---
-date: 2021-11-20T10:58:08-04:00
-title: "Arch Snapper BTRFS Install Guide"
-description: "Easy Install Guide For Arch Linux Using BTRFS"
+date: 2022-01-21T10:58:08-04:00
+title: "Arch-Snapper-BTRFS Install Guide - Gaming Edition"
+description: "Easy Gaming Guide For Arch Linux"
 featured_image: "/images/archinstall-bg.svg"
-tags: ["OS","Arch","Linux","BTRFS","Snapper"]
+tags: ["OS","Arch","Linux","BTRFS","Snapper", "Gaming"]
 ---
 
-This guide is for installing arch linux (UEFI) with a BTRFS file system including subvolumes. This guide also covers using snapper and grub to create bootable snapshots.
+This guide is for installing arch linux (UEFI) using a BTRFS file system including subvolumes for big-boy gaming.
 
 <!--more-->
 
@@ -115,15 +115,15 @@ y
 If you skipped the swap partition then skip the mkswap and swapon and use the right partition number for the btrfs volume.
 
 ```zsh
-mkfs.fat -F32 /dev/vda1
+mkfs.fat -F32 /dev/nvme1n1p1
 
-mkswap /dev/vda2
+mkswap /dev/nvme1n1p2
 
-swapon /dev/vda2
+swapon /dev/nvme1n1p2
 
-mkfs.btrfs /dev/vda3
+mkfs.btrfs /dev/nvme1n1p3
 
-mount /dev/vda3 /mnt
+mount /dev/nvme1n1p3 /mnt
 
 btrfs su cr /mnt/@
 
@@ -143,17 +143,17 @@ Use lsblk to verify all partitions and volumes were mounted.
 ```zsh
 umount /mnt
 
-mount -o noatime,compress=lzo,space_cache=v2,subvol=@ /dev/vda3 /mnt
+mount -o noatime,compress=lzo,space_cache=v2,subvol=@ /dev/nvme1n1p3 /mnt
 
 mkdir -p /mnt/{boot,home,.snapshots,var/log}
 
-mount -o noatime,compress=lzo,space_cache=v2,subvol=@home /dev/vda3 /mnt/home
+mount -o noatime,compress=lzo,space_cache=v2,subvol=@home /dev/nvme1n1p3 /mnt/home
 
-mount -o noatime,compress=lzo,space_cache=v2,subvol=@snapshots /dev/vda3 /mnt/.snapshots
+mount -o noatime,compress=lzo,space_cache=v2,subvol=@snapshots /dev/nvme1n1p3 /mnt/.snapshots
 
-mount -o noatime,compress=lzo,space_cache=v2,subvol=@var_log /dev/vda3 /mnt/var/log
+mount -o noatime,compress=lzo,space_cache=v2,subvol=@var_log /dev/nvme1n1p3 /mnt/var/log
 
-mount /dev/vda1 /mnt/boot
+mount /dev/nvme1n1p1 /mnt/boot
 
 lsblk
 ```
@@ -461,7 +461,7 @@ Many of these are personal preference.
 sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libgnome-keyring
 ```
 
-## Step 36 - Install Browser Packages (librewolf & firefox for netflix):
+## Step 35.1 - Install Browser Packages (librewolf & firefox for netflix):
 
 ```zsh
 sudo pacman -S firefox
@@ -469,63 +469,65 @@ sudo pacman -S firefox
 paru -S librewolf
 ```
 
-## Step 37 - Install Terminal:
+## Step 35.2 - Install Terminal:
 
-### Step 37.A - Alacritty:
+### Step 35.2.A - Alacritty:
 
 ```zsh
 sudo pacman -S alacritty
 ```
 
-### Step 37.B - WezTerm:
+### Step 35.2.B - WezTerm:
 
 ```zsh
 paru -S wezterm
 ```
 
-## Step 38 - Install Audio Packages:
+## Step 35.5 - Install Audio Packages:
 
-### Step 38.A - Pulse Audio:
+I would suggest pipewire for a better quality experience or pulse for a simpler experience (Pulse has odd glitches when overloaded).
+
+### Step 35.5.A - Pulse Audio:
 
 ```zsh
 sudo pacman -S pulseaudio pulseaudio-alsa
 ```
 
-### Step 38.B - Pipewire Audio:
+### Step 35.5.B - Pipewire Audio:
 
 ```zsh
-sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum qjackctl easyeffects|noisetorch pipewire-jack-dropin
+sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum qjackctl easyeffects
 
 paru -S noisetorch pipewire-jack-dropin
 ```
 
-## Step 39 - Find Graphics Card:
+## Step 36 - Find Graphics Card:
 
 ```zsh
 lspci -k | grep -A 2 -E "(VGA|3D)"
 ```
 
-## Step 40 - Install Graphics:
+## Step 37 - Install Graphics:
 
 Install the packages for your hardware
 
-### Step 40.A - Nvidia:
+### Step 37.A - Nvidia:
 
 ```zsh
 sudo pacman -S nvidia nvidia-utils nvidia-settings nvidia-dkms
 ```
 
-### Step 40.B - AMD:
+### Step 37.B - AMD:
 
 ```zsh
 sudo pacman -S amdvlk mesa
 ```
 
-## Step 41 - Install DE Manager:
+## Step 38 - Install DE Manager:
 
 There are a few options for managers
 
-### Step 41.A - Lightdm:
+### Step 38.A - Lightdm:
 
 ```zsh
 paru -S lightdm-webkit-theme-aether
@@ -533,7 +535,7 @@ paru -S lightdm-webkit-theme-aether
 sudo systemctl enable lightdm
 ```
 
-### Step 41.B - SDDM:
+### Step 38.B - SDDM:
 
 ```zsh
 sudo pacman -S sddm
@@ -541,49 +543,49 @@ sudo pacman -S sddm
 sudo systemctl enable sddm.service
 ```
 
-## Step 42 - Install Your DE OF Choice:
+## Step 39 - Install Your DE OF Choice:
 
 There are a few options for desktop environments
 
 My preference is i3wm for simplicity, or KDE Plasma *cause you fancy gurl*.
 
-### Step 42.A - i3:
+### Step 39.A - i3wm:
 
 ```zsh
 sudo pacman -S i3-gaps i3blocks i3status
 ```
 
-### Step 42.B - KDE PLASMA:
+### Step 39.B - KDE PLASMA:
 
 ```zsh
 sudo pacman -S plasma plasma-wayland-session kde-applications
 ```
 
-### Step 42.C - Awesome:
+### Step 39.C - Awesome:
 
 ```zsh
 sudo pacman -S awesome
 ```
 
-## Step 43 - Set Shell:
+## Step 40 - Set Shell:
 
 the default is bash, I prefer fish... but know that some commands will need to be changed to run in fish.
 
 Example Bash/zsh:`chsh -s $(which fish)` vs fish: `chsh -s (which zsh)`
 
-### Step 43.A - Set ZSH Shell:
+### Step 40.A - Set ZSH Shell:
 
-```zsh
+```zsh45
 chsh -s $(which zsh)
 ```
 
-### Step 43.B - Set Fish Shell:
+### Step 40.B - Set Fish Shell:
 
 ```zsh
 chsh -s $(which fish)
 ```
 
-## Step 44 - Setup Pacman Hooks For Snapper:
+## Step 41 - Setup Pacman Hooks For Snapper:
 
 ```zsh
 sudo mkdir /etc/pacman.d/hooks
@@ -608,7 +610,7 @@ When = PreTransaction
 Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 ```
 
-## Step 45 - Generate SSH Key And add To Agent (Optional):
+## Step 42 - Generate SSH Key And add To Agent (Optional):
 
 ```zsh
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
@@ -636,7 +638,7 @@ Add the key to the shell
 ssh-add -K ~/.ssh/id_ed25519
 ```
 
-## Step 46 - COPY CONFIGS FROM GIT (Optional):
+## Step 43 - COPY CONFIGS FROM GIT (Optional):
 
 These are my own mashed together configs, mostly from my i3wm system. There are also some backgrounds in the repo.
 
@@ -646,8 +648,96 @@ git clone https://github.com/rassweiler/dotfiles.git && cd dotfiles && ./install
 
 ~~Overwrite the .config and .local folders in your user directory and reboot the system.~~(The repo now uses dotbot to symlink all configs)
 
-## Step 47 - Update The System:
+## Step 44 - Edit i3wm CONFIGS (Optional):
+
+Log into the lightdm session then press `mod(windows)+space` to bring up the rofi menu.
+
+Then launch `arandr`.
+
+Arandr will show you the name of the current display, use this to modify i3 configs:
+
+```zsh
+nano ~/dotfiles/config/i3/config
+```
+
+Modify the following to match your display setup (if you only have one monitor set both variables to the same name):
+
+```yml
+set $mo1 "HDMI-0" # Set this to match your display from arandr
+set $mo2 "HDMI-1" # Set this to match your display from arandr
+```
+
+If you only have one display then comment out the second bar setup:
+
+```yml
+# Secondary Monitor Bar
+# bar {
+# 		font pango:Victor Mono Bold 10, FontAwesome 10
+#         position top 
+#         tray_output $mo1
+#         tray_padding 0
+#         output $mo2
+#     strip_workspace_numbers yes
+#     #strip_workspace_name no
+
+#     colors {
+#         background #282A36
+#         statusline #F8F8F2
+#         separator  #44475A
+#         focused_workspace  #44475A #bd93f9 #F8F8F2
+#         active_workspace   #282A36 #bd93f9 #F8F8F2
+#         inactive_workspace #282A36 #282A36 #BFBFBF
+#         urgent_workspace   #8be9fd #ff79c6 #F8F8F2
+#         binding_mode       #8be9fd #ff79c6 #F8F8F2
+# 	}
+# }
+```
+
+## Step 45 - Enable Multilib:
+
+This will allow us to install steam, wine, and lutris
+
+Edit the pacman configuration
+
+```zsh
+sudo nano /etc/pacman.conf
+```
+
+uncomment Multilib and the include
+
+```yml
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+
+## Step 46 - Update The System:
 
 ```zsh
 sudo pacman -Syu
+```
+
+## Step 47 - Install Gaming (Optional):
+
+```zsh
+sudo pacman -S steam wine lutris
+
+paru -S proton proton-ge-custom mangohud streamdeck-ui
+```
+
+## Step 48 - Tuning (Optional):
+
+### Step 48.A - Pulse Audio:
+
+```zsh
+sudo nano /etc/pulse/daemon.conf
+```
+
+Change settings
+
+```yml
+high-priority = yes
+nice-level = -11
+
+realtime-scheduling = yes
+realtime-priority = 5
 ```
