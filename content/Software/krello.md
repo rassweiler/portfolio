@@ -12,6 +12,14 @@ There is also drag-n-drop functionality.
 
 <!--more-->
 
+## Source
+
+[Github](https://github.com/rassweiler/krello)
+
+## Demo
+
 Don't be shy, [Give It A Try!](https://krello.kylerassweiler.com) (this links to the old Django portfolio at the moment)
+
+## Images
 
 {{< figure src="/images/krello-sc01.png" title="Lists and cards in KRello" link="/images/krello-sc01.png" >}}

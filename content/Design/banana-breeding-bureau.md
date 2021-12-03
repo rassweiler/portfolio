@@ -10,11 +10,15 @@ A simple web game built using [Godot](https://godotengine.org/) and [Blender](ht
 
 The goal is to plant banana trees and have unit collect dropped bananas in order to ship them to orbit.
 
-Give the game a [Look](https://portfoliogame.kylerassweiler.com/)!
-
 <!--more-->
 
 This project is currently incomplete.
+
+## Demo
+
+[Give the game a try!](https://portfoliogame.kylerassweiler.com/)
+
+## Images
 
 {{< figure src="/images/bbb-01.svg" title="Gamedev Studio Mascot" link="/images/bbb-01.svg" >}}
 
@@ -28,6 +32,6 @@ This project is currently incomplete.
 
 {{< figure src="/images/bbb-06.png" title="Well" link="/images/bbb-06.png" >}}
 
-{{< figure src="/images/bbb-07.png" title="Maya" link="/images/bbb-07.png" >}}
+{{< figure src="/images/bbb-07.png" title="Mayan" link="/images/bbb-07.png" >}}
 
 {{< figure src="/images/bbb-08.png" title="Game View" link="/images/bbb-08.png" >}}

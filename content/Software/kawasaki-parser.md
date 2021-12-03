@@ -12,16 +12,18 @@ A Kawasaki robot backup parser written in TypeScript for browser or Node. The li
 
 ___
 
-# Source
+## Source
 
 [Github](https://github.com/rassweiler/kawasaki-as-parser)
 
-# Usage
+## Usage
 
 For node projects the library can be downloaded from [NPM](https://www.npmjs.com/package/@rassweiler/kawasaki-as-parser):
 
 ```zsh
 npm install @rassweiler/kawasaki-as-parser
 ``` 
+
+## Images
 
 {{< figure src="/images/kawasaki-parser-bg.png" title="Hot off the editing floor!" link="/images/kawasaki-parser-bg.png" >}}
