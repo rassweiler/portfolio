@@ -1,3 +1,7 @@
+.kr-header {
+  text-shadow: 2px 2px rgb(3, 8, 10);
+}
+
 @media screen and (min-width:30em) {
   .skill-flex-box{
     display: inline-flex;
