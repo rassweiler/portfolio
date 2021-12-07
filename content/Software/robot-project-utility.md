@@ -3,7 +3,7 @@ date: 2021-11-13T10:58:08-04:00
 title: "Robot Project Utility"
 description: "Electron Based Robot Project Utility"
 featured_image: "/images/robot-project-utility-bg.png"
-tags: ["Software","Node","Electron","Kawasaki"]
+tags: ["Node","Electron","Kawasaki","JavaScript","CSS","HTML"]
 ---
 
 A robot project utility written in JS, HTML, CSS, React, and Electron. 

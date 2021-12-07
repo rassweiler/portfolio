@@ -3,7 +3,7 @@ date: 2021-11-11T10:58:08-04:00
 title: "KR Display"
 description: "Meteor Based Data Display"
 featured_image: "/images/kr-display-bg.png"
-tags: ["Software","Meteor","Node","SQL","KEPServer"]
+tags: ["Meteor","Node","SQL","KEPServer","HTML","JavaScript","CSS"]
 ---
 
 A Metor based application for displaying production data from an SQL server. 

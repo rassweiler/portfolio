@@ -2,7 +2,7 @@
 date: 2021-11-20T10:58:08-04:00
 title: "Arch Snapper BTRFS Install Guide"
 description: "Easy Install Guide For Arch Linux Using BTRFS"
-featured_image: "/images/archinstall-bg.svg"
+featured_image: "/images/archinstall-bg.png"
 tags: ["OS","Arch","Linux","BTRFS","Snapper"]
 ---
 
@@ -455,10 +455,10 @@ Many of these are personal preference.
 
 `arandr` is for setting up displays (this is handy for i3wm)
 
-`gnome-keyring` and `libgnome-keyring` are needed for authing nextcloud on startup
+`gnome-keyring` and ~~`libgnome-keyring`~~ are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use `libsecret` instead
 
 ```zsh
-sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libgnome-keyring
+sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret
 ```
 
 ## Step 36 - Install Browser Packages (librewolf & firefox for netflix):

@@ -3,7 +3,7 @@ date: 2021-11-19T10:58:08-04:00
 title: "Daily Driver Challenge Hard(er) Mode Part 0"
 description: "Part 0 of the daily driver challenge from Linus Tech Tips"
 featured_image: "/images/lttddc-00-bg.jpg"
-tags: ["Hardware","Networking","Linux","LTT","DDC"]
+tags: ["Networking","Linux","LTT","DDC","QEMU","KVM"]
 ---
 
 The Linus Tech Tips Daily Driver Challenge is an attempt at using a linux system as your main rig. The hard(er) mode version is using Arch and i3wm as the os of choice.

@@ -9,7 +9,7 @@ theme = 'ananke'
 #RelativeURLs = true
 #CanonifyURLs = true
 DefaultContentLanguage = "en"
-paginate = 10
+paginate = 12
 enableRobotsTXT = true
 
 [sitemap]
@@ -46,7 +46,7 @@ enableRobotsTXT = true
   # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
   background_color_class = "bg-dark-gray"
   body_classes = "avenir bg-custom"
-  recent_posts_number = 3
+  recent_posts_number = 5
   skillSection = "Skills"
   mainSections = ["Software"]
   custom_css = ["custom.css"]

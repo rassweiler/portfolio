@@ -3,7 +3,7 @@ date: 2021-09-28T10:58:08-04:00
 title: "Code Camp 1"
 description: "Responsive Web Design"
 featured_image: "/images/code-camp-1-bg.png"
-tags: ["Software", "HTMl", "CSS", "Code","Camp"]
+tags: ["HTMl", "CSS", "Code","Camp"]
 ---
 
 Part 1 of the Free Code Camp Campaign, all about responsive web design.

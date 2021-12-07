@@ -3,7 +3,7 @@ date: 2021-11-20T10:58:08-04:00
 title: "Kawasaki As Parser"
 description: "Kawasaki AS backup file parser"
 featured_image: "/images/kawasaki-parser-bg.png"
-tags: ["Software","Kawasaki","Node","Electron","Parser"]
+tags: ["Kawasaki","Node","Electron","Parser","HTML","JavaScript","CSS"]
 ---
 
 A Kawasaki robot backup parser written in TypeScript for browser or Node. The library also includes TypeScript interfaces for use in new projects. 

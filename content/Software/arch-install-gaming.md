@@ -1,8 +1,8 @@
 ---
-date: 2022-01-21T10:58:08-04:00
+date: 2021-01-21T10:58:08-04:00
 title: "Arch-Snapper-BTRFS Install Guide - Gaming Edition"
 description: "Easy Gaming Guide For Arch Linux"
-featured_image: "/images/archinstall-bg.svg"
+featured_image: "/images/archinstall-gaming-bg.png"
 tags: ["OS","Arch","Linux","BTRFS","Snapper", "Gaming"]
 ---
 
@@ -455,10 +455,10 @@ Many of these are personal preference.
 
 `arandr` is for setting up displays (this is handy for i3wm)
 
-`gnome-keyring` and `libgnome-keyring` are needed for authing nextcloud on startup
+`gnome-keyring` and ~~`libgnome-keyring`~~ are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use `libsecret` instead
 
 ```zsh
-sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libgnome-keyring
+sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret
 ```
 
 ## Step 35.1 - Install Browser Packages (librewolf & firefox for netflix):
@@ -716,7 +716,7 @@ Include = /etc/pacman.d/mirrorlist
 sudo pacman -Syu
 ```
 
-## Step 47 - Install Gaming (Optional):
+## Step 47 - Install Gaming:
 
 ```zsh
 sudo pacman -S steam wine lutris
@@ -724,9 +724,25 @@ sudo pacman -S steam wine lutris
 paru -S proton proton-ge-custom mangohud streamdeck-ui
 ```
 
-## Step 48 - Tuning (Optional):
+## Step 48 - OBS:
 
-### Step 48.A - Pulse Audio:
+While there is a package for OBS in the main arch repo, it's suggested to use tytan652 for the extra plugins like browser source.
+
+```zsh
+paru -S obs-studio-tytan652
+```
+
+## Step 49 - Discord:
+
+There are two options available: `discord` and `betterdiscord`
+
+```zsh
+paru -S betterdiscord
+```
+
+## Step 49 - Tuning:
+
+### Step 49.A - Pulse Audio:
 
 ```zsh
 sudo nano /etc/pulse/daemon.conf

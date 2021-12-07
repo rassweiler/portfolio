@@ -3,7 +3,7 @@ date: 2021-11-10T10:58:08-04:00
 title: "Node SCADA System"
 description: "Node Based Data Display"
 featured_image: "/images/node-scada-system-bg.png"
-tags: ["Software","Node","SCADA","Mitsubishi","PLC"]
+tags: ["Node","SCADA","Mitsubishi","PLC","D3","JavaScript","HTML","CSS","Jade"]
 ---
 
 As the name implies it is a SCADA system written in js(Node.js), the system uses the mcprotocol to communicate with a Mitsubishi PLC, uses Jade for templates, and express for routing. 
