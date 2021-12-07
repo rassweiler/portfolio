@@ -18,13 +18,13 @@
 <meta itemprop=name content="Arch Snapper BTRFS Install Guide">
 <meta itemprop=description content="Easy Install Guide For Arch Linux Using BTRFS"><meta itemprop=datePublished content="2021-11-20T10:58:08-04:00">
 <meta itemprop=dateModified content="2021-11-20T10:58:08-04:00">
-<meta itemprop=wordCount content="1658">
+<meta itemprop=wordCount content="1665">
 <meta itemprop=keywords content="OS,Arch,Linux,BTRFS,Snapper,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Arch Snapper BTRFS Install Guide">
 <meta name=twitter:description content="Easy Install Guide For Arch Linux Using BTRFS">
 </head>
 <body class="ma0 avenir bg-custom">
-<header class="cover bg-top" style=background-image:url(/images/archinstall-bg.svg)>
+<header class="cover bg-top" style=background-image:url(/images/archinstall-bg.png)>
 <div class="pb3-m pb6-l bg-black-60">
 <nav class="pv3 ph3 ph4-ns" role=navigation>
 <div class="flex-l justify-between items-center center">
@@ -341,8 +341,8 @@ cd ..
 <p><code>fish</code> is the shell</p>
 <p><code>rofi</code> is a package launcher similar to dmenu</p>
 <p><code>arandr</code> is for setting up displays (this is handy for i3wm)</p>
-<p><code>gnome-keyring</code> and <code>libgnome-keyring</code> are needed for authing nextcloud on startup</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libgnome-keyring
+<p><code>gnome-keyring</code> and <del><code>libgnome-keyring</code></del> are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use <code>libsecret</code> instead</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret
 </code></pre></div><h2 id=step-36---install-browser-packages-librewolf--firefox-for-netflix>Step 36 - Install Browser Packages (librewolf & firefox for netflix):</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S firefox
 
@@ -453,10 +453,16 @@ exec ssh-agent zsh
 <p class="f5 b mb3">Related</p>
 <ul class="pa0 list">
 <li class=mb2>
+<a href=/software/arch-install-gaming/>Arch-Snapper-BTRFS Install Guide - Gaming Edition</a>
+</li>
+<li class=mb2>
 <a href=/software/ltt-ddc-00/>Daily Driver Challenge Hard(er) Mode Part 0</a>
 </li>
 <li class=mb2>
 <a href=/design/banana-breeding-bureau/>Banana Breeding Bureau</a>
+</li>
+<li class=mb2>
+<a href=/software/operation-floss/>Operation FLOSS</a>
 </li>
 </ul>
 </div>
