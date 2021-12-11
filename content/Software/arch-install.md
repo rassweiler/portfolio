@@ -18,6 +18,9 @@ This guide is for installing arch linux (UEFI) with:
 
 ___
 
+## Script Install Guide:
+[Arch Script Install](https://www.kylerassweiler.ca/arch-install-script/)
+
 ## Install ISO to USB:
 
 After downloading the latest [Arch ISO](https://archlinux.org/download/) you will need to install it to a usb using a program like [Balena Etcher](https://github.com/balena-io/etcher). Plug the usb into the machine you want to install arch to and boot into the usb.
@@ -38,22 +41,6 @@ ip address show
 
 ```zsh
 ssh root@xxx.xxx.xxx.xxx
-```
-
-### Update the timezone:
-
-```zsh
-timedatectl set-ntp true
-```
-
-### Update the mirrors:
-
-This step has returned an error on me the last few times I've tried but is safe to skip.
-
-```zsh
-reflector -c Canada -c US -a 6 --sort rate --save /etc/pacman.d/mirrorlist
-
-pacman -Syy
 ```
 
 ### Find your device:
@@ -168,6 +155,20 @@ mount /dev/vda1 /mnt/boot
 lsblk
 ```
 
+### Update the timezone:
+
+```zsh
+timedatectl set-ntp true
+```
+
+### Update the mirrors:
+
+```zsh
+reflector -c Canada -c US -a 6 --sort rate --save /etc/pacman.d/mirrorlist
+
+pacman -Syy
+```
+
 ### Add desired packages (May have error about missing file fsck.btrfs):
 
 Choose your base: `linux, linux-lts, linux-zen`.
@@ -216,6 +217,16 @@ en_CA.UTF-8
 
 ```zsh
 locale-gen
+```
+
+### Update Keymap:
+
+```zsh
+nano /etc/vconsole.conf
+```
+
+```yml
+KEYMAP=us
 ```
 
 ### Update Mirrors:
@@ -271,7 +282,7 @@ passwd
 ### Install General Packages:
 
 ```zsh
-pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools snapper snap-pac xdg-utils xdg-user-dirs alsa-utils inetutils base-devel openssh grub-customizer code os-prober
+pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools snapper snap-pac xdg-utils xdg-user-dirs alsa-utils inetutils base-devel openssh grub-customizer os-prober
 ```
 
 select all
@@ -403,53 +414,6 @@ ssh NAME@xxx.xxx.xxx.xxx
 
 ___
 
-## Use Install Scripts (Optional):
-
-These scripts will run the commands seen beyond this step, or skip this step and continue manually choosing packages.
-
-```zsh
-git clone https://github.com/rassweiler/linux-install-scripts.git
-
-sudo chmod +x -R linux-install-scripts/
-
-cd linux-install-scripts/arch/
-```
-
-Run script for desired DE
-
-```zsh
-./i3wm.sh
-```
-
-Make the following changes based on preference, and make sure to add the new user to the allowed list.
-
-```yml
-ALLOW_USERS="NAME"
-TIMELINE_LIMIT_HOURLY="5"
-TIMELINE_LIMIT_DAILY="7"
-TIMELINE_LIMIT_WEEKLY="0"
-TIMELINE_LIMIT_MONTHLY="0"
-TIMELINE_LIMIT_YEARLY="0"
-```
-
-Add the proper card to the end of the modules and rebuild
-
-- Amd: `amdgpu`
-
-- Nvidia: `nvidia`
-
-```yml
-# MODULES
-# The following modules are loaded before any boot hooks are
-# run.  Advanced users may wish to specify all system modules
-# in this array.  For instance:
-MODULES=(vfio_pci vfio vfio_iommu_type1 vfio_virqfd btrfs nvidia)
-```
-
-Once script is completed skip down to VM setup section for passthrough.
-
-___
-
 ## Cleanup Snapshots
 
 At this point you have a working system that boots to a tty, however the snapshotting is not fully setup.
@@ -564,7 +528,7 @@ Many of these are personal preference.
 `gnome-keyring` and ~~`libgnome-keyring`~~ are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use `libsecret` instead
 
 ```zsh
-sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret
+sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret code
 ```
 
 ### Install Browser Packages (librewolf & firefox for netflix):
@@ -918,11 +882,11 @@ realtime-priority = 5
 ### Install packages:
 
 ```zsh
-sudo pacman -S qemu libvirt ovmf virt-manager ebtables iptables dnsmasq
+sudo pacman -S qemu libvirt ovmf virt-manager ebtables dnsmasq
 
 usermod -aG libvirt NAME
 
-systemctl enable libvirtd.service
+systemctl enable libvirtd
 sudo systemctl enable virtlogd.socket
 sudo virsh net-autostart default
 ```
