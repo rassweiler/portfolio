@@ -6,4 +6,12 @@
 &lt;li>Bootable snapshots.&lt;/li>
 &lt;li>Qemu/kvm with iommu setup.&lt;/li>
 &lt;li>Linux/Windows Gaming.&lt;/li>
+&lt;/ul></description></item><item><title>Arch Snapper BTRFS Install Guide - Script Method</title><link>/software/arch-install-script/</link><pubDate>Sat, 20 Nov 2021 10:58:08 -0400</pubDate><guid>/software/arch-install-script/</guid><description>&lt;p>This guide is for installing arch linux (UEFI) using a script with:&lt;/p>
+&lt;ul>
+&lt;li>BTRFS file system including subvolumes.&lt;/li>
+&lt;li>Snapper.&lt;/li>
+&lt;li>Snap-pac-grub.&lt;/li>
+&lt;li>Bootable snapshots.&lt;/li>
+&lt;li>Qemu/kvm with iommu setup.&lt;/li>
+&lt;li>Linux/Windows Gaming.&lt;/li>
 &lt;/ul></description></item></channel></rss>

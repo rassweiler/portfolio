@@ -18,7 +18,7 @@
 <meta itemprop=name content="Arch Snapper BTRFS Install Guide">
 <meta itemprop=description content="Easy Install Guide For Arch Linux Using BTRFS"><meta itemprop=datePublished content="2021-11-20T10:58:08-04:00">
 <meta itemprop=dateModified content="2021-11-20T10:58:08-04:00">
-<meta itemprop=wordCount content="2267">
+<meta itemprop=wordCount content="2130">
 <meta itemprop=keywords content="OS,Arch,Linux,BTRFS,Snapper,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Arch Snapper BTRFS Install Guide">
 <meta name=twitter:description content="Easy Install Guide For Arch Linux Using BTRFS">
@@ -109,6 +109,8 @@ Kyle Rassweiler
 <li>Linux/Windows Gaming.</li>
 </ul>
 <hr>
+<h2 id=script-install-guide>Script Install Guide:</h2>
+<p><a href=https://www.kylerassweiler.ca/arch-install-script/>Arch Script Install</a></p>
 <h2 id=install-iso-to-usb>Install ISO to USB:</h2>
 <p>After downloading the latest <a href=https://archlinux.org/download/>Arch ISO</a> you will need to install it to a usb using a program like <a href=https://github.com/balena-io/etcher>Balena Etcher</a>. Plug the usb into the machine you want to install arch to and boot into the usb.</p>
 <hr>
@@ -119,13 +121,6 @@ Kyle Rassweiler
 ip address show
 </code></pre></div><h3 id=ssh-into-the-target-machine-from-your-main>SSH into the target machine from your main:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>ssh root@xxx.xxx.xxx.xxx
-</code></pre></div><h3 id=update-the-timezone>Update the timezone:</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>timedatectl set-ntp true
-</code></pre></div><h3 id=update-the-mirrors>Update the mirrors:</h3>
-<p>This step has returned an error on me the last few times I&rsquo;ve tried but is safe to skip.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>reflector -c Canada -c US -a <span style=color:#ae81ff>6</span> --sort rate --save /etc/pacman.d/mirrorlist
-
-pacman -Syy
 </code></pre></div><h3 id=find-your-device>Find your device:</h3>
 <p>Use lsblk to dyplay your disk information, normally the drive will listed as SDA or SDB.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>lsblk
@@ -205,6 +200,12 @@ mount -o noatime,compress<span style=color:#f92672>=</span>lzo,space_cache<span 
 mount /dev/vda1 /mnt/boot
 
 lsblk
+</code></pre></div><h3 id=update-the-timezone>Update the timezone:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>timedatectl set-ntp true
+</code></pre></div><h3 id=update-the-mirrors>Update the mirrors:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>reflector -c Canada -c US -a <span style=color:#ae81ff>6</span> --sort rate --save /etc/pacman.d/mirrorlist
+
+pacman -Syy
 </code></pre></div><h3 id=add-desired-packages-may-have-error-about-missing-file-fsckbtrfs>Add desired packages (May have error about missing file fsck.btrfs):</h3>
 <p>Choose your base: <code>linux, linux-lts, linux-zen</code>.</p>
 <p>Choose your ucode: <code>intel-ucode, amd-ucode</code>.</p>
@@ -225,6 +226,9 @@ hwclock --systohc
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>en_CA.UTF-8</span>
 </code></pre></div><h3 id=generate-locale>Generate Locale:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>locale-gen
+</code></pre></div><h3 id=update-keymap>Update Keymap:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>nano /etc/vconsole.conf
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>KEYMAP=us</span>
 </code></pre></div><h3 id=update-mirrors>Update Mirrors:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>reflector -c Canada -c US -a <span style=color:#ae81ff>6</span> --sort rate --save /etc/pacman.d/mirrorlist
 
@@ -245,7 +249,7 @@ pacman -Syy
 </code></pre></div><h3 id=set-root-password-for-actual-system>Set Root Password For Actual System:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>passwd
 </code></pre></div><h3 id=install-general-packages>Install General Packages:</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools snapper snap-pac xdg-utils xdg-user-dirs alsa-utils inetutils base-devel openssh grub-customizer code os-prober
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools snapper snap-pac xdg-utils xdg-user-dirs alsa-utils inetutils base-devel openssh grub-customizer os-prober
 </code></pre></div><p>select all</p>
 <h3 id=setup-cpio-modules-and-hooks>Setup CPIO Modules And Hooks:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>nano /etc/mkinitcpio.conf
@@ -316,38 +320,6 @@ reboot
 </code></pre></div><h3 id=ssh-into-machine-as-new-user>SSH Into Machine As New User:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>ssh NAME@xxx.xxx.xxx.xxx
 </code></pre></div><hr>
-<h2 id=use-install-scripts-optional>Use Install Scripts (Optional):</h2>
-<p>These scripts will run the commands seen beyond this step, or skip this step and continue manually choosing packages.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>git clone https://github.com/rassweiler/linux-install-scripts.git
-
-sudo chmod +x -R linux-install-scripts/
-
-cd linux-install-scripts/arch/
-</code></pre></div><p>Run script for desired DE</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>./i3wm.sh
-</code></pre></div><p>Make the following changes based on preference, and make sure to add the new user to the allowed list.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>ALLOW_USERS=&#34;NAME&#34;</span>
-<span style=color:#ae81ff>TIMELINE_LIMIT_HOURLY=&#34;5&#34;</span>
-<span style=color:#ae81ff>TIMELINE_LIMIT_DAILY=&#34;7&#34;</span>
-<span style=color:#ae81ff>TIMELINE_LIMIT_WEEKLY=&#34;0&#34;</span>
-<span style=color:#ae81ff>TIMELINE_LIMIT_MONTHLY=&#34;0&#34;</span>
-<span style=color:#ae81ff>TIMELINE_LIMIT_YEARLY=&#34;0&#34;</span>
-</code></pre></div><p>Add the proper card to the end of the modules and rebuild</p>
-<ul>
-<li>
-<p>Amd: <code>amdgpu</code></p>
-</li>
-<li>
-<p>Nvidia: <code>nvidia</code></p>
-</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#75715e># MODULES</span>
-<span style=color:#75715e># The following modules are loaded before any boot hooks are</span>
-<span style=color:#75715e># run.  Advanced users may wish to specify all system modules</span>
-<span style=color:#75715e># in this array.  For instance:</span>
-<span style=color:#ae81ff>MODULES=(vfio_pci vfio vfio_iommu_type1 vfio_virqfd btrfs nvidia)</span>
-</code></pre></div><p>Once script is completed skip down to VM setup section for passthrough.</p>
-<hr>
 <h2 id=cleanup-snapshots>Cleanup Snapshots</h2>
 <p>At this point you have a working system that boots to a tty, however the snapshotting is not fully setup.</p>
 <h3 id=fix-snapshots>Fix Snapshots:</h3>
@@ -415,7 +387,7 @@ cd ..
 <p><code>rofi</code> is a package launcher similar to dmenu</p>
 <p><code>arandr</code> is for setting up displays (this is handy for i3wm)</p>
 <p><code>gnome-keyring</code> and <del><code>libgnome-keyring</code></del> are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use <code>libsecret</code> instead</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret code
 </code></pre></div><h3 id=install-browser-packages-librewolf--firefox-for-netflix>Install Browser Packages (librewolf & firefox for netflix):</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S firefox
 
@@ -588,11 +560,11 @@ paru -S betterdiscord-installer
 <span style=color:#ae81ff>realtime-priority = 5</span>
 </code></pre></div><h2 id=setup-vm>Setup VM</h2>
 <h3 id=install-packages>Install packages:</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S qemu libvirt ovmf virt-manager ebtables iptables dnsmasq
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S qemu libvirt ovmf virt-manager ebtables dnsmasq
 
 usermod -aG libvirt NAME
 
-systemctl enable libvirtd.service
+systemctl enable libvirtd
 sudo systemctl enable virtlogd.socket
 sudo virsh net-autostart default
 </code></pre></div><h3 id=verify-iommu>Verify Iommu:</h3>
@@ -638,6 +610,9 @@ sudo virsh net-autostart default
 <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
 <p class="f5 b mb3">Related</p>
 <ul class="pa0 list">
+<li class=mb2>
+<a href=/software/arch-install-script/>Arch Snapper BTRFS Install Guide - Script Method</a>
+</li>
 <li class=mb2>
 <a href=/software/ltt-ddc-00/>Daily Driver Challenge Hard(er) Mode Part 0</a>
 </li>

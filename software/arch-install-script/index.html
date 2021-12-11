@@ -2,27 +2,30 @@
 <head>
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
-<title>Snapper | Kyle Rassweiler</title>
+<title>Arch Snapper BTRFS Install Guide - Script Method | Kyle Rassweiler</title>
 <meta name=viewport content="width=device-width,minimum-scale=1">
-<meta name=description content="A Sleek Software Portfolio">
+<meta name=description content="Easy Install Guide For Arch Linux Using BTRFS">
 <meta name=generator content="Hugo 0.90.1">
 <meta name=ROBOTS content="NOINDEX, NOFOLLOW">
 <link rel=stylesheet href=/ananke/css/main.min.css>
 <link rel="shortcut icon" href=/images/favicon.ico type=image/x-icon>
-<link href=/tags/snapper/index.xml rel=alternate type=application/rss+xml title="Kyle Rassweiler">
-<link href=/tags/snapper/index.xml rel=feed type=application/rss+xml title="Kyle Rassweiler">
-<meta property="og:title" content="Snapper">
-<meta property="og:description" content="A Sleek Software Portfolio">
-<meta property="og:type" content="website">
-<meta property="og:url" content="/tags/snapper/"><meta property="og:site_name" content="Kyle Rassweiler">
-<meta itemprop=name content="Snapper">
-<meta itemprop=description content="A Sleek Software Portfolio"><meta name=twitter:card content="summary">
-<meta name=twitter:title content="Snapper">
-<meta name=twitter:description content="A Sleek Software Portfolio">
+<meta property="og:title" content="Arch Snapper BTRFS Install Guide - Script Method">
+<meta property="og:description" content="Easy Install Guide For Arch Linux Using BTRFS">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/software/arch-install-script/"><meta property="article:section" content="Software">
+<meta property="article:published_time" content="2021-11-20T10:58:08-04:00">
+<meta property="article:modified_time" content="2021-11-20T10:58:08-04:00"><meta property="og:site_name" content="Kyle Rassweiler">
+<meta itemprop=name content="Arch Snapper BTRFS Install Guide - Script Method">
+<meta itemprop=description content="Easy Install Guide For Arch Linux Using BTRFS"><meta itemprop=datePublished content="2021-11-20T10:58:08-04:00">
+<meta itemprop=dateModified content="2021-11-20T10:58:08-04:00">
+<meta itemprop=wordCount content="653">
+<meta itemprop=keywords content="OS,Arch,Linux,BTRFS,Snapper,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Arch Snapper BTRFS Install Guide - Script Method">
+<meta name=twitter:description content="Easy Install Guide For Arch Linux Using BTRFS">
 </head>
 <body class="ma0 avenir bg-custom">
-<header class="cover bg-top" style=background-image:url(/images/cover.png)>
-<div class=bg-black-60>
+<header class="cover bg-top" style=background-image:url(/images/archinstall-bg.png)>
+<div class="pb3-m pb6-l bg-black-60">
 <nav class="pv3 ph3 ph4-ns" role=navigation>
 <div class="flex-l justify-between items-center center">
 <a href=/ class="f3 fw2 hover-white no-underline white-90 dib">
@@ -66,69 +69,245 @@ Design
 </div>
 </div>
 </nav>
-<div class="tc-l pv4 pv6-l ph3 ph4-ns">
-<h1 class="f2 f-subheadline-l fw5 white-90 mb0 lh-title kr-header">
-Snapper
-</h1>
+<div class="tc-l pv6 ph3 ph4-ns">
+<h1 class="f2 f1-l fw5 white-90 mb0 lh-title kr-header">Arch Snapper BTRFS Install Guide - Script Method</h1>
+<div class="fw2 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4 kr-header">
+Easy Install Guide For Arch Linux Using BTRFS
+</div>
 </div>
 </div>
 </header>
 <main class=pb7 role=main>
-<article class="cf pa3 pa4-m pa4-l">
-<div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links nested-img mid-gray">
-<p>Below you will find pages that utilize the taxonomy term “Snapper”</p>
+<article class="flex-l flex-wrap justify-between mw9 center ph3">
+<header class="mt4 w-100">
+<aside class="instapaper_ignoref b helvetica tracked">
+SOFTWARE
+</aside>
+<div id=sharing class=mt3>
+<a href="https://www.facebook.com/sharer.php?u=/software/arch-install-script/" class="facebook no-underline" aria-label="share on Facebook"><svg height="32" style="enable-background:new 0 0 67 67" viewBox="0 0 67 67" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765 50.32h6.744V33.998h4.499l.596-5.624h-5.095l.007-2.816c0-1.466.14-2.253 2.244-2.253h2.812V17.68h-4.5c-5.405.0-7.307 2.729-7.307 7.317v3.377h-3.369v5.625h3.369V50.32zM33 64C16.432 64 3 50.569 3 34S16.432 4 33 4s30 13.431 30 30S49.568 64 33 64z" style="fill-rule:evenodd;clip-rule:evenodd"/></svg>
+</a>
+<a href="https://twitter.com/share?url=/software/arch-install-script/&text=Arch%20Snapper%20BTRFS%20Install%20Guide%20-%20Script%20Method" class="twitter no-underline" aria-label="share on Twitter"><svg height="32" style="enable-background:new 0 0 67 67" viewBox="0 0 67 67" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167 22.283c-2.619.953-4.274 3.411-4.086 6.101l.063 1.038-1.048-.127c-3.813-.487-7.145-2.139-9.974-4.915l-1.383-1.377-.356 1.017c-.754 2.267-.272 4.661 1.299 6.271.838.89.649 1.017-.796.487-.503-.169-.943-.296-.985-.233-.146.149.356 2.076.754 2.839.545 1.06 1.655 2.097 2.871 2.712l1.027.487-1.215.021c-1.173.0-1.215.021-1.089.467.419 1.377 2.074 2.839 3.918 3.475l1.299.444-1.131.678c-1.676.976-3.646 1.526-5.616 1.568C19.775 43.256 19 43.341 19 43.405c0 .211 2.557 1.397 4.044 1.864 4.463 1.377 9.765.783 13.746-1.568 2.829-1.673 5.657-5 6.978-8.221.713-1.716 1.425-4.851 1.425-6.354.0-.975.063-1.102 1.236-2.267.692-.678 1.341-1.419 1.467-1.631.21-.403.188-.403-.88-.043-1.781.636-2.033.551-1.152-.402.649-.678 1.425-1.907 1.425-2.267.0-.063-.314.042-.671.233-.377.212-1.215.53-1.844.72l-1.131.361-1.027-.7c-.566-.381-1.361-.805-1.781-.932C39.766 21.902 38.131 21.944 37.167 22.283zM33 64C16.432 64 3 50.569 3 34S16.432 4 33 4s30 13.431 30 30S49.568 64 33 64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg>
+</a>
+<a href="https://www.linkedin.com/shareArticle?mini=true&url=/software/arch-install-script/&title=Arch%20Snapper%20BTRFS%20Install%20Guide%20-%20Script%20Method" class="linkedin no-underline" aria-label="share on LinkedIn"><svg height="32" style="enable-background:new 0 0 65 65" viewBox="0 0 65 65" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M50.837 48.137V36.425c0-6.275-3.35-9.195-7.816-9.195-3.604.0-5.219 1.983-6.119 3.374V27.71h-6.79c.09 1.917.0 20.427.0 20.427h6.79V36.729c0-.609.044-1.219.224-1.655.49-1.22 1.607-2.483 3.482-2.483 2.458.0 3.44 1.873 3.44 4.618v10.929H50.837zM22.959 24.922c2.367.0 3.842-1.57 3.842-3.531-.044-2.003-1.475-3.528-3.797-3.528s-3.841 1.524-3.841 3.528c0 1.961 1.474 3.531 3.753 3.531H22.959zM34 64C17.432 64 4 50.568 4 34 4 17.431 17.432 4 34 4s30 13.431 30 30c0 16.568-13.432 30-30 30zM26.354 48.137V27.71h-6.789v20.427h6.789z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg>
+</a>
 </div>
+<h1 class="f1 athelas mt3 mb1">Arch Snapper BTRFS Install Guide - Script Method</h1>
+<p class=tracked>
+By <strong>
+Kyle Rassweiler
+</strong>
+</p>
+<time class="f6 mv4 dib tracked" datetime=2021-11-20T10:58:08-04:00>2021-11-21</time>
+</header>
+<div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img near-black pr4-l w-two-thirds-l"><p>This guide is for installing arch linux (UEFI) using a script with:</p>
+<ul>
+<li>BTRFS file system including subvolumes.</li>
+<li>Snapper.</li>
+<li>Snap-pac-grub.</li>
+<li>Bootable snapshots.</li>
+<li>Qemu/kvm with iommu setup.</li>
+<li>Linux/Windows Gaming.</li>
+</ul>
+<hr>
+<h2 id=manual-install-guide>Manual Install Guide:</h2>
+<p><a href=https://www.kylerassweiler.ca/arch-install/>Arch Manual Install</a></p>
+<h2 id=install-iso-to-usb>Install ISO to USB:</h2>
+<p>After downloading the latest <a href=https://archlinux.org/download/>Arch ISO</a> you will need to install it to a usb using a program like <a href=https://github.com/balena-io/etcher>Balena Etcher</a>. Plug the usb into the machine you want to install arch to and boot into the usb.</p>
+<hr>
+<h2 id=base-install>Base Install</h2>
+<h3 id=give-root-a-password-then-get-the-local-ip>Give root a password then get the local ip:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>passwd
+
+ip address show
+</code></pre></div><h3 id=ssh-into-the-target-machine-from-your-main>SSH into the target machine from your main:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>ssh root@xxx.xxx.xxx.xxx
+</code></pre></div><h3 id=find-your-device>Find your device:</h3>
+<p>Use lsblk to dyplay your disk information, normally the drive will listed as SDA or SDB.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>lsblk
+
+gdisk /dev/XXX
+</code></pre></div><p>Replace XXX with the target device.</p>
+<h3 id=create-boot-partition>Create Boot Partition:</h3>
+<p>Use the n command to create a new partition on the disk, use the default partition number, use the default first sector, offset the last sector by 512M, and give it a efi flag of ef00.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>n
+
+default
+
+default
+
++512M
+
+ef00
+</code></pre></div><h3 id=create-swap-partition-optional>Create Swap Partition (Optional):</h3>
+<p>Creating a swap partion is optional, if this step is skipped adjust the partion numbers in the future commands.</p>
+<p>Use the n command to create a new partition on the disk, use the default partition number, use the default first sector, offset the last sector by 2G, and give it a linux-swap flag of 8200.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>n
+
+default
+
+default
+
++2G
+
+<span style=color:#ae81ff>8200</span>
+</code></pre></div><h3 id=create-main-partition-and-write-changes>Create Main Partition And Write Changes:</h3>
+<p>Use the n command to create a new partition on the disk, use the default partition number, use the default first sector, since we are using the remainder of the disk we can use the default last sector, and use the default flag for linux filesystem.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>n
+
+default
+
+default
+
+default
+
+w
+
+y
+</code></pre></div><h3 id=run-pre-chroot-script>Run Pre-chroot Script:</h3>
+<p>Download and run the arch setup scripts:</p>
+<p>Make sure to edit scrip and select between intel or amd!</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>cd /tmp
+
+curl https://raw.githubusercontent.com/rassweiler/linux-install-scripts/master/arch/initial-pre-chroot.sh &gt; install.sh
+
+chmod +x install.sh
+
+nano ./install.sh
+
+./install.sh
+</code></pre></div><p>Enter drive info. Ex: /dev/vda1</p>
+<h3 id=run-post-chroot-script>Run Post-chroot Script:</h3>
+<p>download and run the arch setup scripts:</p>
+<p>Make sure to edit script and select between intel or amd!</p>
+<p>Make sure to edit script and set timezone!</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>cd /tmp
+
+git clone https://github.com/rassweiler/linux-install-scripts.git
+
+chmod +x -R linux-install-scripts/
+
+cd linux-install-scripts/arch/
+
+nano initial-post-chroot.sh
+
+./initial-post-chroot.sh
+</code></pre></div><p>Add items to mkinitcpio:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>MODULES=(vfio_pci vfio vfio_iommu_type1 vfio_virqfd btrfs)</span>
+</code></pre></div><p>Add items to grub file if needed:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>GRUB_CMDLINE_LINUX_DEFAULT=&#34;quiet intel_iommu=on loglevel=3 nowatchdog&#34;</span>
+</code></pre></div><h3 id=finish-setup-and-reboot>Finish Setup And Reboot:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>exit
+
+umount -a
+
+reboot
+</code></pre></div><h3 id=ssh-into-machine-as-new-user>SSH Into Machine As New User:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>ssh NAME@xxx.xxx.xxx.xxx
+</code></pre></div><hr>
+<h2 id=use-install-scripts>Use Install Scripts:</h2>
+<p>Make sure to edit script.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>cd /tmp
+
+git clone https://github.com/rassweiler/linux-install-scripts.git
+
+chmod +x -R linux-install-scripts/
+
+cd linux-install-scripts/arch/
+
+nano xorg.sh
+
+./i3wm.sh
+</code></pre></div><p>Run script for desired DE</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>./i3wm.sh
+</code></pre></div><p>Make the following changes based on preference, and make sure to add the new user to the allowed list.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>ALLOW_USERS=&#34;NAME&#34;</span>
+<span style=color:#ae81ff>TIMELINE_LIMIT_HOURLY=&#34;5&#34;</span>
+<span style=color:#ae81ff>TIMELINE_LIMIT_DAILY=&#34;7&#34;</span>
+<span style=color:#ae81ff>TIMELINE_LIMIT_WEEKLY=&#34;0&#34;</span>
+<span style=color:#ae81ff>TIMELINE_LIMIT_MONTHLY=&#34;0&#34;</span>
+<span style=color:#ae81ff>TIMELINE_LIMIT_YEARLY=&#34;0&#34;</span>
+</code></pre></div><p>Add the proper card to the end of the modules and rebuild</p>
+<ul>
+<li>
+<p>Amd: <code>amdgpu</code></p>
+</li>
+<li>
+<p>Nvidia: <code>nvidia</code></p>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#75715e># MODULES</span>
+<span style=color:#75715e># The following modules are loaded before any boot hooks are</span>
+<span style=color:#75715e># run.  Advanced users may wish to specify all system modules</span>
+<span style=color:#75715e># in this array.  For instance:</span>
+<span style=color:#ae81ff>MODULES=(vfio_pci vfio vfio_iommu_type1 vfio_virqfd btrfs nvidia)</span>
+</code></pre></div><p>Once script is completed skip down to section <code>Setup VM</code>.</p>
+<hr>
+<h2 id=tuning>Tuning:</h2>
+<h3 id=a---pulse-audio>A - Pulse Audio:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo nano /etc/pulse/daemon.conf
+</code></pre></div><p>Change settings</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>high-priority = yes</span>
+<span style=color:#ae81ff>nice-level = -11</span>
+
+<span style=color:#ae81ff>realtime-scheduling = yes</span>
+<span style=color:#ae81ff>realtime-priority = 5</span>
+</code></pre></div><h2 id=setup-vm>Setup VM</h2>
+<h3 id=verify-iommu>Verify Iommu:</h3>
+<p>This command should present a line with <code>DMAR: IOMMU enabled</code></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo dmesg | grep -i -e DMAR -e IOMMU
+</code></pre></div><p>If iommu is enabled then paste in this command to view the groups and make sure devices to be passed over are in seperate groups:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>shopt -s nullglob
+<span style=color:#66d9ef>for</span> g in <span style=color:#e6db74>`</span>find /sys/kernel/iommu_groups/* -maxdepth <span style=color:#ae81ff>0</span> -type d | sort -V<span style=color:#e6db74>`</span>; <span style=color:#66d9ef>do</span>
+	echo <span style=color:#e6db74>&#34;IOMMU Group </span><span style=color:#e6db74>${</span>g##*/<span style=color:#e6db74>}</span><span style=color:#e6db74>:&#34;</span>
+	<span style=color:#66d9ef>for</span> d in $g/devices/*; <span style=color:#66d9ef>do</span>
+		echo -e <span style=color:#e6db74>&#34;\t</span><span style=color:#66d9ef>$(</span>lspci -nns <span style=color:#e6db74>${</span>d##*/<span style=color:#e6db74>}</span><span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
+	<span style=color:#66d9ef>done</span>;
+<span style=color:#66d9ef>done</span>;
+</code></pre></div><p>Note down the ids for the devices to be passed through:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml>[<span style=color:#ae81ff>1022</span>:<span style=color:#ae81ff>43e9</span>]
+</code></pre></div><h2 id=references>REFERENCES</h2>
+<ul>
+<li><a href=https://wiki.archlinux.org/title/Installation_guide>Arch Install Guide</a></li>
+<li><a href=https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF>Arch PCI Passthrough</a></li>
+<li><a href="https://www.youtube.com/watch?v=h7SG7ccjn-g">SomeOrdinaryGamer</a></li>
+<li><a href="https://www.youtube.com/watch?v=o09jzArQcFQ">EF - Linux Made Simple</a></li>
+</ul><ul class="pa0 tags-flex">
+<li class=list>
+<a href=/tags/os class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">OS</a>
+</li>
+<li class=list>
+<a href=/tags/arch class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Arch</a>
+</li>
+<li class=list>
+<a href=/tags/linux class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Linux</a>
+</li>
+<li class=list>
+<a href=/tags/btrfs class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">BTRFS</a>
+</li>
+<li class=list>
+<a href=/tags/snapper class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Snapper</a>
+</li>
+</ul>
+<div class="mt6 instapaper_ignoref">
+</div>
+</div>
+<aside class="w-30-l mt6-l">
+<div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+<p class="f5 b mb3">Related</p>
+<ul class="pa0 list">
+<li class=mb2>
+<a href=/software/arch-install/>Arch Snapper BTRFS Install Guide</a>
+</li>
+<li class=mb2>
+<a href=/software/ltt-ddc-00/>Daily Driver Challenge Hard(er) Mode Part 0</a>
+</li>
+<li class=mb2>
+<a href=/design/banana-breeding-bureau/>Banana Breeding Bureau</a>
+</li>
+</ul>
+</div>
+</aside>
 </article>
-<div class="mw8 center">
-<section class="flex-ns flex-wrap justify-around mt5">
-<div class="relative w-100 mb4 bg-white">
-<div class="relative w-100 mb4 bg-white nested-copy-line-height">
-<div class="bg-white mb3 pa4 gray overflow-hidden">
-<span class="f6 db">Software</span>
-<h1 class="f3 near-black">
-<a href=/software/arch-install/ class="link black dim">
-Arch Snapper BTRFS Install Guide
-</a>
-</h1>
-<div class="nested-links f5 lh-copy nested-copy-line-height">
-<p>This guide is for installing arch linux (UEFI) with:</p>
-<ul>
-<li>BTRFS file system including subvolumes.</li>
-<li>Snapper.</li>
-<li>Snap-pac-grub.</li>
-<li>Bootable snapshots.</li>
-<li>Qemu/kvm with iommu setup.</li>
-<li>Linux/Windows Gaming.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="relative w-100 mb4 bg-white">
-<div class="relative w-100 mb4 bg-white nested-copy-line-height">
-<div class="bg-white mb3 pa4 gray overflow-hidden">
-<span class="f6 db">Software</span>
-<h1 class="f3 near-black">
-<a href=/software/arch-install-script/ class="link black dim">
-Arch Snapper BTRFS Install Guide - Script Method
-</a>
-</h1>
-<div class="nested-links f5 lh-copy nested-copy-line-height">
-<p>This guide is for installing arch linux (UEFI) using a script with:</p>
-<ul>
-<li>BTRFS file system including subvolumes.</li>
-<li>Snapper.</li>
-<li>Snap-pac-grub.</li>
-<li>Bootable snapshots.</li>
-<li>Qemu/kvm with iommu setup.</li>
-<li>Linux/Windows Gaming.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
 </main>
 <footer class="bg-dark-gray bottom-0 w-100 pa3" role=contentinfo>
 <div class="flex justify-between">
