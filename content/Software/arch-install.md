@@ -6,17 +6,27 @@ featured_image: "/images/archinstall-bg.png"
 tags: ["OS","Arch","Linux","BTRFS","Snapper"]
 ---
 
-This guide is for installing arch linux (UEFI) with a BTRFS file system including subvolumes. This guide also covers using snapper and grub to create bootable snapshots.
+This guide is for installing arch linux (UEFI) with:
+- BTRFS file system including subvolumes.
+- Snapper.
+- Snap-pac-grub.
+- Bootable snapshots.
+- Qemu/kvm with iommu setup.
+- Linux/Windows Gaming.
 
 <!--more-->
 
 ___
 
-## Step  0 - Install ISO to USB:
+## Install ISO to USB:
 
 After downloading the latest [Arch ISO](https://archlinux.org/download/) you will need to install it to a usb using a program like [Balena Etcher](https://github.com/balena-io/etcher). Plug the usb into the machine you want to install arch to and boot into the usb.
 
-## Step  1 - Give root a password then get the local ip:
+___
+
+## Base Install
+
+### Give root a password then get the local ip:
 
 ```zsh
 passwd
@@ -24,29 +34,29 @@ passwd
 ip address show
 ```
 
-## Step  3 - SSH into the target machine from your main:
+### SSH into the target machine from your main:
 
 ```zsh
 ssh root@xxx.xxx.xxx.xxx
 ```
 
-## Step  4 - Update the timezone:
+### Update the timezone:
 
 ```zsh
 timedatectl set-ntp true
 ```
 
-## Step  5 - Update the mirrors:
+### Update the mirrors:
 
 This step has returned an error on me the last few times I've tried but is safe to skip.
 
 ```zsh
-reflector -c Canada -c US -a 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+reflector -c Canada -c US -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
 pacman -Syy
 ```
 
-## Step 6 - Find your device:
+### Find your device:
 
 Use lsblk to dyplay your disk information, normally the drive will listed as SDA or SDB.
 
@@ -58,7 +68,7 @@ gdisk /dev/XXX
 
 Replace XXX with the target device.
 
-## Step 7 - Create Boot Partition:
+### Create Boot Partition:
 
 Use the n command to create a new partition on the disk, use the default partition number, use the default first sector, offset the last sector by 512M, and give it a efi flag of ef00.
 
@@ -74,7 +84,7 @@ default
 ef00
 ```
 
-## Step 8 - Create Swap Partition (Optional):
+### Create Swap Partition (Optional):
 
 Creating a swap partion is optional, if this step is skipped adjust the partion numbers in the future commands.
 
@@ -92,7 +102,7 @@ default
 8200
 ```
 
-## Step 9 - Create Main Partition And Write Changes:
+### Create Main Partition And Write Changes:
 
 Use the n command to create a new partition on the disk, use the default partition number, use the default first sector, since we are using the remainder of the disk we can use the default last sector, and use the default flag for linux filesystem.
 
@@ -110,12 +120,12 @@ w
 y
 ```
 
-## Step 10 - Setup Partition Filesystems And Subvolumes:
+### Setup Partition Filesystems And Subvolumes:
 
 If you skipped the swap partition then skip the mkswap and swapon and use the right partition number for the btrfs volume.
 
 ```zsh
-mkfs.fat -F32 /dev/vda1
+mkfs.vfat /dev/vda1 #Can also use mkfs.fat -F32 /dev/xxxx
 
 mkswap /dev/vda2
 
@@ -134,7 +144,7 @@ btrfs su cr /mnt/@snapshots
 btrfs su cr /mnt/@var_log
 ```
 
-## Step 11 - Remount Partitions Individually:
+### Remount Partitions Individually:
 
 In order to setup the systems fstab we need to remount the partitions individually with the proper settings. 
 
@@ -158,27 +168,29 @@ mount /dev/vda1 /mnt/boot
 lsblk
 ```
 
-## Step 12 - Add desired packages (May have error about missing file fsck.btrfs):
+### Add desired packages (May have error about missing file fsck.btrfs):
 
-Choose your base linux, linux-lts, linux-zen.
+Choose your base: `linux, linux-lts, linux-zen`.
+
+Choose your ucode: `intel-ucode, amd-ucode`.
 
 ```zsh
-pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware nano intel-ucode cifs-utils reflector
+pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware nano intel-ucode cifs-utils reflector sudo git rsync
 ```
 
-## Step 13 - Generate fstab:
+### Generate fstab:
 
 ```zsh
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-## Step 14 - Enter system:
+### Enter system:
 
 ```zsh
 arch-chroot /mnt
 ```
 
-## Step 15 - Setup System Time:
+### Setup System Time:
 
 ```zsh
 timedatectl list-timezones | grep Toronto
@@ -188,7 +200,7 @@ ln -sf /usr/share/zoneinfo/America/Toronto /etc/localtime
 hwclock --systohc
 ```
 
-## Step 16 - Setup Locale Generator:
+### Setup Locale Generator:
 
 ```zsh
 nano /etc/locale.gen
@@ -200,23 +212,21 @@ Uncomment your desired locales
 en_CA.UTF-8
 ```
 
-## Step 17 - Generate Locale:
+### Generate Locale:
 
 ```zsh
 locale-gen
 ```
 
-## Step 18 - Update Mirrors:
-
-*I'm currently getting an `unable to rate error` that needs investigating. This step can be skipped.*
+### Update Mirrors:
 
 ```zsh
-reflector -c Canada -c US -a 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+reflector -c Canada -c US -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
 pacman -Syy
 ```
 
-## Step 19 - Create Locale Config:
+### Create Locale Config:
 
 ```zsh
 nano /etc/locale.conf
@@ -228,7 +238,7 @@ Insert you chosen language from step 16
 LANG=en_CA.UTF-8
 ```
 
-## Step 20 - Create Hostname File:
+### Create Hostname File:
 
 ```zsh
 nano /etc/hostname
@@ -238,7 +248,7 @@ nano /etc/hostname
 NAME
 ```
 
-## Step 21 - Setup Hosts:
+### Setup Hosts:
 
 ```zsh
 nano /etc/hosts
@@ -252,55 +262,98 @@ Add the following entries replacing NAME with your hostname
 127.0.1.1       NAME.localdomain NAME
 ```
 
-## Step 22 - Set Root Password For Actual System:
+### Set Root Password For Actual System:
 
 ```zsh
 passwd
 ```
 
-## Step 23 - Install General Packages:
-
-Remove the items within brackets if not needed, or remove the squarebracket portion if needed
+### Install General Packages:
 
 ```zsh
-pacman -S grub efibootmgr networkmanager network-manager-applet dialog [FOR WIFI (wpa_supplicant)] mtools dosfstools git reflector snapper snap-pac [FOR BLUETOOTH (bluez bluez-utils pulseaudio-bluetooth)] [FOR PRINTING (cups hplip)] xdg-utils xdg-user-dirs alsa-utils inetutils base-devel openssh grub-customizer code os-prober sudo
+pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools snapper snap-pac xdg-utils xdg-user-dirs alsa-utils inetutils base-devel openssh grub-customizer code os-prober
 ```
 
-## Step 24 - Add btrfs to CPIO Modules:
+select all
 
-*Need to investigate difference between placing it in modules vs binaries, may also need other items in modules.*
+### Setup CPIO Modules And Hooks:
 
 ```zsh
 nano /etc/mkinitcpio.conf
 ```
 
-Insert `btrfs` into the brackets for modules
+Insert `btrfs` into the brackets for modules along with your graphics card information.
+
+- Virtualization: `vfio_pci vfio vfio_iommu_type1 vfio_virqfd`
+
+Ensure modconf is in hooks and uncomment zstd compression
 
 ```yml
 # MODULES
 # The following modules are loaded before any boot hooks are
 # run.  Advanced users may wish to specify all system modules
 # in this array.  For instance:
-MODULES=(btrfs)
+MODULES=(vfio_pci vfio vfio_iommu_type1 vfio_virqfd btrfs)
+
+##   This setup specifies all modules in the MODULES setting above.
+##   No raid, lvm2, or encrypted root is needed.
+#    HOOKS=(base)
+#
+##   This setup will autodetect all modules for your system and should
+##   work as a sane default
+#    HOOKS=(base udev autodetect block filesystems)
+HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)
+
+# COMPRESSION
+# Use this to compress the initramfs image. By default, gzip compression
+# is used. Use 'cat' to create an uncompressed image.
+COMPRESSION="zstd"
+#COMPRESSION="gzip"
+#COMPRESSION="bzip2"
+#COMPRESSION="lzma"
+#COMPRESSION="xz"
+#COMPRESSION="lzop"
+#COMPRESSION="lz4"
 ```
 
-run mkinit for the chosen kernel (linux, linux-lts, linux-zen)
+run mkinit for the chosen kernel (`linux`, `linux-lts`, `linux-zen`)
 
 ```zsh
 mkinitcpio -p linux-zen
 ```
 
-## Step 25 - Istall Grub:
+### Istall Grub:
 
 Grub is the system that will locate and boot any os on your drive.
 
 ```zsh
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-
-grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-## Step 26 - Autostart Systems:
+Open grub config
+
+```zsh
+nano /etc/default/grub
+```
+
+Add iommu for system into `GRUB_CMDLINE_LINUX_DEFAULT` section.
+
+~~Amd: `amd_iommu=on`~~ This doesn't seem to be required on newer hardware...
+
+Intel: `intel_iommu=on`
+
+```yml
+GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on loglevel=3 nowatchdog"
+GRUB_CMDLINE_LINUX=""
+```
+
+Update grub
+
+```zsh
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+### Autostart Systems:
 
 This will start the networking and ssh on boot allowing us to ssh into the machine.
 
@@ -310,21 +363,17 @@ systemctl enable NetworkManager
 systemctl enable sshd
 ```
 
-## Step 27 - Create User:
+### Create User:
 
 Adding the user to the audio and video groups may not be necessary, this was done for gaming with multiple xorg servers.
 
 ```zsh
 useradd -mG wheel NAME
 
-usermod -aG audio NAME
-
-usermod -aG video NAME
-
 passwd NAME
 ```
 
-## Step 28 - Allow Wheel As Root:
+### Allow Wheel As Root:
 
 ```zsh
 EDITOR=nano visudo
@@ -336,7 +385,7 @@ Uncomment the following
 %wheel ALL=(ALL) ALL
 ```
 
-## Step 29 - Finish Setup And Reboot:
+### Finish Setup And Reboot:
 
 ```zsh
 exit
@@ -346,13 +395,66 @@ umount -a
 reboot
 ```
 
-## Step 30 - SSH Into Machine As New User:
+### SSH Into Machine As New User:
 
 ```zsh
 ssh NAME@xxx.xxx.xxx.xxx
 ```
 
-## Step 31 - Fix Snapshots:
+___
+
+## Use Install Scripts (Optional):
+
+These scripts will run the commands seen beyond this step, or skip this step and continue manually choosing packages.
+
+```zsh
+git clone https://github.com/rassweiler/linux-install-scripts.git
+
+sudo chmod +x -R linux-install-scripts/
+
+cd linux-install-scripts/arch/
+```
+
+Run script for desired DE
+
+```zsh
+./i3wm.sh
+```
+
+Make the following changes based on preference, and make sure to add the new user to the allowed list.
+
+```yml
+ALLOW_USERS="NAME"
+TIMELINE_LIMIT_HOURLY="5"
+TIMELINE_LIMIT_DAILY="7"
+TIMELINE_LIMIT_WEEKLY="0"
+TIMELINE_LIMIT_MONTHLY="0"
+TIMELINE_LIMIT_YEARLY="0"
+```
+
+Add the proper card to the end of the modules and rebuild
+
+- Amd: `amdgpu`
+
+- Nvidia: `nvidia`
+
+```yml
+# MODULES
+# The following modules are loaded before any boot hooks are
+# run.  Advanced users may wish to specify all system modules
+# in this array.  For instance:
+MODULES=(vfio_pci vfio vfio_iommu_type1 vfio_virqfd btrfs nvidia)
+```
+
+Once script is completed skip down to VM setup section for passthrough.
+
+___
+
+## Cleanup Snapshots
+
+At this point you have a working system that boots to a tty, however the snapshotting is not fully setup.
+
+### Fix Snapshots:
 
 This step allows the non root user to manage all the snapshots
 
@@ -376,7 +478,7 @@ sudo chmod a+rx /.snapshots
 sudo chown :NAME /.snapshots
 ```
 
-## Step 32 - Modify Snapper Settings:
+### Modify Snapper Settings:
 
 ```zsh
 sudo nano /etc/snapper/configs/root
@@ -393,7 +495,7 @@ TIMELINE_LIMIT_MONTHLY="0"
 TIMELINE_LIMIT_YEARLY="0"
 ```
 
-## Step 32 - Enable Snapper:
+### Enable Snapper:
 
 Snapper is what creates the btrfs snapshots allowing us to roll back changes.
 
@@ -403,13 +505,13 @@ sudo systemctl enable --now snapper-timeline.timer
 sudo systemctl enable --now snapper-cleanup.timer
 ```
 
-## Step 33 - Access AUR:
+### Access AUR:
 
 The arch user repository has some handy GUI packages for interacting with snapshots.
 
 There are a few options for accessing the aur, here are two options (**I prefer paru**).
 
-### Step 33.A - Install YAY
+#### A - Install YAY
 
 ```zsh
 git clone https://aur.archlinux.org/yay
@@ -421,7 +523,7 @@ makepkg -si PKGBUILD
 cd ..
 ```
 
-### Step 33.B - Install Paru
+#### B - Install Paru
 
 ```zsh
 git clone https://aur.archlinux.org/paru.git
@@ -433,7 +535,7 @@ makepkg -si
 cd ..
 ```
 
-## Step 34 - Install Packages From Aur
+### Install Packages From Aur
 
 These packages will help with visually managing snapshots and booting into them. And librewolf is a hardened fork of firefox.
 
@@ -441,7 +543,11 @@ These packages will help with visually managing snapshots and booting into them.
 yay|paru -S snap-pac-grub snapper-gui
 ```
 
-## Step 35 - Install Generic Packages:
+___
+
+## Desktop Setup
+
+### Install Generic Packages:
 
 Many of these are personal preference.
 
@@ -461,7 +567,7 @@ Many of these are personal preference.
 sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret
 ```
 
-## Step 36 - Install Browser Packages (librewolf & firefox for netflix):
+### Install Browser Packages (librewolf & firefox for netflix):
 
 ```zsh
 sudo pacman -S firefox
@@ -469,63 +575,95 @@ sudo pacman -S firefox
 paru -S librewolf
 ```
 
-## Step 37 - Install Terminal:
+### Install Terminal:
 
-### Step 37.A - Alacritty:
+#### A - Alacritty:
 
 ```zsh
 sudo pacman -S alacritty
 ```
 
-### Step 37.B - WezTerm:
+#### B - WezTerm:
 
 ```zsh
 paru -S wezterm
 ```
 
-## Step 38 - Install Audio Packages:
+### Install Audio Packages:
 
-### Step 38.A - Pulse Audio:
+#### A - Pulse Audio:
 
 ```zsh
-sudo pacman -S pulseaudio pulseaudio-alsa
+sudo pacman -S pulseaudio pulseaudio-alsa pulseaudio-bluetooth
 ```
 
-### Step 38.B - Pipewire Audio:
+Bluetooth
 
 ```zsh
-sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum qjackctl easyeffects|noisetorch pipewire-jack-dropin
+sudo pacman -S pulseaudio-bluetooth
+```
+
+#### B - Pipewire Audio:
+
+```zsh
+sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum qjackctl easyeffects pavucontrol
 
 paru -S noisetorch pipewire-jack-dropin
 ```
 
-## Step 39 - Find Graphics Card:
+### Find Graphics Card:
 
 ```zsh
 lspci -k | grep -A 2 -E "(VGA|3D)"
 ```
 
-## Step 40 - Install Graphics:
+### Install Graphics:
 
 Install the packages for your hardware
 
-### Step 40.A - Nvidia:
+#### A - Nvidia:
 
 ```zsh
 sudo pacman -S nvidia nvidia-utils nvidia-settings nvidia-dkms
 ```
 
-### Step 40.B - AMD:
+#### B - AMD:
 
 ```zsh
 sudo pacman -S amdvlk mesa
 ```
 
-## Step 41 - Install DE Manager:
+### Setup CPIO Modules For Graphics:
+
+Add the proper card to the end of the modules and rebuild
+
+```zsh
+nano /etc/mkinitcpio.conf
+```
+
+- Amd: `amdgpu`
+
+- Nvidia: `nvidia`
+
+```yml
+# MODULES
+# The following modules are loaded before any boot hooks are
+# run.  Advanced users may wish to specify all system modules
+# in this array.  For instance:
+MODULES=(vfio_pci vfio vfio_iommu_type1 vfio_virqfd btrfs nvidia)
+```
+
+run mkinit for the chosen kernel (`linux`, `linux-lts`, `linux-zen`)
+
+```zsh
+mkinitcpio -p linux-zen
+```
+
+### Install DE Manager:
 
 There are a few options for managers
 
-### Step 41.A - Lightdm:
+#### A - Lightdm:
 
 ```zsh
 paru -S lightdm-webkit-theme-aether
@@ -533,7 +671,7 @@ paru -S lightdm-webkit-theme-aether
 sudo systemctl enable lightdm
 ```
 
-### Step 41.B - SDDM:
+#### B - SDDM:
 
 ```zsh
 sudo pacman -S sddm
@@ -541,49 +679,104 @@ sudo pacman -S sddm
 sudo systemctl enable sddm.service
 ```
 
-## Step 42 - Install Your DE OF Choice:
+### Install Your DE OF Choice:
 
 There are a few options for desktop environments
 
 My preference is i3wm for simplicity, or KDE Plasma *cause you fancy gurl*.
 
-### Step 42.A - i3:
+#### A - i3:
 
 ```zsh
 sudo pacman -S i3-gaps i3blocks i3status
 ```
 
-### Step 42.B - KDE PLASMA:
+##### COPY CONFIGS FROM GIT (Optional):
+
+These are my own mashed together configs, mostly from my i3wm system. There are also some backgrounds in the repo.
+
+```zsh
+git clone https://github.com/rassweiler/dotfiles.git && cd dotfiles && ./install
+```
+
+~~Overwrite the .config and .local folders in your user directory and reboot the system.~~(The repo now uses dotbot to symlink all configs)
+
+##### Edit i3wm CONFIGS (Optional):
+
+Log into the lightdm session then press `mod(windows)+space` to bring up the rofi menu.
+
+Then launch `arandr`.
+
+Arandr will show you the name of the current display, use this to modify i3 configs:
+
+```zsh
+nano ~/dotfiles/config/i3/config
+```
+
+Modify the following to match your display setup (if you only have one monitor set both variables to the same name):
+
+```yml
+set $mo1 "HDMI-0" # Set this to match your display from arandr
+set $mo2 "HDMI-1" # Set this to match your display from arandr
+```
+
+If you only have one display then comment out the second bar setup:
+
+```yml
+# Secondary Monitor Bar
+# bar {
+# 		font pango:Victor Mono Bold 10, FontAwesome 10
+#         position top 
+#         tray_output $mo1
+#         tray_padding 0
+#         output $mo2
+#     strip_workspace_numbers yes
+#     #strip_workspace_name no
+
+#     colors {
+#         background #282A36
+#         statusline #F8F8F2
+#         separator  #44475A
+#         focused_workspace  #44475A #bd93f9 #F8F8F2
+#         active_workspace   #282A36 #bd93f9 #F8F8F2
+#         inactive_workspace #282A36 #282A36 #BFBFBF
+#         urgent_workspace   #8be9fd #ff79c6 #F8F8F2
+#         binding_mode       #8be9fd #ff79c6 #F8F8F2
+# 	}
+# }
+```
+
+#### B - KDE PLASMA:
 
 ```zsh
 sudo pacman -S plasma plasma-wayland-session kde-applications
 ```
 
-### Step 42.C - Awesome:
+#### C - Awesome:
 
 ```zsh
 sudo pacman -S awesome
 ```
 
-## Step 43 - Set Shell:
+### Set Shell:
 
 the default is bash, I prefer fish... but know that some commands will need to be changed to run in fish.
 
 Example Bash/zsh:`chsh -s $(which fish)` vs fish: `chsh -s (which zsh)`
 
-### Step 43.A - Set ZSH Shell:
+#### A - Set ZSH Shell:
 
 ```zsh
 chsh -s $(which zsh)
 ```
 
-### Step 43.B - Set Fish Shell:
+#### B - Set Fish Shell:
 
 ```zsh
-chsh -s $(which fish)
+.
 ```
 
-## Step 44 - Setup Pacman Hooks For Snapper:
+### Setup Pacman Hooks For Snapper:
 
 ```zsh
 sudo mkdir /etc/pacman.d/hooks
@@ -608,7 +801,7 @@ When = PreTransaction
 Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 ```
 
-## Step 45 - Generate SSH Key And add To Agent (Optional):
+### Generate SSH Key And add To Agent (Optional):
 
 ```zsh
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
@@ -633,21 +826,136 @@ exec ssh-agent zsh
 Add the key to the shell
 
 ```zsh
-ssh-add -K ~/.ssh/id_ed25519
+ssh-add -K ~/.ssh/id_rsa
 ```
 
-## Step 46 - COPY CONFIGS FROM GIT (Optional):
-
-These are my own mashed together configs, mostly from my i3wm system. There are also some backgrounds in the repo.
-
-```zsh
-git clone https://github.com/rassweiler/dotfiles.git && cd dotfiles && ./install
-```
-
-~~Overwrite the .config and .local folders in your user directory and reboot the system.~~(The repo now uses dotbot to symlink all configs)
-
-## Step 47 - Update The System:
+### Update The System:
 
 ```zsh
 sudo pacman -Syu
 ```
+
+___
+
+### Enable Multilib:
+
+This will allow us to install steam, wine, and lutris
+
+Edit the pacman configuration
+
+```zsh
+sudo nano /etc/pacman.conf
+```
+
+uncomment Multilib and the include
+
+```yml
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+
+### Update The System:
+
+```zsh
+sudo pacman -Syu
+```
+
+### Update User:
+
+Adding the user to the audio and video groups may not be necessary, this was done for gaming with multiple xorg servers.
+
+```zsh
+usermod -aG audio NAME
+
+usermod -aG video NAME
+```
+
+## Install Gaming:
+
+```zsh
+sudo pacman -S steam wine lutris wine-mono
+
+paru -S proton proton-ge-custom mangohud streamdeck-ui
+```
+
+## OBS:
+
+While there is a package for OBS in the main arch repo, it's suggested to use tytan652 for the extra plugins like browser source.
+
+```zsh
+paru -S obs-studio-tytan652
+```
+
+## Discord:
+
+There are two options available: `discord` and `betterdiscord`. Install discord before betterdiscord
+
+```zsh
+sudo pacman -S discord
+paru -S betterdiscord-installer
+```
+
+## Tuning:
+
+### A - Pulse Audio:
+
+```zsh
+sudo nano /etc/pulse/daemon.conf
+```
+
+Change settings
+
+```yml
+high-priority = yes
+nice-level = -11
+
+realtime-scheduling = yes
+realtime-priority = 5
+```
+
+## Setup VM
+
+### Install packages:
+
+```zsh
+sudo pacman -S qemu libvirt ovmf virt-manager ebtables iptables dnsmasq
+
+usermod -aG libvirt NAME
+
+systemctl enable libvirtd.service
+sudo systemctl enable virtlogd.socket
+sudo virsh net-autostart default
+```
+
+### Verify Iommu:
+
+This command should present a line with `DMAR: IOMMU enabled`
+
+```zsh
+sudo dmesg | grep -i -e DMAR -e IOMMU
+```
+
+If iommu is enabled then paste in this command to view the groups and make sure devices to be passed over are in seperate groups:
+
+```zsh
+shopt -s nullglob
+for g in `find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V`; do
+	echo "IOMMU Group ${g##*/}:"
+	for d in $g/devices/*; do
+		echo -e "\t$(lspci -nns ${d##*/})"
+	done;
+done;
+```
+
+Note down the ids for the devices to be passed through:
+
+```yml
+[1022:43e9]
+```
+
+## REFERENCES
+
+- [Arch Install Guide](https://wiki.archlinux.org/title/Installation_guide)
+- [Arch PCI Passthrough](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF)
+- [SomeOrdinaryGamer](https://www.youtube.com/watch?v=h7SG7ccjn-g)
+- [EF - Linux Made Simple](https://www.youtube.com/watch?v=o09jzArQcFQ)

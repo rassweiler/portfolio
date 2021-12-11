@@ -1,5 +1,5 @@
 ---
-date: 2021-01-21T10:58:08-04:00
+date: 2023-01-21T10:58:08-04:00
 title: "Arch-Snapper-BTRFS Install Guide - Gaming Edition"
 description: "Easy Gaming Guide For Arch Linux"
 featured_image: "/images/archinstall-gaming-bg.png"
@@ -719,7 +719,7 @@ sudo pacman -Syu
 ## Step 47 - Install Gaming:
 
 ```zsh
-sudo pacman -S steam wine lutris
+sudo pacman -S steam wine lutris wine-mono
 
 paru -S proton proton-ge-custom mangohud streamdeck-ui
 ```
