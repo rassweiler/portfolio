@@ -5,7 +5,7 @@
 <title>Arch Snapper BTRFS Install Guide | Kyle Rassweiler</title>
 <meta name=viewport content="width=device-width,minimum-scale=1">
 <meta name=description content="Easy Install Guide For Arch Linux Using BTRFS">
-<meta name=generator content="Hugo 0.89.4">
+<meta name=generator content="Hugo 0.90.1">
 <meta name=ROBOTS content="NOINDEX, NOFOLLOW">
 <link rel=stylesheet href=/ananke/css/main.min.css>
 <link rel="shortcut icon" href=/images/favicon.ico type=image/x-icon>
@@ -18,7 +18,7 @@
 <meta itemprop=name content="Arch Snapper BTRFS Install Guide">
 <meta itemprop=description content="Easy Install Guide For Arch Linux Using BTRFS"><meta itemprop=datePublished content="2021-11-20T10:58:08-04:00">
 <meta itemprop=dateModified content="2021-11-20T10:58:08-04:00">
-<meta itemprop=wordCount content="1665">
+<meta itemprop=wordCount content="2267">
 <meta itemprop=keywords content="OS,Arch,Linux,BTRFS,Snapper,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Arch Snapper BTRFS Install Guide">
 <meta name=twitter:description content="Easy Install Guide For Arch Linux Using BTRFS">
@@ -99,30 +99,40 @@ Kyle Rassweiler
 </p>
 <time class="f6 mv4 dib tracked" datetime=2021-11-20T10:58:08-04:00>2021-11-21</time>
 </header>
-<div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img near-black pr4-l w-two-thirds-l"><p>This guide is for installing arch linux (UEFI) with a BTRFS file system including subvolumes. This guide also covers using snapper and grub to create bootable snapshots.</p>
+<div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img near-black pr4-l w-two-thirds-l"><p>This guide is for installing arch linux (UEFI) with:</p>
+<ul>
+<li>BTRFS file system including subvolumes.</li>
+<li>Snapper.</li>
+<li>Snap-pac-grub.</li>
+<li>Bootable snapshots.</li>
+<li>Qemu/kvm with iommu setup.</li>
+<li>Linux/Windows Gaming.</li>
+</ul>
 <hr>
-<h2 id=step--0---install-iso-to-usb>Step 0 - Install ISO to USB:</h2>
+<h2 id=install-iso-to-usb>Install ISO to USB:</h2>
 <p>After downloading the latest <a href=https://archlinux.org/download/>Arch ISO</a> you will need to install it to a usb using a program like <a href=https://github.com/balena-io/etcher>Balena Etcher</a>. Plug the usb into the machine you want to install arch to and boot into the usb.</p>
-<h2 id=step--1---give-root-a-password-then-get-the-local-ip>Step 1 - Give root a password then get the local ip:</h2>
+<hr>
+<h2 id=base-install>Base Install</h2>
+<h3 id=give-root-a-password-then-get-the-local-ip>Give root a password then get the local ip:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>passwd
 
 ip address show
-</code></pre></div><h2 id=step--3---ssh-into-the-target-machine-from-your-main>Step 3 - SSH into the target machine from your main:</h2>
+</code></pre></div><h3 id=ssh-into-the-target-machine-from-your-main>SSH into the target machine from your main:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>ssh root@xxx.xxx.xxx.xxx
-</code></pre></div><h2 id=step--4---update-the-timezone>Step 4 - Update the timezone:</h2>
+</code></pre></div><h3 id=update-the-timezone>Update the timezone:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>timedatectl set-ntp true
-</code></pre></div><h2 id=step--5---update-the-mirrors>Step 5 - Update the mirrors:</h2>
+</code></pre></div><h3 id=update-the-mirrors>Update the mirrors:</h3>
 <p>This step has returned an error on me the last few times I&rsquo;ve tried but is safe to skip.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>reflector -c Canada -c US -a <span style=color:#ae81ff>12</span> --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>reflector -c Canada -c US -a <span style=color:#ae81ff>6</span> --sort rate --save /etc/pacman.d/mirrorlist
 
 pacman -Syy
-</code></pre></div><h2 id=step-6---find-your-device>Step 6 - Find your device:</h2>
+</code></pre></div><h3 id=find-your-device>Find your device:</h3>
 <p>Use lsblk to dyplay your disk information, normally the drive will listed as SDA or SDB.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>lsblk
 
 gdisk /dev/XXX
 </code></pre></div><p>Replace XXX with the target device.</p>
-<h2 id=step-7---create-boot-partition>Step 7 - Create Boot Partition:</h2>
+<h3 id=create-boot-partition>Create Boot Partition:</h3>
 <p>Use the n command to create a new partition on the disk, use the default partition number, use the default first sector, offset the last sector by 512M, and give it a efi flag of ef00.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>n
 
@@ -133,7 +143,7 @@ default
 +512M
 
 ef00
-</code></pre></div><h2 id=step-8---create-swap-partition-optional>Step 8 - Create Swap Partition (Optional):</h2>
+</code></pre></div><h3 id=create-swap-partition-optional>Create Swap Partition (Optional):</h3>
 <p>Creating a swap partion is optional, if this step is skipped adjust the partion numbers in the future commands.</p>
 <p>Use the n command to create a new partition on the disk, use the default partition number, use the default first sector, offset the last sector by 2G, and give it a linux-swap flag of 8200.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>n
@@ -145,7 +155,7 @@ default
 +2G
 
 <span style=color:#ae81ff>8200</span>
-</code></pre></div><h2 id=step-9---create-main-partition-and-write-changes>Step 9 - Create Main Partition And Write Changes:</h2>
+</code></pre></div><h3 id=create-main-partition-and-write-changes>Create Main Partition And Write Changes:</h3>
 <p>Use the n command to create a new partition on the disk, use the default partition number, use the default first sector, since we are using the remainder of the disk we can use the default last sector, and use the default flag for linux filesystem.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>n
 
@@ -158,9 +168,9 @@ default
 w
 
 y
-</code></pre></div><h2 id=step-10---setup-partition-filesystems-and-subvolumes>Step 10 - Setup Partition Filesystems And Subvolumes:</h2>
+</code></pre></div><h3 id=setup-partition-filesystems-and-subvolumes>Setup Partition Filesystems And Subvolumes:</h3>
 <p>If you skipped the swap partition then skip the mkswap and swapon and use the right partition number for the btrfs volume.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>mkfs.fat -F32 /dev/vda1
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>mkfs.vfat /dev/vda1 <span style=color:#75715e>#Can also use mkfs.fat -F32 /dev/xxxx</span>
 
 mkswap /dev/vda2
 
@@ -177,7 +187,7 @@ btrfs su cr /mnt/@home
 btrfs su cr /mnt/@snapshots
 
 btrfs su cr /mnt/@var_log
-</code></pre></div><h2 id=step-11---remount-partitions-individually>Step 11 - Remount Partitions Individually:</h2>
+</code></pre></div><h3 id=remount-partitions-individually>Remount Partitions Individually:</h3>
 <p>In order to setup the systems fstab we need to remount the partitions individually with the proper settings.</p>
 <p>Use lsblk to verify all partitions and volumes were mounted.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>umount /mnt
@@ -195,91 +205,152 @@ mount -o noatime,compress<span style=color:#f92672>=</span>lzo,space_cache<span 
 mount /dev/vda1 /mnt/boot
 
 lsblk
-</code></pre></div><h2 id=step-12---add-desired-packages-may-have-error-about-missing-file-fsckbtrfs>Step 12 - Add desired packages (May have error about missing file fsck.btrfs):</h2>
-<p>Choose your base linux, linux-lts, linux-zen.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware nano intel-ucode cifs-utils reflector
-</code></pre></div><h2 id=step-13---generate-fstab>Step 13 - Generate fstab:</h2>
+</code></pre></div><h3 id=add-desired-packages-may-have-error-about-missing-file-fsckbtrfs>Add desired packages (May have error about missing file fsck.btrfs):</h3>
+<p>Choose your base: <code>linux, linux-lts, linux-zen</code>.</p>
+<p>Choose your ucode: <code>intel-ucode, amd-ucode</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware nano intel-ucode cifs-utils reflector sudo git rsync
+</code></pre></div><h3 id=generate-fstab>Generate fstab:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
-</code></pre></div><h2 id=step-14---enter-system>Step 14 - Enter system:</h2>
+</code></pre></div><h3 id=enter-system>Enter system:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>arch-chroot /mnt
-</code></pre></div><h2 id=step-15---setup-system-time>Step 15 - Setup System Time:</h2>
+</code></pre></div><h3 id=setup-system-time>Setup System Time:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>timedatectl list-timezones | grep Toronto
 
 ln -sf /usr/share/zoneinfo/America/Toronto /etc/localtime
 
 hwclock --systohc
-</code></pre></div><h2 id=step-16---setup-locale-generator>Step 16 - Setup Locale Generator:</h2>
+</code></pre></div><h3 id=setup-locale-generator>Setup Locale Generator:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>nano /etc/locale.gen
 </code></pre></div><p>Uncomment your desired locales</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>en_CA.UTF-8</span>
-</code></pre></div><h2 id=step-17---generate-locale>Step 17 - Generate Locale:</h2>
+</code></pre></div><h3 id=generate-locale>Generate Locale:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>locale-gen
-</code></pre></div><h2 id=step-18---update-mirrors>Step 18 - Update Mirrors:</h2>
-<p><em>I&rsquo;m currently getting an <code>unable to rate error</code> that needs investigating. This step can be skipped.</em></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>reflector -c Canada -c US -a <span style=color:#ae81ff>12</span> --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+</code></pre></div><h3 id=update-mirrors>Update Mirrors:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>reflector -c Canada -c US -a <span style=color:#ae81ff>6</span> --sort rate --save /etc/pacman.d/mirrorlist
 
 pacman -Syy
-</code></pre></div><h2 id=step-19---create-locale-config>Step 19 - Create Locale Config:</h2>
+</code></pre></div><h3 id=create-locale-config>Create Locale Config:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>nano /etc/locale.conf
 </code></pre></div><p>Insert you chosen language from step 16</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>LANG=en_CA.UTF-8</span>
-</code></pre></div><h2 id=step-20---create-hostname-file>Step 20 - Create Hostname File:</h2>
+</code></pre></div><h3 id=create-hostname-file>Create Hostname File:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>nano /etc/hostname
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>NAME</span>
-</code></pre></div><h2 id=step-21---setup-hosts>Step 21 - Setup Hosts:</h2>
+</code></pre></div><h3 id=setup-hosts>Setup Hosts:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>nano /etc/hosts
 </code></pre></div><p>Add the following entries replacing NAME with your hostname</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>127.0.0.1</span>       <span style=color:#ae81ff>localhost</span>
 ::<span style=color:#ae81ff>1</span>             <span style=color:#ae81ff>localhost</span>
 <span style=color:#ae81ff>127.0.1.1</span>       <span style=color:#ae81ff>NAME.localdomain NAME</span>
-</code></pre></div><h2 id=step-22---set-root-password-for-actual-system>Step 22 - Set Root Password For Actual System:</h2>
+</code></pre></div><h3 id=set-root-password-for-actual-system>Set Root Password For Actual System:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>passwd
-</code></pre></div><h2 id=step-23---install-general-packages>Step 23 - Install General Packages:</h2>
-<p>Remove the items within brackets if not needed, or remove the squarebracket portion if needed</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>pacman -S grub efibootmgr networkmanager network-manager-applet dialog <span style=color:#f92672>[</span>FOR WIFI <span style=color:#f92672>(</span>wpa_supplicant<span style=color:#f92672>)]</span> mtools dosfstools git reflector snapper snap-pac <span style=color:#f92672>[</span>FOR BLUETOOTH <span style=color:#f92672>(</span>bluez bluez-utils pulseaudio-bluetooth<span style=color:#f92672>)]</span> <span style=color:#f92672>[</span>FOR PRINTING <span style=color:#f92672>(</span>cups hplip<span style=color:#f92672>)]</span> xdg-utils xdg-user-dirs alsa-utils inetutils base-devel openssh grub-customizer code os-prober sudo
-</code></pre></div><h2 id=step-24---add-btrfs-to-cpio-modules>Step 24 - Add btrfs to CPIO Modules:</h2>
-<p><em>Need to investigate difference between placing it in modules vs binaries, may also need other items in modules.</em></p>
+</code></pre></div><h3 id=install-general-packages>Install General Packages:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools snapper snap-pac xdg-utils xdg-user-dirs alsa-utils inetutils base-devel openssh grub-customizer code os-prober
+</code></pre></div><p>select all</p>
+<h3 id=setup-cpio-modules-and-hooks>Setup CPIO Modules And Hooks:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>nano /etc/mkinitcpio.conf
-</code></pre></div><p>Insert <code>btrfs</code> into the brackets for modules</p>
+</code></pre></div><p>Insert <code>btrfs</code> into the brackets for modules along with your graphics card information.</p>
+<ul>
+<li>Virtualization: <code>vfio_pci vfio vfio_iommu_type1 vfio_virqfd</code></li>
+</ul>
+<p>Ensure modconf is in hooks and uncomment zstd compression</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#75715e># MODULES</span>
 <span style=color:#75715e># The following modules are loaded before any boot hooks are</span>
 <span style=color:#75715e># run.  Advanced users may wish to specify all system modules</span>
 <span style=color:#75715e># in this array.  For instance:</span>
-<span style=color:#ae81ff>MODULES=(btrfs)</span>
-</code></pre></div><p>run mkinit for the chosen kernel (linux, linux-lts, linux-zen)</p>
+<span style=color:#ae81ff>MODULES=(vfio_pci vfio vfio_iommu_type1 vfio_virqfd btrfs)</span>
+
+<span style=color:#75715e>##   This setup specifies all modules in the MODULES setting above.</span>
+<span style=color:#75715e>##   No raid, lvm2, or encrypted root is needed.</span>
+<span style=color:#75715e>#    HOOKS=(base)</span>
+<span style=color:#75715e>#</span>
+<span style=color:#75715e>##   This setup will autodetect all modules for your system and should</span>
+<span style=color:#75715e>##   work as a sane default</span>
+<span style=color:#75715e>#    HOOKS=(base udev autodetect block filesystems)</span>
+<span style=color:#ae81ff>HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)</span>
+
+<span style=color:#75715e># COMPRESSION</span>
+<span style=color:#75715e># Use this to compress the initramfs image. By default, gzip compression</span>
+<span style=color:#75715e># is used. Use &#39;cat&#39; to create an uncompressed image.</span>
+<span style=color:#ae81ff>COMPRESSION=&#34;zstd&#34;</span>
+<span style=color:#75715e>#COMPRESSION=&#34;gzip&#34;</span>
+<span style=color:#75715e>#COMPRESSION=&#34;bzip2&#34;</span>
+<span style=color:#75715e>#COMPRESSION=&#34;lzma&#34;</span>
+<span style=color:#75715e>#COMPRESSION=&#34;xz&#34;</span>
+<span style=color:#75715e>#COMPRESSION=&#34;lzop&#34;</span>
+<span style=color:#75715e>#COMPRESSION=&#34;lz4&#34;</span>
+</code></pre></div><p>run mkinit for the chosen kernel (<code>linux</code>, <code>linux-lts</code>, <code>linux-zen</code>)</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>mkinitcpio -p linux-zen
-</code></pre></div><h2 id=step-25---istall-grub>Step 25 - Istall Grub:</h2>
+</code></pre></div><h3 id=istall-grub>Istall Grub:</h3>
 <p>Grub is the system that will locate and boot any os on your drive.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>grub-install --target<span style=color:#f92672>=</span>x86_64-efi --efi-directory<span style=color:#f92672>=</span>/boot --bootloader-id<span style=color:#f92672>=</span>GRUB
-
-grub-mkconfig -o /boot/grub/grub.cfg
-</code></pre></div><h2 id=step-26---autostart-systems>Step 26 - Autostart Systems:</h2>
+</code></pre></div><p>Open grub config</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>nano /etc/default/grub
+</code></pre></div><p>Add iommu for system into <code>GRUB_CMDLINE_LINUX_DEFAULT</code> section.</p>
+<p><del>Amd: <code>amd_iommu=on</code></del> This doesn&rsquo;t seem to be required on newer hardware&mldr;</p>
+<p>Intel: <code>intel_iommu=on</code></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>GRUB_CMDLINE_LINUX_DEFAULT=&#34;quiet intel_iommu=on loglevel=3 nowatchdog&#34;</span>
+<span style=color:#ae81ff>GRUB_CMDLINE_LINUX=&#34;&#34;</span>
+</code></pre></div><p>Update grub</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre></div><h3 id=autostart-systems>Autostart Systems:</h3>
 <p>This will start the networking and ssh on boot allowing us to ssh into the machine.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>systemctl enable NetworkManager
 
 systemctl enable sshd
-</code></pre></div><h2 id=step-27---create-user>Step 27 - Create User:</h2>
+</code></pre></div><h3 id=create-user>Create User:</h3>
 <p>Adding the user to the audio and video groups may not be necessary, this was done for gaming with multiple xorg servers.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>useradd -mG wheel NAME
 
-usermod -aG audio NAME
-
-usermod -aG video NAME
-
 passwd NAME
-</code></pre></div><h2 id=step-28---allow-wheel-as-root>Step 28 - Allow Wheel As Root:</h2>
+</code></pre></div><h3 id=allow-wheel-as-root>Allow Wheel As Root:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>EDITOR<span style=color:#f92672>=</span>nano visudo
 </code></pre></div><p>Uncomment the following</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>%wheel ALL=(ALL) ALL</span>
-</code></pre></div><h2 id=step-29---finish-setup-and-reboot>Step 29 - Finish Setup And Reboot:</h2>
+</code></pre></div><h3 id=finish-setup-and-reboot>Finish Setup And Reboot:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>exit
 
 umount -a
 
 reboot
-</code></pre></div><h2 id=step-30---ssh-into-machine-as-new-user>Step 30 - SSH Into Machine As New User:</h2>
+</code></pre></div><h3 id=ssh-into-machine-as-new-user>SSH Into Machine As New User:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>ssh NAME@xxx.xxx.xxx.xxx
-</code></pre></div><h2 id=step-31---fix-snapshots>Step 31 - Fix Snapshots:</h2>
+</code></pre></div><hr>
+<h2 id=use-install-scripts-optional>Use Install Scripts (Optional):</h2>
+<p>These scripts will run the commands seen beyond this step, or skip this step and continue manually choosing packages.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>git clone https://github.com/rassweiler/linux-install-scripts.git
+
+sudo chmod +x -R linux-install-scripts/
+
+cd linux-install-scripts/arch/
+</code></pre></div><p>Run script for desired DE</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>./i3wm.sh
+</code></pre></div><p>Make the following changes based on preference, and make sure to add the new user to the allowed list.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>ALLOW_USERS=&#34;NAME&#34;</span>
+<span style=color:#ae81ff>TIMELINE_LIMIT_HOURLY=&#34;5&#34;</span>
+<span style=color:#ae81ff>TIMELINE_LIMIT_DAILY=&#34;7&#34;</span>
+<span style=color:#ae81ff>TIMELINE_LIMIT_WEEKLY=&#34;0&#34;</span>
+<span style=color:#ae81ff>TIMELINE_LIMIT_MONTHLY=&#34;0&#34;</span>
+<span style=color:#ae81ff>TIMELINE_LIMIT_YEARLY=&#34;0&#34;</span>
+</code></pre></div><p>Add the proper card to the end of the modules and rebuild</p>
+<ul>
+<li>
+<p>Amd: <code>amdgpu</code></p>
+</li>
+<li>
+<p>Nvidia: <code>nvidia</code></p>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#75715e># MODULES</span>
+<span style=color:#75715e># The following modules are loaded before any boot hooks are</span>
+<span style=color:#75715e># run.  Advanced users may wish to specify all system modules</span>
+<span style=color:#75715e># in this array.  For instance:</span>
+<span style=color:#ae81ff>MODULES=(vfio_pci vfio vfio_iommu_type1 vfio_virqfd btrfs nvidia)</span>
+</code></pre></div><p>Once script is completed skip down to VM setup section for passthrough.</p>
+<hr>
+<h2 id=cleanup-snapshots>Cleanup Snapshots</h2>
+<p>At this point you have a working system that boots to a tty, however the snapshotting is not fully setup.</p>
+<h3 id=fix-snapshots>Fix Snapshots:</h3>
 <p>This step allows the non root user to manage all the snapshots</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo umount /.snapshots
 
@@ -298,7 +369,7 @@ sudo chmod <span style=color:#ae81ff>750</span> /.snapshots
 sudo chmod a+rx /.snapshots
 
 sudo chown :NAME /.snapshots
-</code></pre></div><h2 id=step-32---modify-snapper-settings>Step 32 - Modify Snapper Settings:</h2>
+</code></pre></div><h3 id=modify-snapper-settings>Modify Snapper Settings:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo nano /etc/snapper/configs/root
 </code></pre></div><p>Make the following changes based on preference, and make sure to add the new user to the allowed list.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>ALLOW_USERS=&#34;NAME&#34;</span>
@@ -307,15 +378,15 @@ sudo chown :NAME /.snapshots
 <span style=color:#ae81ff>TIMELINE_LIMIT_WEEKLY=&#34;0&#34;</span>
 <span style=color:#ae81ff>TIMELINE_LIMIT_MONTHLY=&#34;0&#34;</span>
 <span style=color:#ae81ff>TIMELINE_LIMIT_YEARLY=&#34;0&#34;</span>
-</code></pre></div><h2 id=step-32---enable-snapper>Step 32 - Enable Snapper:</h2>
+</code></pre></div><h3 id=enable-snapper>Enable Snapper:</h3>
 <p>Snapper is what creates the btrfs snapshots allowing us to roll back changes.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo systemctl enable --now snapper-timeline.timer
 
 sudo systemctl enable --now snapper-cleanup.timer
-</code></pre></div><h2 id=step-33---access-aur>Step 33 - Access AUR:</h2>
+</code></pre></div><h3 id=access-aur>Access AUR:</h3>
 <p>The arch user repository has some handy GUI packages for interacting with snapshots.</p>
 <p>There are a few options for accessing the aur, here are two options (<strong>I prefer paru</strong>).</p>
-<h3 id=step-33a---install-yay>Step 33.A - Install YAY</h3>
+<h4 id=a---install-yay>A - Install YAY</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>git clone https://aur.archlinux.org/yay
 
 cd yay
@@ -323,7 +394,7 @@ cd yay
 makepkg -si PKGBUILD
 
 cd ..
-</code></pre></div><h3 id=step-33b---install-paru>Step 33.B - Install Paru</h3>
+</code></pre></div><h4 id=b---install-paru>B - Install Paru</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>git clone https://aur.archlinux.org/paru.git
 
 cd paru
@@ -331,10 +402,12 @@ cd paru
 makepkg -si
 
 cd ..
-</code></pre></div><h2 id=step-34---install-packages-from-aur>Step 34 - Install Packages From Aur</h2>
+</code></pre></div><h3 id=install-packages-from-aur>Install Packages From Aur</h3>
 <p>These packages will help with visually managing snapshots and booting into them. And librewolf is a hardened fork of firefox.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>yay|paru -S snap-pac-grub snapper-gui
-</code></pre></div><h2 id=step-35---install-generic-packages>Step 35 - Install Generic Packages:</h2>
+</code></pre></div><hr>
+<h2 id=desktop-setup>Desktop Setup</h2>
+<h3 id=install-generic-packages>Install Generic Packages:</h3>
 <p>Many of these are personal preference.</p>
 <p><code>feh</code> will handle the wallpaper (can also use nitrogen)</p>
 <p><code>thunar</code> is the file browser</p>
@@ -343,57 +416,111 @@ cd ..
 <p><code>arandr</code> is for setting up displays (this is handy for i3wm)</p>
 <p><code>gnome-keyring</code> and <del><code>libgnome-keyring</code></del> are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use <code>libsecret</code> instead</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S xorg xorg-server thunar feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret
-</code></pre></div><h2 id=step-36---install-browser-packages-librewolf--firefox-for-netflix>Step 36 - Install Browser Packages (librewolf & firefox for netflix):</h2>
+</code></pre></div><h3 id=install-browser-packages-librewolf--firefox-for-netflix>Install Browser Packages (librewolf & firefox for netflix):</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S firefox
 
 paru -S librewolf
-</code></pre></div><h2 id=step-37---install-terminal>Step 37 - Install Terminal:</h2>
-<h3 id=step-37a---alacritty>Step 37.A - Alacritty:</h3>
+</code></pre></div><h3 id=install-terminal>Install Terminal:</h3>
+<h4 id=a---alacritty>A - Alacritty:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S alacritty
-</code></pre></div><h3 id=step-37b---wezterm>Step 37.B - WezTerm:</h3>
+</code></pre></div><h4 id=b---wezterm>B - WezTerm:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>paru -S wezterm
-</code></pre></div><h2 id=step-38---install-audio-packages>Step 38 - Install Audio Packages:</h2>
-<h3 id=step-38a---pulse-audio>Step 38.A - Pulse Audio:</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pulseaudio pulseaudio-alsa
-</code></pre></div><h3 id=step-38b---pipewire-audio>Step 38.B - Pipewire Audio:</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum qjackctl easyeffects|noisetorch pipewire-jack-dropin
+</code></pre></div><h3 id=install-audio-packages>Install Audio Packages:</h3>
+<h4 id=a---pulse-audio>A - Pulse Audio:</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pulseaudio pulseaudio-alsa pulseaudio-bluetooth
+</code></pre></div><p>Bluetooth</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pulseaudio-bluetooth
+</code></pre></div><h4 id=b---pipewire-audio>B - Pipewire Audio:</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum qjackctl easyeffects pavucontrol
 
 paru -S noisetorch pipewire-jack-dropin
-</code></pre></div><h2 id=step-39---find-graphics-card>Step 39 - Find Graphics Card:</h2>
+</code></pre></div><h3 id=find-graphics-card>Find Graphics Card:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>lspci -k | grep -A <span style=color:#ae81ff>2</span> -E <span style=color:#e6db74>&#34;(VGA|3D)&#34;</span>
-</code></pre></div><h2 id=step-40---install-graphics>Step 40 - Install Graphics:</h2>
+</code></pre></div><h3 id=install-graphics>Install Graphics:</h3>
 <p>Install the packages for your hardware</p>
-<h3 id=step-40a---nvidia>Step 40.A - Nvidia:</h3>
+<h4 id=a---nvidia>A - Nvidia:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S nvidia nvidia-utils nvidia-settings nvidia-dkms
-</code></pre></div><h3 id=step-40b---amd>Step 40.B - AMD:</h3>
+</code></pre></div><h4 id=b---amd>B - AMD:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S amdvlk mesa
-</code></pre></div><h2 id=step-41---install-de-manager>Step 41 - Install DE Manager:</h2>
+</code></pre></div><h3 id=setup-cpio-modules-for-graphics>Setup CPIO Modules For Graphics:</h3>
+<p>Add the proper card to the end of the modules and rebuild</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>nano /etc/mkinitcpio.conf
+</code></pre></div><ul>
+<li>
+<p>Amd: <code>amdgpu</code></p>
+</li>
+<li>
+<p>Nvidia: <code>nvidia</code></p>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#75715e># MODULES</span>
+<span style=color:#75715e># The following modules are loaded before any boot hooks are</span>
+<span style=color:#75715e># run.  Advanced users may wish to specify all system modules</span>
+<span style=color:#75715e># in this array.  For instance:</span>
+<span style=color:#ae81ff>MODULES=(vfio_pci vfio vfio_iommu_type1 vfio_virqfd btrfs nvidia)</span>
+</code></pre></div><p>run mkinit for the chosen kernel (<code>linux</code>, <code>linux-lts</code>, <code>linux-zen</code>)</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>mkinitcpio -p linux-zen
+</code></pre></div><h3 id=install-de-manager>Install DE Manager:</h3>
 <p>There are a few options for managers</p>
-<h3 id=step-41a---lightdm>Step 41.A - Lightdm:</h3>
+<h4 id=a---lightdm>A - Lightdm:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>paru -S lightdm-webkit-theme-aether
 
 sudo systemctl enable lightdm
-</code></pre></div><h3 id=step-41b---sddm>Step 41.B - SDDM:</h3>
+</code></pre></div><h4 id=b---sddm>B - SDDM:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S sddm
 
 sudo systemctl enable sddm.service
-</code></pre></div><h2 id=step-42---install-your-de-of-choice>Step 42 - Install Your DE OF Choice:</h2>
+</code></pre></div><h3 id=install-your-de-of-choice>Install Your DE OF Choice:</h3>
 <p>There are a few options for desktop environments</p>
 <p>My preference is i3wm for simplicity, or KDE Plasma <em>cause you fancy gurl</em>.</p>
-<h3 id=step-42a---i3>Step 42.A - i3:</h3>
+<h4 id=a---i3>A - i3:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S i3-gaps i3blocks i3status
-</code></pre></div><h3 id=step-42b---kde-plasma>Step 42.B - KDE PLASMA:</h3>
+</code></pre></div><h5 id=copy-configs-from-git-optional>COPY CONFIGS FROM GIT (Optional):</h5>
+<p>These are my own mashed together configs, mostly from my i3wm system. There are also some backgrounds in the repo.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>git clone https://github.com/rassweiler/dotfiles.git <span style=color:#f92672>&amp;&amp;</span> cd dotfiles <span style=color:#f92672>&amp;&amp;</span> ./install
+</code></pre></div><p><del>Overwrite the .config and .local folders in your user directory and reboot the system.</del>(The repo now uses dotbot to symlink all configs)</p>
+<h5 id=edit-i3wm-configs-optional>Edit i3wm CONFIGS (Optional):</h5>
+<p>Log into the lightdm session then press <code>mod(windows)+space</code> to bring up the rofi menu.</p>
+<p>Then launch <code>arandr</code>.</p>
+<p>Arandr will show you the name of the current display, use this to modify i3 configs:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>nano ~/dotfiles/config/i3/config
+</code></pre></div><p>Modify the following to match your display setup (if you only have one monitor set both variables to the same name):</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>set $mo1 &#34;HDMI-0&#34;</span> <span style=color:#75715e># Set this to match your display from arandr</span>
+<span style=color:#ae81ff>set $mo2 &#34;HDMI-1&#34;</span> <span style=color:#75715e># Set this to match your display from arandr</span>
+</code></pre></div><p>If you only have one display then comment out the second bar setup:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#75715e># Secondary Monitor Bar</span>
+<span style=color:#75715e># bar {</span>
+<span style=color:#75715e># 		font pango:Victor Mono Bold 10, FontAwesome 10</span>
+<span style=color:#75715e>#         position top </span>
+<span style=color:#75715e>#         tray_output $mo1</span>
+<span style=color:#75715e>#         tray_padding 0</span>
+<span style=color:#75715e>#         output $mo2</span>
+<span style=color:#75715e>#     strip_workspace_numbers yes</span>
+<span style=color:#75715e>#     #strip_workspace_name no</span>
+
+<span style=color:#75715e>#     colors {</span>
+<span style=color:#75715e>#         background #282A36</span>
+<span style=color:#75715e>#         statusline #F8F8F2</span>
+<span style=color:#75715e>#         separator  #44475A</span>
+<span style=color:#75715e>#         focused_workspace  #44475A #bd93f9 #F8F8F2</span>
+<span style=color:#75715e>#         active_workspace   #282A36 #bd93f9 #F8F8F2</span>
+<span style=color:#75715e>#         inactive_workspace #282A36 #282A36 #BFBFBF</span>
+<span style=color:#75715e>#         urgent_workspace   #8be9fd #ff79c6 #F8F8F2</span>
+<span style=color:#75715e>#         binding_mode       #8be9fd #ff79c6 #F8F8F2</span>
+<span style=color:#75715e># 	}</span>
+<span style=color:#75715e># }</span>
+</code></pre></div><h4 id=b---kde-plasma>B - KDE PLASMA:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S plasma plasma-wayland-session kde-applications
-</code></pre></div><h3 id=step-42c---awesome>Step 42.C - Awesome:</h3>
+</code></pre></div><h4 id=c---awesome>C - Awesome:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S awesome
-</code></pre></div><h2 id=step-43---set-shell>Step 43 - Set Shell:</h2>
+</code></pre></div><h3 id=set-shell>Set Shell:</h3>
 <p>the default is bash, I prefer fish&mldr; but know that some commands will need to be changed to run in fish.</p>
 <p>Example Bash/zsh:<code>chsh -s $(which fish)</code> vs fish: <code>chsh -s (which zsh)</code></p>
-<h3 id=step-43a---set-zsh-shell>Step 43.A - Set ZSH Shell:</h3>
+<h4 id=a---set-zsh-shell>A - Set ZSH Shell:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>chsh -s <span style=color:#66d9ef>$(</span>which zsh<span style=color:#66d9ef>)</span>
-</code></pre></div><h3 id=step-43b---set-fish-shell>Step 43.B - Set Fish Shell:</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>chsh -s <span style=color:#66d9ef>$(</span>which fish<span style=color:#66d9ef>)</span>
-</code></pre></div><h2 id=step-44---setup-pacman-hooks-for-snapper>Step 44 - Setup Pacman Hooks For Snapper:</h2>
+</code></pre></div><h4 id=b---set-fish-shell>B - Set Fish Shell:</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>.
+</code></pre></div><h3 id=setup-pacman-hooks-for-snapper>Setup Pacman Hooks For Snapper:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo mkdir /etc/pacman.d/hooks
 
 sudo nano /etc/pacman.d/hooks/50-bootbackup.hook
@@ -410,7 +537,7 @@ sudo nano /etc/pacman.d/hooks/50-bootbackup.hook
 <span style=color:#ae81ff>Description = Backing up /boot...</span>
 <span style=color:#ae81ff>When = PreTransaction</span>
 <span style=color:#ae81ff>Exec = /usr/bin/rsync -a --delete /boot /.bootbackup</span>
-</code></pre></div><h2 id=step-45---generate-ssh-key-and-add-to-agent-optional>Step 45 - Generate SSH Key And add To Agent (Optional):</h2>
+</code></pre></div><h3 id=generate-ssh-key-and-add-to-agent-optional>Generate SSH Key And add To Agent (Optional):</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>ssh-keygen -t rsa -b <span style=color:#ae81ff>4096</span> -C <span style=color:#e6db74>&#34;your_email@example.com&#34;</span>
 </code></pre></div><p>Fish:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>eval <span style=color:#e6db74>&#34;(ssh-agent -s)&#34;</span>
@@ -421,14 +548,73 @@ exec ssh-agent fish
 
 exec ssh-agent zsh
 </code></pre></div><p>Add the key to the shell</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>ssh-add -K ~/.ssh/id_ed25519
-</code></pre></div><h2 id=step-46---copy-configs-from-git-optional>Step 46 - COPY CONFIGS FROM GIT (Optional):</h2>
-<p>These are my own mashed together configs, mostly from my i3wm system. There are also some backgrounds in the repo.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>git clone https://github.com/rassweiler/dotfiles.git <span style=color:#f92672>&amp;&amp;</span> cd dotfiles <span style=color:#f92672>&amp;&amp;</span> ./install
-</code></pre></div><p><del>Overwrite the .config and .local folders in your user directory and reboot the system.</del>(The repo now uses dotbot to symlink all configs)</p>
-<h2 id=step-47---update-the-system>Step 47 - Update The System:</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>ssh-add -K ~/.ssh/id_rsa
+</code></pre></div><h3 id=update-the-system>Update The System:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -Syu
-</code></pre></div><ul class="pa0 tags-flex">
+</code></pre></div><hr>
+<h3 id=enable-multilib>Enable Multilib:</h3>
+<p>This will allow us to install steam, wine, and lutris</p>
+<p>Edit the pacman configuration</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo nano /etc/pacman.conf
+</code></pre></div><p>uncomment Multilib and the include</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml>[<span style=color:#ae81ff>multilib]</span>
+<span style=color:#ae81ff>Include = /etc/pacman.d/mirrorlist</span>
+</code></pre></div><h3 id=update-the-system-1>Update The System:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -Syu
+</code></pre></div><h3 id=update-user>Update User:</h3>
+<p>Adding the user to the audio and video groups may not be necessary, this was done for gaming with multiple xorg servers.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>usermod -aG audio NAME
+
+usermod -aG video NAME
+</code></pre></div><h2 id=install-gaming>Install Gaming:</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S steam wine lutris wine-mono
+
+paru -S proton proton-ge-custom mangohud streamdeck-ui
+</code></pre></div><h2 id=obs>OBS:</h2>
+<p>While there is a package for OBS in the main arch repo, it&rsquo;s suggested to use tytan652 for the extra plugins like browser source.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>paru -S obs-studio-tytan652
+</code></pre></div><h2 id=discord>Discord:</h2>
+<p>There are two options available: <code>discord</code> and <code>betterdiscord</code>. Install discord before betterdiscord</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S discord
+paru -S betterdiscord-installer
+</code></pre></div><h2 id=tuning>Tuning:</h2>
+<h3 id=a---pulse-audio-1>A - Pulse Audio:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo nano /etc/pulse/daemon.conf
+</code></pre></div><p>Change settings</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#ae81ff>high-priority = yes</span>
+<span style=color:#ae81ff>nice-level = -11</span>
+
+<span style=color:#ae81ff>realtime-scheduling = yes</span>
+<span style=color:#ae81ff>realtime-priority = 5</span>
+</code></pre></div><h2 id=setup-vm>Setup VM</h2>
+<h3 id=install-packages>Install packages:</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S qemu libvirt ovmf virt-manager ebtables iptables dnsmasq
+
+usermod -aG libvirt NAME
+
+systemctl enable libvirtd.service
+sudo systemctl enable virtlogd.socket
+sudo virsh net-autostart default
+</code></pre></div><h3 id=verify-iommu>Verify Iommu:</h3>
+<p>This command should present a line with <code>DMAR: IOMMU enabled</code></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo dmesg | grep -i -e DMAR -e IOMMU
+</code></pre></div><p>If iommu is enabled then paste in this command to view the groups and make sure devices to be passed over are in seperate groups:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>shopt -s nullglob
+<span style=color:#66d9ef>for</span> g in <span style=color:#e6db74>`</span>find /sys/kernel/iommu_groups/* -maxdepth <span style=color:#ae81ff>0</span> -type d | sort -V<span style=color:#e6db74>`</span>; <span style=color:#66d9ef>do</span>
+	echo <span style=color:#e6db74>&#34;IOMMU Group </span><span style=color:#e6db74>${</span>g##*/<span style=color:#e6db74>}</span><span style=color:#e6db74>:&#34;</span>
+	<span style=color:#66d9ef>for</span> d in $g/devices/*; <span style=color:#66d9ef>do</span>
+		echo -e <span style=color:#e6db74>&#34;\t</span><span style=color:#66d9ef>$(</span>lspci -nns <span style=color:#e6db74>${</span>d##*/<span style=color:#e6db74>}</span><span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
+	<span style=color:#66d9ef>done</span>;
+<span style=color:#66d9ef>done</span>;
+</code></pre></div><p>Note down the ids for the devices to be passed through:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml>[<span style=color:#ae81ff>1022</span>:<span style=color:#ae81ff>43e9</span>]
+</code></pre></div><h2 id=references>REFERENCES</h2>
+<ul>
+<li><a href=https://wiki.archlinux.org/title/Installation_guide>Arch Install Guide</a></li>
+<li><a href=https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF>Arch PCI Passthrough</a></li>
+<li><a href="https://www.youtube.com/watch?v=h7SG7ccjn-g">SomeOrdinaryGamer</a></li>
+<li><a href="https://www.youtube.com/watch?v=o09jzArQcFQ">EF - Linux Made Simple</a></li>
+</ul><ul class="pa0 tags-flex">
 <li class=list>
 <a href=/tags/os class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">OS</a>
 </li>
@@ -453,16 +639,10 @@ exec ssh-agent zsh
 <p class="f5 b mb3">Related</p>
 <ul class="pa0 list">
 <li class=mb2>
-<a href=/software/arch-install-gaming/>Arch-Snapper-BTRFS Install Guide - Gaming Edition</a>
-</li>
-<li class=mb2>
 <a href=/software/ltt-ddc-00/>Daily Driver Challenge Hard(er) Mode Part 0</a>
 </li>
 <li class=mb2>
 <a href=/design/banana-breeding-bureau/>Banana Breeding Bureau</a>
-</li>
-<li class=mb2>
-<a href=/software/operation-floss/>Operation FLOSS</a>
 </li>
 </ul>
 </div>
