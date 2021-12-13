@@ -1,5 +1,5 @@
 ---
-date: 2021-11-20T10:58:08-04:00
+date: 2021-10-01T10:58:08-04:00
 title: "Arch Snapper BTRFS Install Guide - Script Method"
 description: "Easy Install Guide For Arch Linux Using BTRFS"
 featured_image: "/images/archinstall-bg.png"
@@ -191,13 +191,9 @@ git clone https://github.com/rassweiler/linux-install-scripts.git
 chmod +x -R linux-install-scripts/
 
 cd linux-install-scripts/arch/
-
-nano xorg.sh
-
-./i3wm.sh
 ```
 
-Run script for desired DE
+Run script for desired DE after making desired changes.
 
 ```zsh
 ./i3wm.sh
