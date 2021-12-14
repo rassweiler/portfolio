@@ -18,7 +18,7 @@
 <meta itemprop=name content="Arch Snapper BTRFS Install Guide">
 <meta itemprop=description content="Easy Install Guide For Arch Linux Using BTRFS"><meta itemprop=datePublished content="2021-11-20T10:58:08-04:00">
 <meta itemprop=dateModified content="2021-11-20T10:58:08-04:00">
-<meta itemprop=wordCount content="2133">
+<meta itemprop=wordCount content="2135">
 <meta itemprop=keywords content="OS,Arch,Linux,BTRFS,Snapper,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Arch Snapper BTRFS Install Guide">
 <meta name=twitter:description content="Easy Install Guide For Arch Linux Using BTRFS">
@@ -124,6 +124,8 @@ ip address show
 </code></pre></div><h3 id=find-your-device>Find your device:</h3>
 <p>Use lsblk to dyplay your disk information, normally the drive will listed as SDA or SDB.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>lsblk
+
+wipefs /dev/XXX
 
 gdisk /dev/XXX
 </code></pre></div><p>Replace XXX with the target device.</p>
