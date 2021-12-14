@@ -50,6 +50,8 @@ Use lsblk to dyplay your disk information, normally the drive will listed as SDA
 ```zsh
 lsblk
 
+wipefs /dev/XXX
+
 gdisk /dev/XXX
 ```
 
