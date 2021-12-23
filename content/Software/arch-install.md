@@ -530,7 +530,7 @@ Many of these are personal preference.
 `gnome-keyring` and ~~`libgnome-keyring`~~ are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use `libsecret` instead
 
 ```zsh
-sudo pacman -S xorg xorg-server thunar gvfs feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret code xfce4-settings lsd
+sudo pacman -S xorg xorg-server thunar gvfs feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret code xfce4-settings lsd
 ```
 
 ### Install Browser Packages (librewolf & firefox for netflix):
@@ -572,7 +572,9 @@ sudo pacman -S pulseaudio-bluetooth
 #### B - Pipewire Audio:
 
 ```zsh
-sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum qjackctl easyeffects pavucontrol
+sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol
+
+sudo pacman -S helvum qjackctl easyeffects
 
 paru -S noisetorch pipewire-jack-dropin
 ```
@@ -604,7 +606,7 @@ sudo pacman -S amdvlk mesa
 Add the proper card to the end of the modules and rebuild
 
 ```zsh
-nano /etc/mkinitcpio.conf
+sudo nano /etc/mkinitcpio.conf
 ```
 
 - Amd: `amdgpu`
@@ -622,7 +624,7 @@ MODULES=(vfio_pci vfio vfio_iommu_type1 vfio_virqfd btrfs nvidia)
 run mkinit for the chosen kernel (`linux`, `linux-lts`, `linux-zen`)
 
 ```zsh
-mkinitcpio -p linux-zen
+sudo mkinitcpio -p linux-zen
 ```
 
 ### Install DE Manager:
@@ -739,7 +741,7 @@ chsh -s $(which zsh)
 #### B - Set Fish Shell:
 
 ```zsh
-.
+chsh -s $(which fish)
 ```
 
 ### Setup Pacman Hooks For Snapper:
@@ -831,9 +833,9 @@ sudo pacman -Syu
 Adding the user to the audio and video groups may not be necessary, this was done for gaming with multiple xorg servers.
 
 ```zsh
-usermod -aG audio NAME
+sudo usermod -aG audio NAME
 
-usermod -aG video NAME
+sudo usermod -aG video NAME
 ```
 
 ## Install Gaming:
@@ -841,7 +843,7 @@ usermod -aG video NAME
 ```zsh
 sudo pacman -S steam wine lutris wine-mono
 
-paru -S proton proton-ge-custom mangohud streamdeck-ui
+paru -S proton proton-ge-custom protonup-qt mangohud streamdeck-ui
 ```
 
 ## OBS:
@@ -886,10 +888,12 @@ realtime-priority = 5
 ```zsh
 sudo pacman -S qemu libvirt ovmf virt-manager ebtables dnsmasq
 
-usermod -aG libvirt NAME
+sudo usermod -aG libvirt NAME
 
-systemctl enable libvirtd
+sudo systemctl enable libvirtd
 sudo systemctl enable virtlogd.socket
+sudo systemctl start libvirtd
+sudo systemctl start virtlogd.socket
 sudo virsh net-autostart default
 ```
 
