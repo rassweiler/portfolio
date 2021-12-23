@@ -5,7 +5,7 @@
 <title>Arch Snapper BTRFS Install Guide | Kyle Rassweiler</title>
 <meta name=viewport content="width=device-width,minimum-scale=1">
 <meta name=description content="Easy Install Guide For Arch Linux Using BTRFS">
-<meta name=generator content="Hugo 0.90.1">
+<meta name=generator content="Hugo 0.91.1">
 <meta name=ROBOTS content="NOINDEX, NOFOLLOW">
 <link rel=stylesheet href=/ananke/css/main.min.css>
 <link rel="shortcut icon" href=/images/favicon.ico type=image/x-icon>
@@ -18,7 +18,7 @@
 <meta itemprop=name content="Arch Snapper BTRFS Install Guide">
 <meta itemprop=description content="Easy Install Guide For Arch Linux Using BTRFS"><meta itemprop=datePublished content="2021-11-20T10:58:08-04:00">
 <meta itemprop=dateModified content="2021-11-20T10:58:08-04:00">
-<meta itemprop=wordCount content="2135">
+<meta itemprop=wordCount content="2155">
 <meta itemprop=keywords content="OS,Arch,Linux,BTRFS,Snapper,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Arch Snapper BTRFS Install Guide">
 <meta name=twitter:description content="Easy Install Guide For Arch Linux Using BTRFS">
@@ -389,7 +389,7 @@ cd ..
 <p><code>rofi</code> is a package launcher similar to dmenu</p>
 <p><code>arandr</code> is for setting up displays (this is handy for i3wm)</p>
 <p><code>gnome-keyring</code> and <del><code>libgnome-keyring</code></del> are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use <code>libsecret</code> instead</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S xorg xorg-server thunar gvfs feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-dejavu ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret code xfce4-settings lsd
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S xorg xorg-server thunar gvfs feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret code xfce4-settings lsd
 </code></pre></div><h3 id=install-browser-packages-librewolf--firefox-for-netflix>Install Browser Packages (librewolf & firefox for netflix):</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S firefox
 
@@ -405,7 +405,9 @@ paru -S librewolf
 </code></pre></div><p>Bluetooth</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pulseaudio-bluetooth
 </code></pre></div><h4 id=b---pipewire-audio>B - Pipewire Audio:</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum qjackctl easyeffects pavucontrol
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol
+
+sudo pacman -S helvum qjackctl easyeffects
 
 paru -S noisetorch pipewire-jack-dropin
 </code></pre></div><h3 id=find-graphics-card>Find Graphics Card:</h3>
@@ -418,7 +420,7 @@ paru -S noisetorch pipewire-jack-dropin
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S amdvlk mesa
 </code></pre></div><h3 id=setup-cpio-modules-for-graphics>Setup CPIO Modules For Graphics:</h3>
 <p>Add the proper card to the end of the modules and rebuild</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>nano /etc/mkinitcpio.conf
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo nano /etc/mkinitcpio.conf
 </code></pre></div><ul>
 <li>
 <p>Amd: <code>amdgpu</code></p>
@@ -433,7 +435,7 @@ paru -S noisetorch pipewire-jack-dropin
 <span style=color:#75715e># in this array.  For instance:</span>
 <span style=color:#ae81ff>MODULES=(vfio_pci vfio vfio_iommu_type1 vfio_virqfd btrfs nvidia)</span>
 </code></pre></div><p>run mkinit for the chosen kernel (<code>linux</code>, <code>linux-lts</code>, <code>linux-zen</code>)</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>mkinitcpio -p linux-zen
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo mkinitcpio -p linux-zen
 </code></pre></div><h3 id=install-de-manager>Install DE Manager:</h3>
 <p>There are a few options for managers</p>
 <h4 id=a---lightdm>A - Lightdm:</h4>
@@ -493,7 +495,7 @@ sudo systemctl enable sddm.service
 <h4 id=a---set-zsh-shell>A - Set ZSH Shell:</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>chsh -s <span style=color:#66d9ef>$(</span>which zsh<span style=color:#66d9ef>)</span>
 </code></pre></div><h4 id=b---set-fish-shell>B - Set Fish Shell:</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>.
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>chsh -s <span style=color:#66d9ef>$(</span>which fish<span style=color:#66d9ef>)</span>
 </code></pre></div><h3 id=setup-pacman-hooks-for-snapper>Setup Pacman Hooks For Snapper:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo mkdir /etc/pacman.d/hooks
 
@@ -537,13 +539,13 @@ exec ssh-agent zsh
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -Syu
 </code></pre></div><h3 id=update-user>Update User:</h3>
 <p>Adding the user to the audio and video groups may not be necessary, this was done for gaming with multiple xorg servers.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>usermod -aG audio NAME
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo usermod -aG audio NAME
 
-usermod -aG video NAME
+sudo usermod -aG video NAME
 </code></pre></div><h2 id=install-gaming>Install Gaming:</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S steam wine lutris wine-mono
 
-paru -S proton proton-ge-custom mangohud streamdeck-ui
+paru -S proton proton-ge-custom protonup-qt mangohud streamdeck-ui
 </code></pre></div><h2 id=obs>OBS:</h2>
 <p>While there is a package for OBS in the main arch repo, it&rsquo;s suggested to use tytan652 for the extra plugins like browser source.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>paru -S obs-studio-tytan652
@@ -564,10 +566,12 @@ paru -S betterdiscord-installer
 <h3 id=install-packages>Install packages:</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zsh data-lang=zsh>sudo pacman -S qemu libvirt ovmf virt-manager ebtables dnsmasq
 
-usermod -aG libvirt NAME
+sudo usermod -aG libvirt NAME
 
-systemctl enable libvirtd
+sudo systemctl enable libvirtd
 sudo systemctl enable virtlogd.socket
+sudo systemctl start libvirtd
+sudo systemctl start virtlogd.socket
 sudo virsh net-autostart default
 </code></pre></div><h3 id=verify-iommu>Verify Iommu:</h3>
 <p>This command should present a line with <code>DMAR: IOMMU enabled</code></p>
