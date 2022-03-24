@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Software on Kyle Rassweiler</title><link>/software/</link><description>Recent content in Software on Kyle Rassweiler</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Kyle Rassweiler</copyright><lastBuildDate>Sat, 20 Nov 2021 10:58:08 -0400</lastBuildDate><atom:link href="/software/index.xml" rel="self" type="application/rss+xml"/><item><title>Arch Linux Install Guide</title><link>/software/arch-install/</link><pubDate>Sat, 20 Nov 2021 10:58:08 -0400</pubDate><guid>/software/arch-install/</guid><description>&lt;p>This guide is for installing arch linux (UEFI) with:&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Software on Kyle Rassweiler</title><link>/software/</link><description>Recent content in Software on Kyle Rassweiler</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Kyle Rassweiler</copyright><lastBuildDate>Wed, 23 Mar 2022 10:58:08 -0400</lastBuildDate><atom:link href="/software/index.xml" rel="self" type="application/rss+xml"/><item><title>Arch Linux Sway Install Guide</title><link>/software/arch-sway/</link><pubDate>Wed, 23 Mar 2022 10:58:08 -0400</pubDate><guid>/software/arch-sway/</guid><description>&lt;p>Updated: 2022-03-24&lt;/p>
+&lt;p>This guide is for installing arch linux (UEFI) with:&lt;/p>
+&lt;ul>
+&lt;li>sway&lt;/li>
+&lt;li>wayland&lt;/li>
+&lt;li>ly&lt;/li>
+&lt;li>Paru&lt;/li>
+&lt;li>BTRFS file system including subvolumes.&lt;/li>
+&lt;li>Snapper.&lt;/li>
+&lt;li>Snap-pac-grub.&lt;/li>
+&lt;li>Bootable snapshots.&lt;/li>
+&lt;li>Qemu/kvm with iommu setup.&lt;/li>
+&lt;li>Gaming.&lt;/li>
+&lt;/ul></description></item><item><title>Arch Linux i3wm Install Guide</title><link>/software/arch-i3/</link><pubDate>Sat, 20 Nov 2021 10:58:08 -0400</pubDate><guid>/software/arch-i3/</guid><description>&lt;p>This guide is for installing arch linux (UEFI) with:&lt;/p>
 &lt;ul>
 &lt;li>i3WM&lt;/li>
 &lt;li>xorg&lt;/li>
