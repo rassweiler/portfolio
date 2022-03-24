@@ -1,6 +1,6 @@
 ---
 date: 2021-11-20T10:58:08-04:00
-title: "Arch Linux Install Guide"
+title: "Arch Linux i3wm Install Guide"
 description: "Easy Install Guide For Arch Linux"
 featured_image: "/images/archinstall-bg.png"
 tags: ["OS","Arch","Linux","BTRFS","Snapper","i3WM"]
@@ -167,12 +167,6 @@ mount /dev/vda1 /mnt/boot
 lsblk
 ```
 
-### Update the timezone:
-
-```zsh
-timedatectl set-ntp true
-```
-
 ### Update the mirrors:
 
 ```zsh
@@ -213,6 +207,12 @@ timedatectl list-timezones | grep Toronto
 ln -sf /usr/share/zoneinfo/America/Toronto /etc/localtime
 
 hwclock --systohc
+```
+
+### Update the timezone:
+
+```zsh
+timedatectl set-ntp true
 ```
 
 ### Setup Locale Generator:
