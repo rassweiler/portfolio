@@ -23,13 +23,15 @@ This guide is for installing arch linux (UEFI) with:
 
 ___
 
-## Script Install Guide:
-[Arch Script Install](https://www.kylerassweiler.ca/arch-install-script/)
-
 ## Install ISO to USB:
 
 After downloading the latest [Arch ISO](https://archlinux.org/download/) you will need to install it to a usb using a program like [Balena Etcher](https://github.com/balena-io/etcher). Plug the usb into the machine you want to install arch to and boot into the usb.
 
+___
+
+## VM Setup
+
+TODO: ADD VM SETUP
 ___
 
 ## Base Install
@@ -505,6 +507,7 @@ reboot
 
 ___
 
+## Desktop and Usability
 
 ### SSH Into Machine As New User:
 
@@ -628,20 +631,46 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 
 ### Install Sway + DE:
 
-```zsh
-sudo pacman -S sway swaylock swayidle wofi xorg-xwayland thunar firefox volumeicon neofetch btop starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa btop nextcloud-client
+`obs-studio-tytan652` has better plugins packaged vs `obs` from main
 
-paru -S ly-git dmenu-wayland-git wezterm
+```zsh
+sudo pacman -S sway waybar wofi xorg-xwayland thunar firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa btop nextcloud-client wl-clipboard mako swaybg lm_sensors xfce4-settings steam wine lutris wine-mono discord swayimg swaync wlrbrightness wl-clipboard wl-clipboard-history swaylock-effects wlrobs wpaperd wlogout mousepad
+
+paru -S ly-git dmenu-wayland-git wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp
 
 sudo systemctl enable ly.service
 ```
 
-Add this to the .zshrc file to autostart sway on login
+### Set Env Variables:
+
+Some of these are for improving vm experiences others for nvidia users, add them to /etc/environment
 
 ```zsh
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-  XKB_DEFAULT_LAYOUT=us exec sway
-fi
+sudo nano /etc/environment
+```
+
+```yml
+__GL_GSYNC_ALLOWED=0 #VM no gl passed through
+__GL_VRR_ALLOWED=0 #VM no gl passed through
+#WLR_DRM_NO_ATOMIC=1 #Unknown, causes flicker in VM
+QT_AUTO_SCREEN_SCALE_FACTOR=1
+QT_QPA_PLATFORM=wayland
+QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+GDK_BACKEND=wayland
+#GTK_USE_PORTAL=0 #Fix GTK apps delayed open, alt use is in config for sway
+XDG_CURRENT_DESKTOP=sway
+GBM_BACKEND=nvidia-drm #If using nvidia card
+__GLX_VENDOR_LIBRARY_NAME=nvidia #If using nvidia card
+MOZ_ENABLE_WAYLAND=1 #This is if you choose not to use xorg-xwayland
+WLR_NO_HARDWARE_CURSORS=1 #This is to show the cursor in my VM
+```
+
+### Set Theme:
+
+```zsh
+gsettings set org.gnome.desktop.interface gtk-theme 'Dracula'
+
+gsettings set org.gnome.desktop.interface icon-theme 'Dracula'
 ```
 
 ### COPY CONFIGS FROM GIT (Optional):
