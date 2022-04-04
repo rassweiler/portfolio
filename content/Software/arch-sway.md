@@ -5,19 +5,9 @@ description: "Easy Install Guide For Arch Linux"
 featured_image: "/images/archsway-bg.png"
 tags: ["OS","Arch","Linux","BTRFS","Snapper","Sway","Wayland"]
 ---
-Updated: 2022-03-24
+Updated: 2022-04-02
 
-This guide is for installing arch linux (UEFI) with:
-- sway
-- wayland
-- ly
-- Paru
-- BTRFS file system including subvolumes.
-- Snapper.
-- Snap-pac-grub.
-- Bootable snapshots.
-- Qemu/kvm with iommu setup.
-- Gaming.
+This guide is for installing arch linux (UEFI) with Wayland, Swaywm, Ly desktop launcher, Paru, BTRFS, Subvolumes, Snapper, Snap-pac-grub, Snapshots, Qemu, KVM, Iommu, and Gaming.
 
 <!--more-->
 
@@ -31,7 +21,9 @@ ___
 
 ## VM Setup
 
-TODO: ADD VM SETUP
+{{< figure src="/images/arch-sway-01.png" title="Qemu display settings" link="/images/arch-sway-01.png" >}}
+
+{{< figure src="/images/arch-sway-02.png" title="Qemu video settings" link="/images/arch-sway-02.png" >}}
 ___
 
 ## Base Install
@@ -633,13 +625,17 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 
 `obs-studio-tytan652` has better plugins packaged vs `obs` from main
 
-```zsh
-sudo pacman -S sway waybar wofi xorg-xwayland thunar firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa btop nextcloud-client wl-clipboard mako swaybg lm_sensors xfce4-settings steam wine lutris wine-mono discord swayimg swaync wlrbrightness wl-clipboard wl-clipboard-history swaylock-effects wlrobs wpaperd wlogout mousepad
+`wlrobs` wlrobs is an obs-studio plugin that allows you to screen capture on wlroots based wayland compositors
 
-paru -S ly-git dmenu-wayland-git wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp
+```zsh
+sudo pacman -S sway waybar wofi xorg-xwayland thunar firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa btop nextcloud-client mako swaybg lm_sensors xfce4-settings steam wine lutris wine-mono discord mousepad
+
+paru -S ly-git dmenu-wayland-git wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp swayimg swaync swaylock-effects wlrobs wpaperd wlogout
 
 sudo systemctl enable ly.service
 ```
+
+{{< figure src="/images/arch-sway-04.png" title="swaylock-effects dracula theme" link="/images/arch-sway-04.png" >}}
 
 ### Set Env Variables:
 
@@ -664,6 +660,8 @@ __GLX_VENDOR_LIBRARY_NAME=nvidia #If using nvidia card
 MOZ_ENABLE_WAYLAND=1 #This is if you choose not to use xorg-xwayland
 WLR_NO_HARDWARE_CURSORS=1 #This is to show the cursor in my VM
 ```
+
+{{< figure src="/images/arch-sway-03.png" title="Sway env variables" link="/images/arch-sway-03.png" >}}
 
 ### Set Theme:
 

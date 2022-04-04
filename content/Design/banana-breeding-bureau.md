@@ -12,6 +12,8 @@ The goal is to plant banana trees and have unit collect dropped bananas in order
 
 <!--more-->
 
+___
+
 This project is currently incomplete.
 
 ## Demo
@@ -35,3 +37,5 @@ This project is currently incomplete.
 {{< figure src="/images/bbb-07.png" title="Mayan" link="/images/bbb-07.png" >}}
 
 {{< figure src="/images/bbb-08.png" title="Game View" link="/images/bbb-08.png" >}}
+
+___

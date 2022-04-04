@@ -8,4 +8,8 @@ tags: ["Design","Youtube","Avatar"]
 
 <!--more-->
 
+___
+
 {{< figure src="/images/YoutubePersona.svg" title="2D Avatar Designed For Youtube" link="/images/YoutubePersona.svg" >}}
+
+___

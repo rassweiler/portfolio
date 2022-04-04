@@ -10,6 +10,10 @@ A quick render of a "behind the scenes" view of a CBC interview, featuring an av
 
 <!--more-->
 
+___
+
 {{< figure src="/images/cbc-interview-01.png" title="3D render of interview" link="/images/cbc-interview-01.png" >}}
 
 {{< figure src="/images/cbc-interview-02.png" title="3D render of behind the scenes" link="/images/cbc-interview-02.png" >}}
+
+___

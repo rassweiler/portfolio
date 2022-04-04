@@ -10,7 +10,7 @@ Part 1 of the Free Code Camp Campaign, all about responsive web design.
 
 <!--more-->
 
----
+___
 
 ## A) Tribute Page
 
@@ -102,6 +102,8 @@ main {
   display: block;
 }
 ```
+
+___
 
 ## B) Survey Form
 
@@ -201,3 +203,5 @@ main {
 	padding: 1rem;
 }
 ```
+
+___

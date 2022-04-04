@@ -29,3 +29,5 @@ This project is similar to the [Node-SCADA-System](https://www.kylerassweiler.ca
 {{< figure src="/images/kr-display-04.png" title="Cell Page 2" link="/images/kr-display-04.png" >}}
 
 {{< figure src="/images/kr-display-05.png" title="Cell Page 3" link="/images/kr-display-05.png" >}}
+
+___

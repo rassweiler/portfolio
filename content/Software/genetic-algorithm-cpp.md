@@ -33,3 +33,5 @@ A small program that attempts to evolve towards a determined fitness goal. A hig
 {{< figure src="/images/genetic-algorithm-cpp-03.png" title="Generation 32" link="/images/genetic-algorithm-cpp-03.png" >}}
 
 {{< figure src="/images/genetic-algorithm-cpp-04.png" title="Generation 41" link="/images/genetic-algorithm-cpp-04.png" >}}
+
+___

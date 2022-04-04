@@ -10,7 +10,7 @@ A journey to transition to a pure FLOSS/FOSS setup.
 
 <!--more-->
 
----
+___
 
 ## Gotta Go List:
 
@@ -22,3 +22,5 @@ A journey to transition to a pure FLOSS/FOSS setup.
 - Netflix
 - Gmail
 - Gdrive
+
+___

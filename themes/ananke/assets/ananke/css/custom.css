@@ -1,5 +1,62 @@
+html {
+  color: #f8f8f2;
+}
+
+a {
+  color: #bd93f9;
+}
+
+a:hover, a:focus, a:active {
+  color: #ff79c6;
+}
+
+h2 {
+  color: #8be9fd;
+}
+
+h3 {
+  color: #ffb86c;
+}
+
+h4 {
+  color: #f1fa8c;
+}
+
+hr {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  border-color: #50fa7b;
+}
+
+p code {
+  color: #50fa7b;
+}
+
+p strong {
+  color: #ff5555;
+}
+
+time {
+  color: #f1fa8c;
+}
+
+img, iframe { 
+  border-color: #50fa7b;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.logo-img {
+  border-style: none;
+}
+
 .kr-header {
   text-shadow: 2px 2px rgb(3, 8, 10);
+}
+
+.skills {
+  color:#f8f8f2;
 }
 
 .skill-flex-box{
@@ -11,6 +68,8 @@
 .skill-flex-item{
   height: 56px;
   margin: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: #f8f8f2;
 }
 
 .skill-image{
@@ -18,12 +77,9 @@
   max-width: 100%;
 }
 
-.bg-custom {
-  background-color: #c5c6d7;
-}
-
 .list {
   margin: 0.25rem;
+  font-size: 1.5rem;
 }
 
 .tags-flex {
@@ -46,6 +102,11 @@
 .summary {
   height: 100%;
   padding: 0.5rem;
+  border-color: #50fa7b;
+  border-width: 1px;
+  border-style: solid;
+  background-color: #282a36;
+  border-radius: 0.25rem;
 }
 
 .summary-container {
@@ -65,6 +126,16 @@
   display: flex;
 }
 
+.summary-title-link {
+  font-weight: bolder;
+  color: #bd93f9;
+}
+
+.summary-title-link:hover {
+  font-weight: bolder;
+  color: #ff79c6;
+}
+
 .summary-image{
   object-fit: cover;
 }
@@ -72,6 +143,61 @@
 .list-item {
   width:100%;
   overflow: hidden;
+}
+
+.cover {
+  background-color: #282a36;
+}
+
+.bg-custom {
+  background-color: #44475a;
+}
+
+.dark-gray, .near-black {
+  color: #f8f8f2;
+}
+
+.link {
+  fill: #ff79c6;
+}
+
+.hover-white {
+  color: #bd93f9;
+}
+
+.bg-light-gray, .bg-mid-gray {
+  background-color: #282a36;
+}
+
+#sharing .facebook, #sharing .linkedin, #sharing .twitter {
+  fill: #ff79c6;
+}
+
+#sharing .facebook:hover, #sharing .linkedin:hover, #sharing .twitter:hover {
+  fill: #bd93f9;
+}
+
+.nested-links a {
+  color: #bd93f9;
+}
+
+.b--moon-gray, .b--black-10 {
+  border-color: #50fa7b;
+}
+
+.category-button {
+  border-color: #50fa7b;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.project-title-link {
+  font-weight: bolder;
+  color: #bd93f9;
+}
+
+.project-title-link:hover {
+  color: #ff79c6;
 }
 
 @media screen and (min-width:60em) {

@@ -14,7 +14,7 @@ Part 0 of this challenge will be testing the feasibility of arch-gaming using a 
 
 ___
 
-To follow along head to the [arch install post](https://www.kylerassweiler.ca/software/arch-install/) or the [arch gaming install post](https://www.kylerassweiler.ca/software/arch-install-gaming/)
+To follow along head to the [arch sway install post](https://www.kylerassweiler.ca/software/arch-sway/) or the [arch i3 install post](https://www.kylerassweiler.ca/software/arch-i3/)
 
 ## LTT Daily Driver Challenge Goals
 
@@ -31,3 +31,5 @@ In spirit of the linux challenge, all the editing will be done using FOSS apps. 
 ## Video
 
 {{< youtube btP7GF3S2N8 >}}
+
+___

@@ -26,3 +26,4 @@ The graphing is done using D3.js which is an offshoot of C3.js, using data store
 
 {{< figure src="/images/node-scada-system-bg.png" title="Cell Page" link="/images/node-scada-system-bg.png" >}}
 
+___

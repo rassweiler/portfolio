@@ -10,7 +10,9 @@ My attempt to replace subscriptions and automate manual media tasks. Services to
 
 <!--more-->
 
-# Network Layout 
+___
+
+## Network Layout 
 
 First off, yes, I'm aware that this layout is poor...
 
@@ -18,7 +20,9 @@ The router/wan combo has been replaced by a Dreammachine pro and WAP, among othe
 
 {{< figure src="/images/network-bg.png" title="Network Layout" link="/images/network-bg.png" >}}
 
-# Storage
+___
+
+## Storage
 
 The storage server is a Supermicro 6047R-E1R72L running TrueNAS. Pool names are determined by several factors: `(use)-(Number of Drives in vdev)x(Size of Individual Drives)-(Compression Level)`, so the media pool would be: `Media-6x4TB-Z2`. 
 
@@ -28,7 +32,9 @@ This section is also a bit out of date as I've reached the media pool's limit se
 
 {{< figure src="/images/network-truenas-01.png" title="Truenas Storage UI" link="/images/network-truenas-01.png" >}}
 
-# Netflix & Spotify Replacement
+___
+
+## Netflix & Spotify Replacement
 
 I use a [Jellyfin server](https://github.com/jellyfin/jellyfin) (similar to plex) to serve movies, music, and tv shows. The mobile client allows me to download or stream my media for offline play.
 
@@ -36,7 +42,9 @@ Originally I was using Emby, however there was an issue with them closing off th
 
 {{< figure src="/images/network-jellyfin-01.png" title="Jellyfin Media Server UI" link="/images/network-jellyfin-01.png" >}}
 
-# Amazon Books & Comic Stream Replacement
+___
+
+## Amazon Books & Comic Stream Replacement
 
 For all of my digital reading needs I have [Komga](https://github.com/gotson/komga) serving up my PDFs, EPUBs, CBRs, CBZs, etc... It's listed as a comic and manga server but it can handle manuals and textbooks just fine.
 
@@ -44,11 +52,13 @@ On the android mobile end I use Tachiyomi with the Komga extension to access my 
 
 {{< figure src="/images/network-komga-01.png" title="Komga Book Server UI" link="/images/network-komga-01.png" >}}
 
-# Media Automation & Organisation
+___
+
+## Media Automation & Organisation
 
 All the media is organised into a proper folder structure for each server with all meta data collected.
 
-## Jackett
+### Jackett
 
 [Jackett](https://github.com/Jackett/Jackett) contains a list of places to find torrents and their connection information. 
 
@@ -57,7 +67,7 @@ From their github:
 
 {{< figure src="/images/network-jackett-01.png" title="Jackett UI" link="/images/network-jackett-01.png" >}}
 
-## NZBHydra2
+### NZBHydra2
 
 [NZBHydra2](https://github.com/theotherp/nzbhydra2) is a single point for conncting to various download sources, making it easier configure various servers. 
 
@@ -66,7 +76,7 @@ From their github:
 
 {{< figure src="/images/network-nzbhydra2-01.png" title="NZBHydra2 UI" link="/images/network-nzbhydra2-01.png" >}}
 
-## Sonarr
+### Sonarr
 
 [Sonarr](https://github.com/Sonarr/Sonarr) is used for organising TV media and metadata such as descriptions, names, and actors. It can also be used to keep track of air dates and automate the aquisition by coordinating with an indexer and torrent client.
 
@@ -77,7 +87,7 @@ From their github:
 
 {{< figure src="/images/network-sonarr-01.png" title="Sonarr Server UI" link="/images/network-sonarr-01.png" >}}
 
-## Radarr
+### Radarr
 
 [Radarr](https://github.com/Radarr/Radarr) is used for organising movie media and metadata such as descriptions, names, and actors. It can also be used to keep track of release dates and automate the aquisition by coordinating with an indexer and torrent client.
 
@@ -86,7 +96,7 @@ From their github:
 
 {{< figure src="/images/network-radarr-01.png" title="Radarr Server UI" link="/images/network-radarr-01.png" >}}
 
-## Lidarr
+### Lidarr
 
 [Lidarr](https://github.com/Lidarr/Lidarr) is used for organising music media and metadata such as descriptions, names, and artists. It can also be used to keep track of release dates and automate the aquisition by coordinating with an indexer and torrent client.
 
@@ -95,7 +105,7 @@ From their github:
 
 {{< figure src="/images/network-lidarr-01.png" title="Lidarr Server UI" link="/images/network-lidarr-01.png" >}}
 
-## Readarr
+### Readarr
 
 [Readarr](https://github.com/Readarr/Readarr) is used for organising book media and metadata such as descriptions, names, and authors. It can also be used to keep track of release dates and automate the aquisition by coordinating with an indexer and torrent client.
 
@@ -104,7 +114,7 @@ From their github:
 
 {{< figure src="/images/network-readarr-01.png" title="Readarr Server UI" link="/images/network-readarr-01.png" >}}
 
-## Mylar
+### Mylar
 
 [Mylar](https://github.com/mylar3/mylar3) is used for organising comic media and metadata such as descriptions, names, and authors. It can also be used to keep track of release dates and automate the aquisition by coordinating with an indexer and torrent client.
 
@@ -115,7 +125,10 @@ From their github:
 
 {{< figure src="/images/network-mylar-01.png" title="Mylar Server UI" link="/images/network-mylar-01.png" >}}
 
-# GMail & GDrive & GDocuments & GCalendar & GContacts & GMeetings & Trello
+___
+
+## GMail & GDrive & GDocuments & GCalendar & GContacts & GMeetings & Trello
 
 [Nextcloud](https://nextcloud.com/) is the perfect google replacement for most needs, though I am currently looking into [Mailcow](https://github.com/mailcow/mailcow-dockerized) for emails.
 
+___
