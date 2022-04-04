@@ -75,6 +75,11 @@ img, iframe {
 .skill-image{
   max-height: 100%;
   max-width: 100%;
+  border: none;
+}
+
+.about-img img {
+  border: none;
 }
 
 .list {
@@ -138,6 +143,7 @@ img, iframe {
 
 .summary-image{
   object-fit: cover;
+  border: none;
 }
 
 .list-item {
