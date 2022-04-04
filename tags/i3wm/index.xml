@@ -1,13 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>i3WM on Kyle Rassweiler</title><link>/tags/i3wm/</link><description>Recent content in i3WM on Kyle Rassweiler</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Kyle Rassweiler</copyright><lastBuildDate>Sat, 20 Nov 2021 10:58:08 -0400</lastBuildDate><atom:link href="/tags/i3wm/index.xml" rel="self" type="application/rss+xml"/><item><title>Arch Linux i3wm Install Guide</title><link>/software/arch-i3/</link><pubDate>Sat, 20 Nov 2021 10:58:08 -0400</pubDate><guid>/software/arch-i3/</guid><description>&lt;p>This guide is for installing arch linux (UEFI) with:&lt;/p>
-&lt;ul>
-&lt;li>i3WM&lt;/li>
-&lt;li>xorg&lt;/li>
-&lt;li>lightDM&lt;/li>
-&lt;li>Paru&lt;/li>
-&lt;li>BTRFS file system including subvolumes.&lt;/li>
-&lt;li>Snapper.&lt;/li>
-&lt;li>Snap-pac-grub.&lt;/li>
-&lt;li>Bootable snapshots.&lt;/li>
-&lt;li>Qemu/kvm with iommu setup.&lt;/li>
-&lt;li>Gaming.&lt;/li>
-&lt;/ul></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>i3WM on Kyle Rassweiler</title><link>/tags/i3wm/</link><description>Recent content in i3WM on Kyle Rassweiler</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Kyle Rassweiler</copyright><lastBuildDate>Sat, 20 Nov 2021 10:58:08 -0400</lastBuildDate><atom:link href="/tags/i3wm/index.xml" rel="self" type="application/rss+xml"/><item><title>Arch Linux i3wm Install Guide</title><link>/software/arch-i3/</link><pubDate>Sat, 20 Nov 2021 10:58:08 -0400</pubDate><guid>/software/arch-i3/</guid><description>&lt;p>Updated: 2022-04-02&lt;/p>
+&lt;p>This guide is for installing arch linux (UEFI) with Xorg, i3wm, Lightdm, Paru, BTRFS, Snapper, Snap-pac-grub, Snapshots, Qemu, KVM, and Gaming.&lt;/p></description></item></channel></rss>
