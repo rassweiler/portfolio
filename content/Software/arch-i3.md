@@ -522,7 +522,7 @@ Many of these are personal preference.
 `gnome-keyring` and ~~`libgnome-keyring`~~ are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use `libsecret` instead
 
 ```zsh
-sudo pacman -S xorg xorg-server archlinux-keyring thunar gvfs feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret code xfce4-settings lsd upower
+sudo pacman -S xorg xorg-server archlinux-keyring thunar gvfs feh conky dmenu picom rsync btop mpv nextcloud-client packagekit-qt5 neofetch rofi volumeicon fish code usbutils wget numlockx noto-fonts ttf-hack ttf-roboto-mono ttf-font-awesome nerd-fonts arc-icon-theme arandr starship exa jre-openjdk jdk-openjdk keepassxc gnome-keyring libsecret code xfce4-settings lsd upower file-roller
 ```
 
 ### Install Browser Packages (librewolf & firefox for netflix):
@@ -658,6 +658,14 @@ Modify the following to match your display setup (if you only have one monitor s
 ```yml
 set $mo1 "HDMI-0" # Set this to match your display from arandr
 set $mo2 "HDMI-1" # Set this to match your display from arandr
+```
+
+### Set Theme:
+
+```zsh
+gsettings set org.gnome.desktop.interface icon-theme "Dracula"
+gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
+gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
 ```
 
 ### Set Shell:
