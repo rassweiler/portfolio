@@ -5,6 +5,7 @@ description: "Easy Install Guide For Arch Linux"
 featured_image: "/images/archsway-bg.png"
 tags: ["OS","Arch","Linux","BTRFS","Snapper","Sway","Wayland"]
 ---
+
 Updated: 2022-04-02
 
 This guide is for installing arch linux (UEFI) with Wayland, Swaywm, Ly desktop launcher, Paru, BTRFS, Subvolumes, Snapper, Snap-pac-grub, Snapshots, Qemu, KVM, Iommu, and Gaming.
@@ -48,13 +49,21 @@ Use lsblk to dyplay your disk information, normally the drive will listed as SDA
 
 ```zsh
 lsblk
+```
 
-wipefs /dev/XXX
+### Wipe Existing BTRFS Systems:
 
+```zsh
 gdisk /dev/XXX
 ```
 
-Replace XXX with the target device.
+### Edit Filesystem:
+
+Replace XXX with the target device. Gdisk is for GPT partitions and UEFI, use Fdisk for mbr partitions and bios boot.
+
+```zsh
+gdisk /dev/XXX
+```
 
 ### Create Boot Partition:
 
@@ -157,7 +166,7 @@ Choose your base: `linux, linux-lts, linux-zen`.
 Choose your ucode: `intel-ucode, amd-ucode`.
 
 ```zsh
-pacstrap /mnt base linux-zen linux-zen-headers linux-firmware intel-ucode btrfs-progs nano reflector git rsync sudo
+pacstrap /mnt base linux-zen linux-zen-headers linux-firmware intel-ucode amd-ucode btrfs-progs nano reflector git rsync sudo
 ```
 
 ### Generate fstab:
@@ -339,7 +348,7 @@ Uncomment the following
 **WARNING** choose Y to remove iptables
 
 ```zsh
-pacman -S xdg-desktop-portal base-devel grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog avahi gvfs gvfs-smb nfs-utils cifs-utils ntfs-3g inetutils dnsutils mtools dosfstools snapper snap-pac xdg-utils xdg-user-dirs alsa-utils inetutils usbutils openssh grub-customizer os-prober cups acpi acpi_call acpid iptables-nft ipset firewalld nss-mdns bash-completion fish archlinux-keyring wofi
+pacman -S xdg-desktop-portal base-devel grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog avahi gvfs gvfs-smb nfs-utils cifs-utils ntfs-3g inetutils dnsutils mtools dosfstools snapper snap-pac xdg-utils xdg-user-dirs alsa-utils inetutils usbutils openssh grub-customizer os-prober cups acpi acpi_call acpid iptables-nft ipset firewalld nss-mdns bash-completion fish archlinux-keyring wofi hwinfo
 
 systemctl enable NetworkManager
 systemctl enable cups.service
@@ -351,13 +360,13 @@ systemctl enable firewalld
 systemctl enable acpid
 ```
 
-Audio:
+#### Audio:
 
 ```zsh
 pacman -S sof-firmware pipewire pipewire-jack pipewire-alsa pipewire-pulse pipewire-media-session pavucontrol
 ```
 
-Laptop extras:
+#### Laptop extras:
 
 `tlp` is for battery power saving
 
@@ -367,7 +376,7 @@ pacman -S wpa_supplicant tlp
 systemctl enable tlp
 ```
 
-Bluetooth extras:
+#### Bluetooth extras:
 
 ```zsh
 pacman -S bluez bluez-utils
@@ -375,7 +384,7 @@ pacman -S bluez bluez-utils
 systemctl enable bluetooth
 ```
 
-VM:
+#### VM:
 
 ```zsh
 pacman -S virt-manager qemu qemu-arch-extra vde2 bridge-utils dnsmasq openbsd-netcat
@@ -383,6 +392,8 @@ pacman -S virt-manager qemu qemu-arch-extra vde2 bridge-utils dnsmasq openbsd-ne
 systemctl enable libvirtd
 systemctl enable virtlogd.socket
 ```
+
+#### Graphics:
 
 Nouveu:
 
@@ -470,14 +481,16 @@ nano /etc/default/grub
 
 Add iommu for system into `GRUB_CMDLINE_LINUX_DEFAULT` section.
 
-~~Amd: `amd_iommu=on`~~ This doesn't seem to be required on newer hardware...
+Amd: `amd_iommu=on` This doesn't seem to be required on newer hardware...
 
 Intel: `intel_iommu=on`
+
+Passthrough: `iommu=pt`
 
 VM: `video=1920x1080` Or the desired resolution
 
 ```yml
-GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on loglevel=3 nowatchdog"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt loglevel=3 nowatchdog"
 GRUB_CMDLINE_LINUX=""
 ```
 
@@ -628,9 +641,9 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 `wlrobs` wlrobs is an obs-studio plugin that allows you to screen capture on wlroots based wayland compositors
 
 ```zsh
-sudo pacman -S sway waybar wofi xorg-xwayland thunar firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa btop nextcloud-client mako swaybg lm_sensors xfce4-settings steam wine lutris wine-mono discord mousepad
+sudo pacman -S sway waybar wofi xorg-xwayland thunar firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa btop nextcloud-client mako swaybg lm_sensors xfce4-settings steam wine lutris wine-mono discord mousepad bat gvfs-mtp
 
-paru -S ly-git dmenu-wayland-git wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp swayimg swaync swaylock-effects wlrobs wpaperd wlogout
+paru -S ly-git dmenu-wayland-git wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp swayimg swaync swaylock-effects wlrobs wpaperd wlogout jmtpfs
 
 sudo systemctl enable ly.service
 ```
@@ -667,6 +680,8 @@ WLR_NO_HARDWARE_CURSORS=1 #This is to show the cursor in my VM
 
 ```zsh
 gsettings set org.gnome.desktop.interface gtk-theme 'Dracula'
+
+gsettings set org.gnome.desktop.wm.preferences theme 'Dracula'
 
 gsettings set org.gnome.desktop.interface icon-theme 'Dracula'
 ```
@@ -706,6 +721,17 @@ sudo usermod -aG audio NAME
 
 sudo usermod -aG video NAME
 ```
+
+### Generate SSH Key And add To Agent:
+
+```zsh
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+eval (ssh-agent -c)
+
+ssh-add ~/.ssh/id_ed25519
+```
+
 ___
 
 ### REFERENCES
