@@ -194,12 +194,6 @@ ln -sf /usr/share/zoneinfo/America/Toronto /etc/localtime
 hwclock --systohc
 ```
 
-### Update the timezone:
-
-```zsh
-timedatectl set-ntp true
-```
-
 ### Setup Locale Generator:
 
 ```zsh
@@ -499,42 +493,20 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt loglevel=3 nowatchdog"
 GRUB_CMDLINE_LINUX=""
 ```
 
+Uncomment the os_prober section
+
+```yml
+# Probing for other operating systems is disabled for security reasons. Read
+# documentation on GRUB_DISABLE_OS_PROBER, if still want to enable this
+# functionality install os-prober and uncomment to detect and include other
+# operating systems.
+GRUB_DISABLE_OS_PROBER=false
+```
+
 Update grub
 
 ```zsh
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-```
-
-### Finish Setup And Reboot:
-
-```zsh
-exit
-
-umount -a
-
-reboot
-```
-
-___
-
-### Create User:
-
-```zsh
-useradd -mG wheel NAME
-
-passwd NAME
-```
-
-### Allow Wheel As Root:
-
-```zsh
-EDITOR=nano visudo
-```
-
-Uncomment the following
-
-```yml
-%wheel ALL=(ALL) ALL
 ```
 
 ### Finish Setup And Reboot:
@@ -556,6 +528,12 @@ ___
 
 ```zsh
 ssh NAME@xxx.xxx.xxx.xxx
+```
+
+### Update the timezone:
+
+```zsh
+timedatectl set-ntp true
 ```
 
 ### Access AUR with Paru:
@@ -588,9 +566,23 @@ sudo pacman -S arc-icon-theme
 
 ```zsh
 paru -S zramd
+```
 
+Edit the config for your setup
+
+```zsh
 sudo nano /etc/default/zramd
+```
 
+```yml
+# Max total swap size in MB
+ MAX_SIZE=8192
+
+# Number of zram devices to create
+ NUM_DEVICES=1
+```
+
+```zsh
 sudo systemctl enable --now zramd.service
 ```
 
@@ -688,14 +680,51 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 
 `arandr` is for setting up displays (this is handy for i3wm)
 
+`lsd` is the next gen ls command
+
+`exa` is a modern replacement for ls. It uses colours for information by default, helping you distinguish between many types of files, such as whether you are the owner, or in the owning group
+
 `gnome-keyring` and ~~`libgnome-keyring`~~ are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use `libsecret` instead
 
 ```zsh
-sudo pacman -S xorg xorg-server i3-gaps i3blocks i3status lightdm-webkit-theme-litarvan thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa mako swaybg lm_sensors steam wine lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller
+sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status lightdm-webkit-theme-litarvan thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot
 
 paru -S wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp jmtpfs librewolf
 
 sudo systemctl enable lightdm.service
+```
+
+### COPY CONFIGS FROM GIT (Optional):
+
+These are my own mashed together configs, mostly from my i3wm system. There are also some backgrounds in the repo.
+
+```zsh
+git clone https://github.com/rassweiler/dotfiles.git && cd dotfiles && ./install
+```
+
+### Set Lightdm Theme:
+
+```zsh
+sudo nano /etc/lightdm/lightdm.conf
+```
+
+Set the greeter session to lightdm-webkit2-greeter
+
+```yml
+#xdmcp-key=
+greeter-session=lightdm-webkit2-greeter
+```
+
+```zsh
+sudo nano /etc/lightdm/lightdm-webkit2-greeter.conf
+```
+
+Set the lightdm theme to litarvan
+
+```yml
+time_language       = auto
+#webkit_theme        = antergos
+webkit_theme        = litarvan
 ```
 
 ### Set Theme:
@@ -706,14 +735,6 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Dracula'
 gsettings set org.gnome.desktop.wm.preferences theme 'Dracula'
 
 gsettings set org.gnome.desktop.interface icon-theme 'Dracula'
-```
-
-### COPY CONFIGS FROM GIT (Optional):
-
-These are my own mashed together configs, mostly from my i3wm system. There are also some backgrounds in the repo.
-
-```zsh
-git clone https://github.com/rassweiler/dotfiles.git && cd dotfiles && sudo ./install
 ```
 
 ### Set Shell:

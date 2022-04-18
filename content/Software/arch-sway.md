@@ -348,7 +348,7 @@ Uncomment the following
 **WARNING** choose Y to remove iptables
 
 ```zsh
-pacman -S xdg-desktop-portal base-devel grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog avahi gvfs gvfs-smb nfs-utils cifs-utils ntfs-3g inetutils dnsutils mtools dosfstools snapper snap-pac xdg-utils xdg-user-dirs alsa-utils inetutils usbutils openssh grub-customizer os-prober cups acpi acpi_call acpid iptables-nft ipset firewalld nss-mdns bash-completion fish archlinux-keyring wofi hwinfo
+pacman -S xdg-desktop-portal base-devel grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog avahi gvfs gvfs-smb nfs-utils cifs-utils ntfs-3g inetutils dnsutils mtools dosfstools snapper snap-pac xdg-utils xdg-user-dirs alsa-utils usbutils openssh grub-customizer os-prober cups acpi acpi_call acpid iptables-nft ipset firewalld nss-mdns bash-completion fish archlinux-keyring wofi hwinfo
 
 systemctl enable NetworkManager
 systemctl enable cups.service
@@ -550,9 +550,23 @@ sudo pacman -S arc-icon-theme
 
 ```zsh
 paru -S zramd
+```
 
+Edit the config for your setup
+
+```zsh
 sudo nano /etc/default/zramd
+```
 
+```yml
+# Max total swap size in MB
+ MAX_SIZE=8192
+
+# Number of zram devices to create
+ NUM_DEVICES=1
+```
+
+```zsh
 sudo systemctl enable --now zramd.service
 ```
 
