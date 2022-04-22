@@ -655,7 +655,7 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 `wlrobs` wlrobs is an obs-studio plugin that allows you to screen capture on wlroots based wayland compositors
 
 ```zsh
-sudo pacman -S sway waybar wofi xorg-xwayland thunar firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa btop nextcloud-client mako swaybg lm_sensors xfce4-settings steam wine lutris wine-mono discord mousepad bat gvfs-mtp
+sudo pacman -S sway waybar wofi xorg-xwayland thunar firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa btop nextcloud-client mako swaybg lm_sensors xfce4-settings steam wine lutris wine-mono discord mousepad bat gvfs-mtp tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin
 
 paru -S ly-git dmenu-wayland-git wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp swayimg swaync swaylock-effects wlrobs wpaperd wlogout jmtpfs
 

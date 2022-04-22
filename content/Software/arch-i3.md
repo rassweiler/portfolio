@@ -684,10 +684,20 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 
 `exa` is a modern replacement for ls. It uses colours for information by default, helping you distinguish between many types of files, such as whether you are the owner, or in the owning group
 
+`gvfs` is for remote file support
+
+`tumbler` is for auto generating thunar thumbnails
+
+`thunar-volman` is for removable device management
+
+`thunar-archive-plugin` is for archive creation
+
+`thunar-media-tags-plugin` is to view/edit tags
+
 `gnome-keyring` and ~~`libgnome-keyring`~~ are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use `libsecret` instead
 
 ```zsh
-sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status lightdm-webkit-theme-litarvan thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot
+sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status lightdm-webkit-theme-litarvan thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin
 
 paru -S wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp jmtpfs librewolf
 
