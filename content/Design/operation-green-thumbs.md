@@ -1,7 +1,7 @@
 ---
 date: 2022-04-20T10:58:08-04:00
-title: "CBC Interview"
-description: "CBC: Interview with PM and average Canadian"
+title: "Operation Green Thumbs"
+description: "The Quest To Dodge Inflation"
 featured_image: "/images/ogt-bg.png"
 tags: ["3D Printer","FreeCAD","Prusa","Garden"]
 ---
@@ -29,7 +29,7 @@ ___
 
 {{< figure src="/images/ogt-06.png" title="Printed view of hose adapter" link="/images/ogt-06.png" >}}
 
-{{< figure src="/images/ogt-05.png" title="FreeCAD view of grow section" link="/images/ogt-05.png" >}}
+{{< figure src="/images/ogt-04.png" title="FreeCAD view of grow section" link="/images/ogt-04.png" >}}
 
 {{< figure src="/images/ogt-07.png" title="FreeCAD view of hub" link="/images/ogt-07.png" >}}
 
