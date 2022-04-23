@@ -6,6 +6,8 @@ featured_image: "/images/ogt-bg.png"
 tags: ["3D Printer","FreeCAD","Prusa","Garden"]
 ---
 
+*Updated: 2022-04-22*
+
 A 3d printed aeroponics tower design setup as four towers with a central pump.
 
 <!--more-->
@@ -13,26 +15,49 @@ A 3d printed aeroponics tower design setup as four towers with a central pump.
 ___
 
 ## Get The Designs:
-[Github Repo](https://github.com/rassweiler/CAD-Library)
+
+All the projects designs are available at the [Github Repo](https://github.com/rassweiler/CAD-Library/tree/master/Mechanical/Farming/Aeroponics/Modular_4-Tower) in FCStd for [FreeCAD](https://github.com/FreeCAD/FreeCAD) and STL formats.
 
 ___
 
 ## Parts:
 
-{{< figure src="/images/ogt-01.png" title="FreeCAD view of cap" link="/images/ogt-01.png" >}}
-
-{{< figure src="/images/ogt-02.png" title="FreeCAD view of hose adapter" link="/images/ogt-02.png" >}}
-
-{{< figure src="/images/ogt-03.png" title="FreeCAD view of grow section" link="/images/ogt-03.png" >}}
-
-{{< figure src="/images/ogt-05.png" title="Printed view of hose adapter" link="/images/ogt-05.png" >}}
-
-{{< figure src="/images/ogt-06.png" title="Printed view of hose adapter" link="/images/ogt-06.png" >}}
-
-{{< figure src="/images/ogt-04.png" title="FreeCAD view of grow section" link="/images/ogt-04.png" >}}
+### Hub
 
 {{< figure src="/images/ogt-07.png" title="FreeCAD view of hub" link="/images/ogt-07.png" >}}
 
+### Hub Cap
+
 {{< figure src="/images/ogt-08.png" title="FreeCAD view of hub cap" link="/images/ogt-08.png" >}}
+
+{{< figure src="/images/ogt-09.png" title="Printed view of hub cap" link="/images/ogt-09.png" >}}
+
+### Pump Hose Adapter (1x16mm to 4x5mm)
+
+{{< figure src="/images/ogt-02.png" title="FreeCAD view of hose adapter" link="/images/ogt-02.png" >}}
+
+{{< figure src="/images/ogt-05.png" title="Printed view of hose adapter" link="/images/ogt-05.png" >}}
+
+### Hub Connector
+
+### Tower Base
+
+{{< figure src="/images/ogt-10.png" title="FreeCAD view of tower base" link="/images/ogt-10.png" >}}
+
+{{< figure src="/images/ogt-11.png" title="Printed view of failed tower base" link="/images/ogt-11.png" >}}
+
+### Tower Spacer
+
+### Tower Section
+
+{{< figure src="/images/ogt-03.png" title="FreeCAD view of grow section" link="/images/ogt-03.png" >}}
+
+{{< figure src="/images/ogt-06.png" title="Printed view of grow section" link="/images/ogt-06.png" >}}
+
+### Tower Cap
+
+{{< figure src="/images/ogt-01.png" title="FreeCAD view of cap" link="/images/ogt-01.png" >}}
+
+{{< figure src="/images/ogt-04.png" title="Printed view of grow cap" link="/images/ogt-04.png" >}}
 
 ___

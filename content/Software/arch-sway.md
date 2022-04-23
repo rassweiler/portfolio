@@ -6,7 +6,7 @@ featured_image: "/images/archsway-bg.png"
 tags: ["OS","Arch","Linux","BTRFS","Snapper","Sway","Wayland"]
 ---
 
-Updated: 2022-04-02
+*Updated: 2022-04-22*
 
 This guide is for installing arch linux (UEFI) with Wayland, Swaywm, Ly desktop launcher, Paru, BTRFS, Subvolumes, Snapper, Snap-pac-grub, Snapshots, Qemu, KVM, Iommu, and Gaming.
 

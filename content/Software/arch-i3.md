@@ -6,7 +6,7 @@ featured_image: "/images/archinstall-bg.png"
 tags: ["OS","Arch","Linux","BTRFS","Snapper","i3WM"]
 ---
 
-Updated: 2022-04-02
+*Updated: 2022-04-22*
 
 This guide is for installing arch linux (UEFI) with Xorg, i3wm, Lightdm, Paru, BTRFS, Snapper, Snap-pac-grub, Snapshots, Qemu, KVM, and Gaming.
 
