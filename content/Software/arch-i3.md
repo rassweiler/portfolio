@@ -697,9 +697,9 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 `gnome-keyring` and ~~`libgnome-keyring`~~ are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use `libsecret` instead
 
 ```zsh
-sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status lightdm-webkit-theme-litarvan thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin
+sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status lightdm-webkit-theme-litarvan thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine-staging lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin
 
-paru -S wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp jmtpfs librewolf
+paru -S wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp jmtpfs librewolf autotiling
 
 sudo systemctl enable lightdm.service
 ```
@@ -781,10 +781,55 @@ eval (ssh-agent -c)
 ssh-add ~/.ssh/id_ed25519
 ```
 
+### Gaming Extras For Wine/Lutris:
+
+```zsh
+sudo pacman -S winetricks
+```
+
+Extra wine packages
+
+```
+sudo pacman -S giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader samba dosbox
+```
+
 ### Install Betterdiscord:
 
 ```zsh
 sudo betterdiscord-installer
+```
+
+### Setup Libvirtd:
+
+```zsh
+sudo nano /etc/libvirt/libvirtd.conf
+```
+
+Set group to use libvirt with 770 permissions
+
+```yml
+# Set the UNIX domain socket group ownership. This can be used to
+# allow a 'trusted' set of users access to management capabilities
+# without becoming root.
+#
+# This setting is not required or honoured if using systemd socket
+# activation.
+#
+# This is restricted to 'root' by default.
+unix_sock_group = "libvirt"
+
+# Set the UNIX socket permissions for the R/W socket. This is used
+# for full management of VMs
+#
+# This setting is not required or honoured if using systemd socket
+# activation.
+#
+# Default allows only root. If PolicyKit is enabled on the socket,
+# the default will change to allow everyone (eg, 0777)
+#
+# If not using PolicyKit and setting group ownership for access
+# control, then you may want to relax this too.
+unix_sock_rw_perms = "0770"
 ```
 
 ### Verify Iommu:

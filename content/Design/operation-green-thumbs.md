@@ -26,6 +26,8 @@ ___
 
 {{< figure src="/images/ogt-07.png" title="FreeCAD view of hub" link="/images/ogt-07.png" >}}
 
+{{< figure src="/images/ogt-14.png" title="Printed view of hub" link="/images/ogt-14.png" >}}
+
 ### Hub Cap
 
 {{< figure src="/images/ogt-08.png" title="FreeCAD view of hub cap" link="/images/ogt-08.png" >}}
@@ -39,6 +41,10 @@ ___
 {{< figure src="/images/ogt-05.png" title="Printed view of hose adapter" link="/images/ogt-05.png" >}}
 
 ### Hub Connector
+
+{{< figure src="/images/ogt-13.png" title="FreeCAD view of hub connector" link="/images/ogt-13.png" >}}
+
+{{< figure src="/images/ogt-15.png" title="Printed view of hub connector" link="/images/ogt-15.png" >}}
 
 ### Tower Base
 
