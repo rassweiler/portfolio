@@ -30,6 +30,11 @@ In spirit of the linux challenge, all the editing will be done using FOSS apps. 
 
 ## Video
 
+Youtube
+
 {{< youtube btP7GF3S2N8 >}}
 
+Odysee
+
+{{< odysee kylerassweiler LTT-DDC-Part0 >}}
 ___

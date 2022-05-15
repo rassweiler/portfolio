@@ -1,0 +1,7 @@
+<div class="embed video-player">
+	{{ if .IsNamedParams }}
+		<iframe src="ttps://odysee.com/@{{ .Get "channel" }}/{{ .Get "video" }}" class="youtube-player" type="text/html" width="640" height="385" title="odysee video" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0"></iframe>
+	{{ else }}
+		<iframe src="ttps://odysee.com/@{{ .Get 0 }}/{{ .Get 1 }}" class="youtube-player" type="text/html" width="640" height="385" title="odysee video" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0"></iframe>
+	{{ end }}
+</div>

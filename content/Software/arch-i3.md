@@ -696,12 +696,18 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 
 `gnome-keyring` and ~~`libgnome-keyring`~~ are needed for authing nextcloud on startup. Edit: libgnome-keyring is deprecated, use `libsecret` instead
 
+~~`lightdm-webkit-theme-litarvan`~~ is the desktop manager
+
+`ly` is a simple desktop manager
+
 ```zsh
-sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status lightdm-webkit-theme-litarvan thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine-staging lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin
+sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine-staging lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin
+
+paru -S ly-git
 
 paru -S wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp jmtpfs librewolf autotiling
 
-sudo systemctl enable lightdm.service
+sudo systemctl enable ly.service
 ```
 
 ### COPY CONFIGS FROM GIT (Optional):
@@ -712,7 +718,7 @@ These are my own mashed together configs, mostly from my i3wm system. There are 
 git clone https://github.com/rassweiler/dotfiles.git && cd dotfiles && ./install
 ```
 
-### Set Lightdm Theme:
+### ~~Set Lightdm Theme~~:
 
 ```zsh
 sudo nano /etc/lightdm/lightdm.conf
