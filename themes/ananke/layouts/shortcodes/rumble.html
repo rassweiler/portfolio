@@ -1,7 +1,7 @@
-<div class="embed video-player">
+<div id="movie_palyer" class="embed-responsive embed-responsive-16by9" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 	{{ if .IsNamedParams }}
-		<iframe src="ttps://rumble.com/embed/{{ .Get "video" }}" class="youtube-player" type="text/html" width="640" height="385" title="odysee video" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0"></iframe>
+		<iframe src="https://rumble.com/embed/{{ .Get "video" }}" id="rumble-iframe" class="youtube-player" type="text/html" title="rumble video" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"></iframe>
 	{{ else }}
-		<iframe src="ttps://rumble.com/embed/{{ .Get 0 }}" class="youtube-player" type="text/html" width="640" height="385" title="odysee video" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0"></iframe>
+		<iframe src="https://rumble.com/embed/{{ .Get 0 }}" id="rumble-iframe" class="youtube-player" type="text/html" title="rumble video" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"></iframe>
 	{{ end }}
 </div>

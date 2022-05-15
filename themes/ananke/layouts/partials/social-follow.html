@@ -85,8 +85,20 @@
 </a>
 {{ end }}
 {{ with .Param "codecamp" }}
-<a href="{{ . }}" target="_blank" class="link-transition codecamp link dib z-999 pt3 pt0-l mr1" title="Free Code Camp link" rel="noopener" aria-label="follow on FCC——Opens in a new window">
+<a href="{{ . }}" target="_blank" class="link-transition codecamp link dib z-999 pt3 pt0-l mr1" title="Free Code Camp link" rel="noopener" aria-label="follow on Code Camp——Opens in a new window">
   {{ partial "svg/codecamp.svg" (dict "size" $icon_size) }}
+  {{- partial "new-window-icon.html" . -}}
+</a>
+{{ end }}
+{{ with .Param "odysee" }}
+<a href="{{ . }}" target="_blank" class="link-transition odysee link dib z-999 pt3 pt0-l mr1" title="Odysee link" rel="noopener" aria-label="follow on Odysee——Opens in a new window">
+  {{ partial "svg/lbry.svg" (dict "size" $icon_size) }}
+  {{- partial "new-window-icon.html" . -}}
+</a>
+{{ end }}
+{{ with .Param "rumble" }}
+<a href="{{ . }}" target="_blank" class="link-transition rumble link dib z-999 pt3 pt0-l mr1" title="Rumble link" rel="noopener" aria-label="follow on Rumble——Opens in a new window">
+  {{ partial "svg/rumble.svg" (dict "size" $icon_size) }}
   {{- partial "new-window-icon.html" . -}}
 </a>
 {{ end }}

@@ -1,9 +1,5 @@
-.facebook, .twitter, .instagram, .youtube, .github, .gitlab, .keybase, .linkedin, .medium, .mastodon, .slack, .stackoverflow, .rss, .tiktok, .codecamp {
+.facebook, .twitter, .instagram, .youtube, .github, .gitlab, .keybase, .linkedin, .medium, .mastodon, .slack, .stackoverflow, .rss, .tiktok, .codecamp, .rumble, .odysee {
   fill: #BABABA;
-}
-
-.codecamp {
-  fill: #6495ed;
 }
 
 .new-window {
@@ -23,7 +19,19 @@
   fill: #1da1f2;
 }
 
-.instagram:hover, .codecamp:hover {
+.codecamp:hover {
+  fill: #e1306c;
+}
+
+.rumble:hover {
+  fill: #699c39;
+}
+
+.odysee:hover {
+  fill: #de0050;
+}
+
+.instagram:hover {
   fill: #e1306c;
 }
 
