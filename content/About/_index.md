@@ -10,6 +10,6 @@ Engineering Specialist with experience in: software development, networking, pro
 
 I am currently in a React/Node/Electron deep dive, but also have experience with Python and various sql/nosql databases.
 
-## Get In Touch
+## CV and Contact
 
-I can be reached via email at [jobs@kylerassweiler.com](mailto:jobs@kylerassweiler.com)
+Download a copy of my [CV](../PDF/KyleRassweiler-CV.pdf) and reach out!
