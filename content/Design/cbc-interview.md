@@ -1,5 +1,5 @@
 ---
-date: 2022-03-15T10:58:08-04:00
+date: 2023-03-15T10:58:08-04:00
 title: "CBC Interview"
 description: "CBC: Interview with PM and average Canadian"
 featured_image: "/images/cbc-interview-01.png"

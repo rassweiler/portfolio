@@ -66,4 +66,9 @@ ___
 
 {{< figure src="/images/ogt-04.png" title="Printed view of grow cap" link="/images/ogt-04.png" >}}
 
+### Setup Example
+
+{{< figure src="/images/ogt-18.png" title="Printed view of parts together" link="/images/ogt-18.png" >}}
+
+
 ___
