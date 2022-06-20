@@ -3,8 +3,10 @@ date: 2021-04-09T10:58:08-04:00
 title: "2D Avatar"
 description: "Chad Gasswheeler: A janky 2d avatar"
 featured_image: "/images/YoutubePersona-bg.png"
-tags: ["Design","Youtube","Avatar"]
+tags: ["Avatar","SVG","Inkscape"]
 ---
+
+A 2d avatar made in inkscape for social media.
 
 <!--more-->
 

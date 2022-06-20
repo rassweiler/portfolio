@@ -4,6 +4,7 @@ title: "Arch Snapper BTRFS Install Guide - Script Method"
 description: "Easy Install Guide For Arch Linux Using BTRFS"
 featured_image: "/images/archinstall-bg.png"
 tags: ["OS","Arch","Linux","BTRFS","Snapper"]
+draft: true
 ---
 
 This guide is for installing arch linux (UEFI) using a script with:
