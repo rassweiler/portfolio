@@ -47,6 +47,25 @@ img, iframe {
   border-style: solid;
 }
 
+table {
+  width: 100%;
+  border-color: #bd93f9;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 0.5rem;
+}
+
+th {
+  color: #8be9fd;
+  font-weight: bolder;
+  font-size: 2rem;
+}
+
+td {
+  width: 50%;
+  text-align: center;
+}
+
 .logo-img {
   border-style: none;
 }

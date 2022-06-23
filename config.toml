@@ -74,3 +74,8 @@ enableRobotsTXT = true
   name = 'Design'
   url = '/design/'
   weight = -107
+[[menu.main]]
+  identifier = 'Farm'
+  name = 'Farm'
+  url = '/farm/'
+  weight = -106
