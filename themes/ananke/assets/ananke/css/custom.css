@@ -28,7 +28,7 @@ hr {
   border-color: #50fa7b;
 }
 
-p code {
+p code, li code {
   color: #50fa7b;
 }
 
