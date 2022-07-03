@@ -705,7 +705,7 @@ sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status thunar
 
 paru -S ly-git
 
-paru -S wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp jmtpfs librewolf autotiling
+paru -S wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp jmtpfs librewolf autotiling rustup kdenlive xvidcore ardour libvpx libde265 opencv thunderbird
 
 sudo systemctl enable ly.service
 ```
@@ -803,6 +803,22 @@ sudo pacman -S giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnu
 
 ```zsh
 sudo betterdiscord-installer
+```
+
+### Setup Rust:
+
+```zsh
+rustup toolchain install stable
+
+rustup default stable
+```
+
+### Setup Git:
+
+```zsh
+git config --global user.name "Your Name"
+
+git config --global user.email "youremail@yourdomain.com"
 ```
 
 ### Setup Libvirtd:
