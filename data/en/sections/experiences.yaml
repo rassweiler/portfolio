@@ -1,0 +1,77 @@
+# section information
+section:
+  name: Experiences
+  id: experiences
+  enable: true
+  weight: 6
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true 
+
+# Your experiences
+experiences:
+- company:
+    name: TEMA (Toyota NA)
+    url: "http://www.toyotageorgetown.com/"
+    location: North America
+    # company overview
+    overview: Toyota Engineering & Manufacturing (TEMA) is headquartered in Erlanger, Kentucky with major operations in Arizona, California and Michigan, is responsible for our engineering design and development, R&D and manufacturing activities in the U.S., Mexico and Canada. TEMA is also responsible for manufacturing plants across North America, with locations in Alabama4, Indiana, Kentucky4, Texas and many more.
+  positions:
+  - designation: Engineering Specialist
+    start: 2017
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - PLC Programming.
+    - Robotic/ Computer Vision (Robeye).
+    - 3D Factory Design.
+    - Robot Programming.
+    - Low Voltage Electrical.
+    - CI/CD.
+    - Project Management
+
+- company:
+    name: FIO
+    url: "http://www.fioautomotive.com/"
+    location: Stratford, ON
+    overview: FIO is a subsidiary company for Futaba Industrial, which is located in Aichi Japan, and is a Tier One supplier to Toyota.
+  positions:
+  - designation: Robotics Technician
+    start: 2014
+    end: 2017
+    responsibilities:
+    - PLC Programming.
+    - 3D Factory Design.
+    - Robot Programming.
+    - Low Voltage Electrical.
+    - Networking.
+    - SCADA trial development using Node.
+
+- company:
+    name: Abbott Point of Care
+    url: "https://www.globalpointofcare.abbott/en/index.html"
+    location: Ottawa, ON
+    overview: Medical blood testing equipment production.
+  positions:
+  - designation: Operational Technician
+    start: 2012
+    end: 2014
+    responsibilities:
+    - Inspections.
+    - Equipment maintenance.
+
+- company:
+    name: Greenfield Acres
+    #url: "https://www.globalpointofcare.abbott/en/index.html"
+    location: Ayr, ON
+    overview: Multidiscipline farm.
+  positions:
+  - designation: Sneed
+    start: 2005
+    end: 2012
+    responsibilities:
+    - Welding
+    - Labour
+    - Fabrication
+    - Driving equipment

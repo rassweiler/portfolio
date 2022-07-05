@@ -1,0 +1,68 @@
+# section information
+section:
+  name: About
+  id: about
+  enable: true
+  weight: 1
+  showOnNavbar: true
+  template: sections/about.html
+
+# your designation
+designation: Engineering Specialist
+# your company information
+company:
+  name: TEMA
+  url: "https://en.wikipedia.org/wiki/Toyota_Motor_Engineering_%26_Manufacturing_North_America"
+
+# your resume. this file path should be relative to you "static" directory
+resume: "/PDF/KyleRassweiler-CV-Software.pdf"
+
+# a summary about you
+summary: 'Engineering Specialist with experience in: software development, networking, programmable logic controllers, robotics, electronics, and machining. I am currently in a React/Node/Electron deep dive, but also have experience with Python and various sql/nosql databases.'
+
+# your social links
+# give as many as you want. use font-awesome for the icons.
+socialLinks:
+- name: Email
+  icon: "fas fa-envelope"
+  url: "jobs@kylerassweiler.ca"
+
+- name: Github
+  icon: "fab fa-github"
+  url: "https://github.com/rassweiler"
+
+- name: Stackoverflow
+  icon: "fab fa-stack-overflow"
+  url: "https://stackoverflow.com/users/19122982/kylerassweiler"
+
+- name: LinkedIn
+  icon: "fab fa-linkedin"
+  url: "https://www.linkedin.com/in/kylerassweiler/"
+
+- name: Youtube
+  icon: "fab fa-youtube"
+  url: "https://www.youtube.com/user/Krassweiler"
+
+- name: FreeCodeCamp
+  icon: "fab fa-free-code-camp"
+  url: "https://www.freecodecamp.org/kylerassweiler"
+
+# Show your badges
+# You can show your verifiable certificates from https://www.credly.com.
+# You can also show a circular bar indicating the level of expertise on a certain skill
+badges:
+- type: certification
+  name: Responsive Web Design
+  url: "https://www.freecodecamp.org/certification/kylerassweiler/responsive-web-design"
+  badge: "/images/site/responsive-web-design.webp"
+
+- type: soft-skill-indicator
+  name: Leadership
+  percentage: 100
+  color: blue
+
+- type: soft-skill-indicator
+  name: Project Management
+  percentage: 100
+  color: blue
+#'#d9534f'

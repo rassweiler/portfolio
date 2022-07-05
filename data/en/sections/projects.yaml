@@ -1,0 +1,56 @@
+# section information
+section:
+  name: Featured Projects
+  id: projects
+  enable: true
+  weight: 2
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# filter buttons
+buttons:
+- name: All
+  filter: "all"
+- name: Professional
+  filter: "professional"
+- name: Academic
+  filter: "academic"
+- name: Hobby
+  filter: "hobby"
+
+# your projects
+projects:
+- name: Krello
+  logo: /images/projects/krello-bg.webp
+  role: Developer
+  timeline: "August 2019 - Present"
+  repo: https://github.com/rassweiler/krello # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
+  summary: A simple clone of the well known kanban system Trello. Currently there isn’t a database attached beyond the react browser, but the user is able to add boards and cards.
+  tags: ["hobby", "node", "react", "redux"]
+
+- name: Kawasaki AS Parser
+  logo: /images/sections/projects/toha.png
+  role: Owner
+  timeline: "September 2019 - Present"
+  repo: https://github.com/rassweiler/kawasaki-as-parser
+  summary: A Kawasaki robot backup parser written in TypeScript for browser or Node. The library also includes TypeScript interfaces for use in new projects.
+  tags: ["professional","javascript","node","library"]
+
+- name: Genetic Algorithm - C++
+  logo: /images/projects/genetic-algorithm-cpp-01.webp
+  role: Developer
+  timeline: "December 2015 - August 2019"
+  repo: https://github.com/rassweiler/GeneticAlgorithm # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
+  summary: A small program that attempts to evolve towards a determined fitness goal. A higher fitness increases the chance to reproduce, and every reproduction has a chance for mutation.
+  tags: ["hobby", "c++", "algorithms", "c++17"]
+
+# - name: Rassbrau Honey Ale
+#   logo: /images/projects/rassbrau-ha/rb-ha-background.webp
+#   role: Brewmaster
+#   timeline: "Sep 2010 - Present"
+#   url: /posts/farming/recipes/rassbrau-honey-ale/
+#   summary: Cool crisp honey specialty beer, based on the Defalco Honey-Raspberry Ale and the Super Sesh Bros recipe.
+#   tags: ["hobby","brewing","food","beer"]

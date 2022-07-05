@@ -1,0 +1,102 @@
+# section information
+section:
+  name: Skills
+  id: skills
+  enable: true
+  weight: 5
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# Your Skills.
+# Give a summary of you each skill in the summary section.
+skills:
+- name: Arch Linux
+  logo: /images/skills/archlinux.webp
+  summary: "Main desktop and gaming OS. Capable of writing bash/shell scripts, general software development."
+
+- name: OpenBSD
+  logo: /images/skills/openbsd.webp
+  summary: "Main hardened server OS."
+
+- name: FreeBSD
+  logo: /images/skills/freebsd.webp
+  summary: "Main file server OS."
+
+- name: Debian
+  logo: /images/skills/debian.webp
+  summary: "Testing server OS."
+
+- name: Windows
+  logo: /images/skills/windows.webp
+  summary: "Work OS, can use if required through a VM."
+
+- name: Docker
+  logo: /images/skills/docker.webp
+  summary: "Write most of the programs as dockerized container. Experienced with multi-stage, multi-arch build process."
+  #url: "https://www.docker.com/"
+
+- name: Git
+  logo: /images/skills/git.webp
+  summary: "Experienced with git-based development. Mostly, use Github. Also, have experience in working with GitLab."
+  #url: "https://git-scm.com/"
+
+- name: AutoCAD
+  logo: /images/skills/autocad.webp
+  summary: "Know basic designing and navigation, more skilled with FreeCAD."
+
+- name: Assembly
+  logo: /images/skills/pic.webp
+  summary: "Know basic assembly programming. Used for embeded development in college and certain industrial systems."
+
+- name: C
+  logo: /images/skills/c.webp
+  summary: "Know basic C programming. Used for embeded development in college."
+
+- name: C++
+  logo: /images/skills/cpp.webp
+  summary: "Know moderate C++ programming. Used for problem solving and project tests."
+
+- name: Python
+  logo: /images/skills/python.webp
+  summary: "Know moderate python programming. Used for original Django portfolio."
+
+- name: Lua
+  logo: /images/skills/lua.webp
+  summary: "Know basic Lua programming. Used for scripting language of custom C++/opengl game engine."
+
+- name: HTML
+  logo: /images/skills/html.webp
+  summary: "Know moderate HTML programming."
+
+- name: CSS
+  logo: /images/skills/css.webp
+  summary: "Know moderate C++ programming."
+
+- name: Javascript
+  logo: /images/skills/javascript.webp
+  summary: "Know moderate Javascript programming."
+
+- name: Hugo
+  logo: /images/skills/hugo.webp
+  summary: "Used for portfolio site."
+
+- name: Node
+  logo: /images/skills/node.webp
+  summary: "Know moderate Node and Electron programming."
+
+- name: React
+  logo: /images/skills/react.webp
+  summary: "Know basic React/Redux programming."
+
+- name: MongoDB
+  logo: /images/skills/mongodb.webp
+  summary: "Know moderate MongoDB/Mongoose programming."
+
+- name: PostgreSQL
+  logo: /images/skills/postgresql.webp
+  summary: "Know moderate SQL (Postgre, MariaDB, MySQL) programming."
+
+- name: Godot
+  logo: /images/skills/godot.webp
+  summary: "Know basic Godot project creation, scripting, and exporting. Familiar with web based games."

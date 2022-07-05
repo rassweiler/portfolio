@@ -1,0 +1,18 @@
+  # some information about you
+  name: "Kyle Rassweiler"
+  nickname: "Kyle"
+  image: "images/site/profile.webp"
+
+  # greeting message before your name. it will default to "Hi! I am" if not provided
+  greeting: "Greetings fellow human, I am"
+
+  # give your contact information. they will be used in the footer
+  contactInfo:
+    email: "jobs@kylerassweiler.ca"
+    phone: "+1-613-724-9141"
+
+  # a summary of what you do
+  summary:
+  - I am a Developer
+  - I am an Engineering Specialist
+  - I love to work with web and game projects
