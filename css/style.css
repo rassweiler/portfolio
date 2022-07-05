@@ -1,0 +1,13 @@
+table {
+	width: 100%;
+	text-align: center;
+}
+
+.nav-item .nav-pills .nav-item {
+	font-weight: bolder;
+}
+
+.nav-item .nav-pills .nav-item .nav-pills .nav-item {
+	font-weight: normal;
+	font-style: italic;
+}
