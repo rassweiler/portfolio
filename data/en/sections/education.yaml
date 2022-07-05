@@ -1,0 +1,82 @@
+# section information
+section:
+  name: Education
+  id: education
+  template: sections/education.html # Use "sections/education-alt.html for alternate template.
+  enable: true
+  weight: 7
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+degrees:
+# - name: Responsive Web Development Certificate
+#   icon: fa-certificate
+#   timeframe: 2022-2022
+#   institution:
+#     name: Free Code Camp
+#     url: "https://www.freecodecamp.org/kylerassweiler"
+
+- name: Electro-Mechanical Engineering Technician
+  icon: fa-university
+  timeframe: 2010-2012
+  institution:
+    name: Algonquin College
+    url: "https://www.algonquincollege.com/"
+  extracurricularActivities: #(optional)
+  - Kickboxing
+  - Kali
+  - Krav Maga
+  - BJJ
+
+- name: Advanced Diploma Computer Animation
+  icon: fa-university
+  timeframe: 2017-2010
+  institution:
+    name: Algonquin College
+    url: "https://www.algonquincollege.com/"
+  # takenCourses: #(optional)
+  #   # if true, the courses will be rendered as a table otherwise it will render as a list and the grades will be hidden.
+  #   showGrades: true
+  #   collapseAfter: 3
+  #   courses:
+  #   - name: Data Structures and Algorithm
+  #     achieved: 3.75
+  #     outOf: 4
+  #   - name: Network Security
+  #     achieved: 3.80
+  #     outOf: 4
+  #   - name: Operating System
+  #     achieved: 3.5
+  #     outOf: 4
+  #   - name: Artificial Intelligent
+  #     achieved: 3.75
+  #     outOf: 4
+  # publications: #(optional)
+  # - title: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  #   url: "#"
+  # - title: Fusce eu augue ut odio porttitor pulvinar.
+  #   url: "#"
+  extracurricularActivities: #(optional)
+  - Kickboxing
+  - Kali
+  - Krav Maga
+  - BJJ
+  
+- name: General Arts and Science Certificate
+  icon: fa-certificate
+  timeframe: 2006-2007
+  institution:
+    name: Algonquin College
+    url: "https://www.algonquincollege.com/"
+
+- name: Secondary School Certificate
+  icon: fa-school
+  timeframe: 2004-2006
+  institution:
+    name: Southwood Secondary
+    url: "https://sss.wrdsb.ca/"
+  # grade: #(optional)
+  #   scale: GPA
+  #   achieved: 4.5
+  #   outOf: 5
