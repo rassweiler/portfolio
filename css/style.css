@@ -11,3 +11,7 @@ table {
 	font-weight: normal;
 	font-style: italic;
 }
+
+#primary-skills {
+	justify-content: center;
+}
