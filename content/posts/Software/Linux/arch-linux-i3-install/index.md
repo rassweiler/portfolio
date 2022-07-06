@@ -15,8 +15,8 @@ This guide is for installing arch linux (UEFI) with Xorg, i3wm, Lightdm, Paru, B
 
 ___
 
-## Script Install Guide:
-[Arch Script Install](https://www.kylerassweiler.ca/arch-install-script/)
+## Sway Install Guide:
+[Arch Sway Install](/posts/software/linux/arch-linux-sway-install/)
 
 ___
 
