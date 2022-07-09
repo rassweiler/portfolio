@@ -11,6 +11,11 @@ A Simple logo for Raßbräu made in inkscape for social media.
 
 <!--more-->
 
+## Colours
+
+- Red: `#d9534fff`
+- Blue: `#0066b2ff`
+- White: `#edf8ffff`
 ___
 
 {{< figure src="images/logo.webp" title="A Simple logo for Raßbräu" link="images/logo.svg" >}}
