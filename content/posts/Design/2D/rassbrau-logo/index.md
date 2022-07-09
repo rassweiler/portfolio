@@ -2,7 +2,7 @@
 date: 2022-07-09T10:58:08-04:00
 title: "Raßbräu Logo"
 description: "A Simple logo for Raßbräu"
-hero: "images/2d-a-bg.webp"
+hero: "images/logo-bg.webp"
 tags: ["Logo","SVG","Inkscape"]
 categories: ["Design","2D"]
 ---
