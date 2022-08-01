@@ -21,6 +21,15 @@ buttons:
 
 # your projects
 projects:
+- name: React Pagination
+  logo: /images/projects/react.webp
+  role: Developer
+  timeline: "July 2022 - Present"
+  repo: https://github.com/rassweiler/hatchways-react-pagination # If your project is a public repo on GitHub, then provide this link. it will show star count.
+  #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
+  summary: A Hatchways assesment for React front-end work. The project required the addition of a pagination system for a sample blog site.
+  tags: ["Academic", "node", "react", "js", "front end"]
+
 - name: Krello
   logo: /images/projects/krello-bg.webp
   role: Developer
