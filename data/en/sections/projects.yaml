@@ -25,8 +25,7 @@ projects:
   logo: /images/projects/react.webp
   role: Developer
   timeline: "July 2022 - Present"
-  repo: https://github.com/rassweiler/hatchways-react-pagination # If your project is a public repo on GitHub, then provide this link. it will show star count.
-  #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
+  repo: https://github.com/rassweiler/hatchways-react-pagination 
   summary: A Hatchways assesment for React front-end work. The project required the addition of a pagination system for a sample blog site.
   tags: ["academic", "node", "react", "js", "frontend"]
 
@@ -34,17 +33,23 @@ projects:
   logo: /images/projects/react.webp
   role: Developer
   timeline: "July 2022 - Present"
-  #repo: https://github.com/rassweiler/hatchways-react-pagination # If your project is a public repo on GitHub, then provide this link. it will show star count.
-  url: "https://codepen.io/kylerassweiler/pen/rNdJzYO"  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
-  summary: A Free Code Camp assesment for React front-end work.
+  url: "https://codepen.io/kylerassweiler/pen/rNdJzYO"  
+  summary: A FreeCodeCamp project that generates random tweetable quotes using React.
   tags: ["academic", "node", "react", "js", "frontend","quotemachine","fcc"]
+
+- name: Markdown Preview
+  logo: /images/projects/react.webp
+  role: Developer
+  timeline: "July 2022 - Present"
+  url: "https://codepen.io/kylerassweiler/pen/LYdQmMz" 
+  summary: A FreeCodeCamp project that will preview markdown input into a seperate editor window.
+  tags: ["academic", "node", "react", "js", "frontend","markdown","fcc"]
 
 - name: Krello
   logo: /images/projects/krello-bg.webp
   role: Developer
   timeline: "August 2019 - Present"
-  repo: https://github.com/rassweiler/krello # If your project is a public repo on GitHub, then provide this link. it will show star count.
-  #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
+  repo: https://github.com/rassweiler/krello
   summary: A simple clone of the well known kanban system Trello. Currently there isn’t a database attached beyond the react browser, but the user is able to add boards and cards.
   tags: ["hobby", "node", "react", "redux"]
 
@@ -56,28 +61,10 @@ projects:
   summary: A Kawasaki robot backup parser written in TypeScript for browser or Node. The library also includes TypeScript interfaces for use in new projects.
   tags: ["professional","javascript","node","library"]
 
-- name: Meteor Autoform UFS
-  logo: /images/projects/meteor.webp
-  role: Contributer
-  timeline: "January 2017 - February 2017"
-  repo: https://github.com/rassweiler/meteor-autoform-ufs # If your project is a public repo on GitHub, then provide this link. it will show star count.
-  #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
-  summary: A ufs addon package for autoform and simple schema. 
-  tags: ["hobby", "javascript", "algorithms", "c++17"]
-
 - name: Genetic Algorithm - C++
   logo: /images/projects/genetic-algorithm-cpp-01.webp
   role: Developer
   timeline: "December 2015 - August 2019"
-  repo: https://github.com/rassweiler/GeneticAlgorithm # If your project is a public repo on GitHub, then provide this link. it will show star count.
-  #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
+  repo: https://github.com/rassweiler/GeneticAlgorithm
   summary: A small program that attempts to evolve towards a determined fitness goal. A higher fitness increases the chance to reproduce, and every reproduction has a chance for mutation.
   tags: ["hobby", "c++", "algorithms", "c++17"]
-
-# - name: Rassbrau Honey Ale
-#   logo: /images/projects/rassbrau-ha/rb-ha-background.webp
-#   role: Brewmaster
-#   timeline: "Sep 2010 - Present"
-#   url: /posts/farming/recipes/rassbrau-honey-ale/
-#   summary: Cool crisp honey specialty beer, based on the Defalco Honey-Raspberry Ale and the Super Sesh Bros recipe.
-#   tags: ["hobby","brewing","food","beer"]
