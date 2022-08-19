@@ -13,9 +13,9 @@ Cool crisp honey specialty beer, based on the Defalco Honey-Raspberry Ale and th
 
 ## Overview
 
-| Mash Time   | Boil Time  | Ferment Time  | Bottle Time  |
-|-------------|------------|---------------|--------------|
-| 30 minutes  | 60 minutes | 2 Weeks       |  2 weeks     |
+|  ABV | Mash Time   | Boil Time  | Ferment Time  | Bottle Time  | Recipe Cost |
+|------|-------------|------------|---------------|--------------|-------------|
+| 5.4% | 30 minutes  | 60 minutes | 2 Weeks       |  2 weeks     |  70 CAD     |
 
 ___
 
@@ -33,7 +33,7 @@ ___
 - Nylon Mesh Bag
 - Stir Stick
 - Airlock
-- Carboy/Fermenter
+- Carboy/Fermenter/Fermentation Bucket
 - Syphon/Auto-syphon
 - Thermometer
 - Large Funnel
@@ -46,14 +46,14 @@ ___
 
 ### Ingredients
 
-- 1.5kg Light Dried Malt Extract
-- 1.5kg Honey                   
-- 250g Crystal Malt             
-- 1.25oz Saaz Hops              
-- 1 package Dried Yeast         
-- `Desired priming sugar`
-- 1 tsp Irish Moss              
-- 10L Distilled/Spring Water
+- 1.5kg Light Dried Malt Extract (26CAD for 2kg)
+- 1.5kg Honey (16CAD for 2kg)
+- 250g Crystal Malt (3CAD for 500g)
+- 1.25oz Saaz Hops (6CAD for 2oz)
+- 1 package Dried Yeast, Safale US 05 (6CAD for 11.5g packet)
+- `Desired priming sugar` (6CAD for 1kg of Corn Sugar)
+- 1 tsp Irish Moss (2CAD for 30g)
+- 10L Distilled/Spring Water (5CAD for 10L distilled)
 
 ---
 
@@ -87,53 +87,40 @@ ___
 
 ### Prep
 
-- Sanitize equipment: Nylon bag, airlock, carboy/fermenter, funnel, pale. `Do NOT rinse sanitised equipment`
+- Sanitize equipment: Nylon bag, airlock, carboy/fermenter, funnel, pale, yeast pack, scissors. `Do NOT rinse sanitised equipment`
 - Add ~8L of water to pot.
 - Add 1L of water to kettle.
 
 ### Mash
 
-- Bring 8L of water up to 66-68 Celsius
-- Stir in Malt Extract and Honey (continue to stir)
-- Add Crystal Malt to Nylon bag and place in wort
-- Hold temperature at 66-68 Celsius for 30 minutes
+- Bring 8L of water up to 66-68 Celsius.
+- Crush crystal malt if not done at store.
+- Add Crystal Malt to Nylon bag and place in wort.
+- Hold temperature at 66-68 Celsius for 30 minutes.
 
 ### Boil
 
 - Bring pot to a boil. `Make sure to constantly stir and prevent the sugars from burning to the pot`
 - Bring other 1 L of water to a boil.
-- Start 60 minute timer. 
+- Start 60 minute timer.
 - Remove the Nylon malt bag and use the boiled 1 L of water to rinse the bag into the pot. `DO NOT SQUEEZE BAG`, let it drip while boiling.
-- After 30 minutes add 1 oz of the Saaz Hops
-- After 45 minutes add 1 tsp of Irish Moss
-- After 55 minutes add 0.25 oz of Saaz Hops
-- After 60 minute boil remove from heat
+- Stir in Malt Extract and Honey (continue to stir).
+- After 15 minutes add 1 oz of the Saaz Hops.
+- After 45 minutes add 1 tsp of Irish Moss.
+- After 55 minutes add 0.25 oz of Saaz Hops.
+- After 60 minute boil remove from heat.
+- Take OG reading
 
 ### Fermentation
 
 `The wort needs to reach room temperature without introducing bacteria, before the yeast can be added`
 
-#### Option 1:
-
-- Place 10L pot in an ice bath to cool.
-- Place funnel into fermenter.
-- Pour wort into fermenter.
-- Top up fermenter with distilled water to fill line.
-
-#### Option 2:
-
-- Pour hot wort into sanitised pale.
-- Place funnel into fermenter.
-- Pour hot wort into fermenter.
-- Top up fermenter with distilled water to fill line.
-- Place airlock on fermenter.
-- Wait for wort to cool.
-
-#### Start Fermentation
-
-- Swish fermenter with air lock off to infuse oxygen.
-- Add 1 package of Dried Yeast.
-- Place air lock and swirl wort to mix yeast.
+- Cool wort down to 18-21 Celsius using a chiller or ice bath.
+- Add chilled wort to sanitised fermenter through sanitised nylon bag.
+- Top up fermenter with distilled water to target volume.
+- Add yeast to fermenter. `Make sure to sanitise packet and scissors before hand`
+- Shake fermenter to oxiginate wort.
+- Place airlock on fermenter with sanitised solution in it.
 - Place fermenter in a dark area at around 18-21 Celsius for `2 weeks`.
 
 ### Bottling/Kegging
@@ -143,7 +130,7 @@ ___
 - Place the the Nylon bag over the pale as a filter.
 - Syphon out the fermented beer into the sugar water through the nylon bag without adding too much air to the mix.
 - Syphon the mixture into your bottles and cap them.
-- Let the bottles sit in a dark space for `2 weeks`.
+- Let the bottles sit in a dark space for `1.5-2 weeks`.
 
 ### Drinking
 - Place in fridge for `24 hours` before drinking.
