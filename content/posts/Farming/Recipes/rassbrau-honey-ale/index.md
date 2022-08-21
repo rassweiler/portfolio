@@ -13,9 +13,13 @@ Cool crisp honey specialty beer, based on the Defalco Honey-Raspberry Ale and th
 
 ## Overview
 
-|  ABV | Mash Time   | Boil Time  | Ferment Time  | Bottle Time  | Recipe Cost |
-|------|-------------|------------|---------------|--------------|-------------|
-| 5.4% | 30 minutes  | 60 minutes | 2 Weeks       |  2 weeks     |  70 CAD     |
+| Mash Time   | Boil Time  | Ferment Time  | Bottle Time  | Ferment Temperature |
+|-------------|------------|---------------|--------------|---------------------|
+| 30 minutes  | 60 minutes | 2 Weeks       |  2 weeks     |  19C to 21C         |
+
+|  ABV | Original Gravity (SG) | Final Gravity (SG)  | Recipe Cost |
+|------|-----------------------|---------------------|-------------|
+| ~5.0%| ~1.039                | ~1.000              |  80 CAD     |
 
 ___
 
@@ -29,7 +33,7 @@ ___
 
 ### Tools
 
-- Aluminium Pot (~10L)
+- Aluminium Pot (~24L)
 - Nylon Mesh Bag
 - Stir Stick
 - Airlock
@@ -37,9 +41,10 @@ ___
 - Syphon/Auto-syphon
 - Thermometer
 - Large Funnel
-- Large pale (~5L)
+- Large pale (~27L)
 - Kettle (~1L)
 - Sanitiser (No rinse: Starsan)
+- Cleaner PBW
 - Keg/~32 750ml bottles
 
 ---
@@ -53,7 +58,7 @@ ___
 - 1 package Dried Yeast, Safale US 05 (6CAD for 11.5g packet)
 - `Desired priming sugar` (6CAD for 1kg of Corn Sugar)
 - 1 tsp Irish Moss (2CAD for 30g)
-- 10L Distilled/Spring Water (5CAD for 10L distilled)
+- 24L Distilled/Spring Water (15CAD for 30L distilled)
 
 ---
 
@@ -87,13 +92,13 @@ ___
 
 ### Prep
 
-- Sanitize equipment: Nylon bag, airlock, carboy/fermenter, funnel, pale, yeast pack, scissors. `Do NOT rinse sanitised equipment`
-- Add ~8L of water to pot.
+- Sanitize equipment: Nylon bag, airlock, carboy/fermenter, funnel, pale, yeast pack, scissors. `Use the distilled water to rinse if needed`
+- Add as much water to pot as possible leaving room for the other ingredients. `Any of the 24L that is unable to be added will be added to the fermenter afterwards`
 - Add 1L of water to kettle.
 
 ### Mash
 
-- Bring 8L of water up to 66-68 Celsius.
+- Bring pot of water up to 66-68 Celsius.
 - Crush crystal malt if not done at store.
 - Add Crystal Malt to Nylon bag and place in wort.
 - Hold temperature at 66-68 Celsius for 30 minutes.
@@ -103,20 +108,21 @@ ___
 - Bring pot to a boil. `Make sure to constantly stir and prevent the sugars from burning to the pot`
 - Bring other 1 L of water to a boil.
 - Start 60 minute timer.
-- Remove the Nylon malt bag and use the boiled 1 L of water to rinse the bag into the pot. `DO NOT SQUEEZE BAG`, let it drip while boiling.
+- Remove the Nylon malt bag and use the boiled 1 L of water to rinse the bag into the pot. Let it drip into pot while boiling.
 - Stir in Malt Extract and Honey (continue to stir).
-- After 15 minutes add 1 oz of the Saaz Hops.
-- After 45 minutes add 1 tsp of Irish Moss.
-- After 55 minutes add 0.25 oz of Saaz Hops.
+- Clean out nylon bag in preperation for hops addition.
+- After 15 minutes add 1 oz of the Saaz Hops using the nylon bag.
+- After 45 minutes add 1 tsp of Irish Moss and 0.25 oz of Saaz Hops to nylon bag.
 - After 60 minute boil remove from heat.
-- Take OG reading
+- Remove nylon bag.
+- Remove sample and let cool for og reading.
 
 ### Fermentation
 
 `The wort needs to reach room temperature without introducing bacteria, before the yeast can be added`
 
 - Cool wort down to 18-21 Celsius using a chiller or ice bath.
-- Add chilled wort to sanitised fermenter through sanitised nylon bag.
+- Add chilled wort to sanitised fermenter.
 - Top up fermenter with distilled water to target volume.
 - Add yeast to fermenter. `Make sure to sanitise packet and scissors before hand`
 - Shake fermenter to oxiginate wort.
