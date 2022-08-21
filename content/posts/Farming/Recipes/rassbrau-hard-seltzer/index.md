@@ -15,12 +15,12 @@ Cool crisp hard seltzer brew recipe (Non vodka based) with a choice of flavourin
 
 | Mash Time   | Boil Time  | Ferment Time  | Bottle Time  | Ferment Temperature |
 |-------------|------------|---------------|--------------|---------------------|
-| 0 minutes   | 15 minutes | 2 Weeks       |  2 weeks     |  70 CAD             |
+| 0 minutes   | 15 minutes | 2 Weeks       |  2 weeks     |  19C to 21C         |
 
 
 |  ABV | Original Gravity (SG) | Final Gravity (SG)  | Recipe Cost |
 |------|-----------------------|---------------------|-------------|
-| 4.0% | ~1.039                | 1.010               |  70 CAD     |
+| ~5.0%| ~1.039                | ~1.000              |  67 CAD     |
 
 ___
 
@@ -45,7 +45,8 @@ ___
 - Large pale (~5L)
 - Kettle (~1L)
 - Sanitiser (No rinse: Starsan)
-- Keg/~32 750ml bottles
+- Cleaner PBW
+- Keg/30 500ml bottles
 
 ---
 
@@ -54,9 +55,10 @@ ___
 - 2.2kg Dextrose/ Corn Sugar (18CAD for 3kg)
 - 1 package Dried Yeast, Safale US 05 (6CAD for 11.5g packet)
 - `Desired priming sugar` (6CAD for 1kg of Corn Sugar)
-- 1 packet of Seltzer Yeast Nutrient (10CAD per packet) or 28g of generic yeast nutrient (untested)
+- 1 packet of Propper Seltzer Yeast Nutrient (10CAD per packet)
+- 1g of Potassium Bicarbonate (5CAD for 50g)
 - 24L Distilled/Spring Water (15CAD for 30L distilled)
-- ~300ml of Flavour extracts (7CAD for 500ml)
+- `Desired ammount of flavour extracts` (7CAD for 500ml of ABC Crafted)
 
 {{< /split >}}
 ___
@@ -64,11 +66,12 @@ ___
 
 ### Flavouring Table
 
-`Flavouring for ~23L of Seltzer is ~280-290ml`
+`Flavouring for ~23L of Seltzer`
 
-- Milo Water Squirts
-- Soda Stream
-- ABC Crafted Flavours
+- Mio Water Squirts ~200-300ml
+- Soda Stream ~200-300ml
+- ABC Crafted Flavours ~60ml
+- Olive Nation Extract ~60ml
 
 ---
 
@@ -101,40 +104,34 @@ ___
 
 ### Prep
 
-- Sanitize equipment: Nylon bag, airlock, carboy/fermenter, funnel, pale, yeast pack, scissors. `Do NOT rinse sanitised equipment`
+- Sanitize equipment: Nylon bag, airlock, carboy/fermenter, funnel, pale, yeast pack, scissors. `Use the distilled water to rinse if needed`
 - Add as much water to pot as possible leaving room for the other ingredients. `Any of the 24L that is unable to be added will be added to the fermenter afterwards`
-- Add 1L of water to kettle.
 - Stir in 2.5kg of dextrose to pot.
 
 ### Boil
 
 - Bring pot to a light boil. `Make sure to constantly stir and prevent the sugars from burning to the pot`
-- Start 15 minute timer.
+- Start 10 minute timer.
 - Turn off heat.
 - Stir in yeast nutrient.
-- Remove the Nylon malt bag and use the boiled 1 L of water to rinse the bag into the pot. `DO NOT SQUEEZE BAG`, let it drip while boiling.
-- Stir in Malt Extract and Honey (continue to stir).
-- After 15 minutes add 1 oz of the Saaz Hops.
-- After 45 minutes add 1 tsp of Irish Moss.
-- After 55 minutes add 0.25 oz of Saaz Hops.
-- After 60 minute boil remove from heat.
-- Take OG reading
+- Stir in Potassium Bicarbonate.
+- Remove sample for OG reading and let cool.
 
 ### Fermentation
 
 `The wort needs to reach room temperature without introducing bacteria, before the yeast can be added`
 
-- Cool wort down to 18-21 Celsius using a chiller or ice bath.
-- Add chilled wort to sanitised fermenter through sanitised nylon bag.
+- Cool wort down to 19-21 Celsius using a chiller or ice bath.
+- Add chilled wort to sanitised fermenter.
 - Top up fermenter with distilled water to target volume.
 - Add yeast to fermenter. `Make sure to sanitise packet and scissors before hand`
 - Shake fermenter to oxiginate wort.
 - Place airlock on fermenter with sanitised solution in it.
-- Place fermenter in a dark area at around 18-21 Celsius for `2 weeks`.
+- Place fermenter in a dark area at around 19-21 Celsius for `2 weeks`.
 
 ### Bottling/Kegging
 - Sanitize a large pale, a nylon bag, and your bottling/kegging equipment.
-- Mix 500 mL of boiled water and proper amount of desired [priming sugar](#bottling-sugar-table) in the pale.
+- Mix 500 mL of boiled water, proper amount of desired [priming sugar](#bottling-sugar-table), and proper amount of desired [Flavouring](#flavouring-table) in the pale.
 - Let the sugar water cool.
 - Place the the Nylon bag over the pale as a filter.
 - Syphon out the fermented beer into the sugar water through the nylon bag without adding too much air to the mix.
