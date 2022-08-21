@@ -17,9 +17,10 @@ Cool crisp honey specialty beer, based on the Defalco Honey-Raspberry Ale and th
 |-------------|------------|---------------|--------------|---------------------|
 | 30 minutes  | 60 minutes | 2 Weeks       |  2 weeks     |  19C to 21C         |
 
+
 |  ABV | Original Gravity (SG) | Final Gravity (SG)  | Recipe Cost |
 |------|-----------------------|---------------------|-------------|
-| ~5.0%| ~1.039                | ~1.000              |  80 CAD     |
+| ~7.3%| ~1.066                | ~1.010              |  80 CAD     |
 
 ___
 
