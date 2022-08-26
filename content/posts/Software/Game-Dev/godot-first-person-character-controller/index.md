@@ -1,7 +1,7 @@
 ---
 date: 2022-08-25T10:58:08-04:00
-title: "Operation FLOSS"
-description: "FOSS is also acceptable..."
+title: "Godot First Person Controller (Rigidbody)"
+description: "FPCC using a RigidDynamicBody3D..."
 hero: "images/fpcc-bg.webp"
 tags: ["Software", "Godot","Character","Controller","First Person"]
 categories: ["Software","Game-Dev"]
