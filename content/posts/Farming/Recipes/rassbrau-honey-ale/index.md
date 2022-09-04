@@ -18,9 +18,9 @@ Cool crisp honey specialty beer, based on the Defalco Honey-Raspberry Ale and th
 | 30 minutes  | 60 minutes | 2 Weeks       |  2 weeks     |  19C to 21C         |
 
 
-|  ABV | Original Gravity (SG) | Final Gravity (SG)  | Recipe Cost |
-|------|-----------------------|---------------------|-------------|
-| ~7.3%| ~1.066                | ~1.010              |  80 CAD     |
+|  ABV | Original Gravity (SG) | Final Corrected Gravity (SG) | Recipe Cost |
+|------|-----------------------|------------------------------|-------------|
+| ~9.2%| ~1.076                | ~1.001                       |  80 CAD     |
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 ### Tools
 
-- Aluminium Pot (~24L)
+- Aluminium Pot (~20L)
 - Nylon Mesh Bag
 - Stir Stick
 - Airlock
@@ -43,10 +43,10 @@ ___
 - Thermometer
 - Large Funnel
 - Large pale (~27L)
-- Kettle (~1L)
+- Kettle (~1.7L)
 - Sanitiser (No rinse: Starsan)
 - Cleaner PBW
-- Keg/~32 750ml bottles
+- Keg/~46 500ml bottles
 
 ---
 

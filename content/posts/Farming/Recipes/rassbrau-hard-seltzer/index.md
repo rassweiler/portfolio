@@ -18,9 +18,9 @@ Cool crisp hard seltzer brew recipe (Non vodka based) with a choice of flavourin
 | 0 minutes   | 15 minutes | 2 Weeks       |  2 weeks     |  19C to 21C         |
 
 
-|  ABV | Original Gravity (SG) | Final Gravity (SG)  | Recipe Cost |
-|------|-----------------------|---------------------|-------------|
-| ~5.0%| ~1.039                | ~1.000              |  67 CAD     |
+|  ABV | Original Gravity (SG) | Final Corrected Gravity (SG) | Recipe Cost |
+|------|-----------------------|------------------------------|-------------|
+| ~6.2%| ~1.048                | ~0.998                       |  67 CAD     |
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 ### Tools
 
-- Aluminium Pot (~23L)
+- Aluminium Pot (~20L)
 - Nylon Mesh Bag
 - Stir Stick
 - Airlock
@@ -42,11 +42,11 @@ ___
 - Syphon/Auto-syphon
 - Thermometer
 - Large Funnel
-- Large pale (~5L)
-- Kettle (~1L)
+- Large pale (~27L)
+- Kettle (~1.7L)
 - Sanitiser (No rinse: Starsan)
 - Cleaner PBW
-- Keg/30 500ml bottles
+- Keg/~46 500ml bottles
 
 ---
 
