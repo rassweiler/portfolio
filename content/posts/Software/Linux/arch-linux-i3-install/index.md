@@ -705,14 +705,14 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 
 ~~`lightdm-webkit-theme-litarvan`~~ is the desktop manager
 
-`ly` is a simple desktop manager
+~~`ly` is a simple desktop manager~~ This manager stopped working recently (2022-07-12)
+
+`SDDM` is a desktop manager used by kde.
 
 ```zsh
-sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine-staging lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin
+sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine-staging lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin sddm plasma-sdk plasma-workspace
 
-paru -S ly-git
-
-paru -S wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp jmtpfs librewolf autotiling rustup kdenlive xvidcore ardour libvpx libde265 opencv thunderbird
+paru -S wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp jmtpfs librewolf autotiling rustup kdenlive xvidcore ardour libvpx libde265 opencv thunderbird sddm-config-editor-git
 
 sudo systemctl enable ly.service
 ```
@@ -725,7 +725,7 @@ These are my own mashed together configs, mostly from my i3wm system. There are 
 git clone https://github.com/rassweiler/dotfiles.git && cd dotfiles && ./install
 ```
 
-### ~~Set Lightdm Theme~~:
+### ~~Set Lightdm Theme~~ (No longer used):
 
 ```zsh
 sudo nano /etc/lightdm/lightdm.conf
@@ -749,15 +749,28 @@ time_language       = auto
 #webkit_theme        = antergos
 webkit_theme        = litarvan
 ```
+### Set Sddm Theme:
 
-### Set Theme:
+- Download the [dracula theme](https://store.kde.org/p/1374247)
+
+- Extract the `Dracula` folder to downloads
+
+- Copy folder to themes directory:
 
 ```zsh
-gsettings set org.gnome.desktop.interface gtk-theme 'Dracula'
+sudo cp -rf ~/Downloads/Dracula/ /usr/share/sddm/themes/Dracula
+```
 
-gsettings set org.gnome.desktop.wm.preferences theme 'Dracula'
+Test the theme:
 
-gsettings set org.gnome.desktop.interface icon-theme 'Dracula'
+```zsh
+sddm-greeter --test-mode --theme /usr/share/sddm/themes/Dracula
+```
+
+Set the new theme:
+
+```zsh
+sudo sddm-config-editor
 ```
 
 ### Set Shell:
@@ -803,7 +816,13 @@ sudo pacman -S winetricks
 Extra wine packages
 
 ```
-sudo pacman -S giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader samba dosbox
+sudo pacman -S --needed wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama lib32-libgcrypt libgcrypt ncurses lib32-ncurses ocl-icd lib32-ocl-icd opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader samba dosbox
+```
+
+Nvidia Extras
+
+```zsh
+sudo pacman -S --needed nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader
 ```
 
 ### Install Betterdiscord:
