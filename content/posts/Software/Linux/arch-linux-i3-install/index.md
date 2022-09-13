@@ -770,7 +770,16 @@ sddm-greeter --test-mode --theme /usr/share/sddm/themes/Dracula
 Set the new theme:
 
 ```zsh
-sudo sddm-config-editor
+sudo mkdir /etc/sddm.conf.d/
+
+sudo cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf.d/default.conf
+
+sudo nano /etc/sddm.conf.d/default.conf
+```
+
+```yml
+[Theme]
+Current=Dracula
 ```
 
 ### Set Shell:
