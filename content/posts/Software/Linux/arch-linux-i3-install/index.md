@@ -562,6 +562,10 @@ git clone https://aur.archlinux.org/paru.git
 
 cd paru
 
+sudo pacman -S rustup
+
+rustup default stable
+
 makepkg -si
 
 cd ~
