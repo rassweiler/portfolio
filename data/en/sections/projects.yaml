@@ -25,7 +25,7 @@ projects:
   logo: /images/projects/react.webp
   role: Developer
   timeline: "July 2022 - Present"
-  repo: https://github.com/rassweiler/hatchways-react-pagination 
+  repo: https://github.com/kylerassweiler/165b69/tree/1-feature-build-frontend-pagination
   summary: A Hatchways assesment for React front-end work. The project required the addition of a pagination system for a sample blog site.
   tags: ["academic", "node", "react", "js", "frontend"]
 

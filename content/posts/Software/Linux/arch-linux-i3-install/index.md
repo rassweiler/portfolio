@@ -55,6 +55,12 @@ ip address show
 ssh root@xxx.xxx.xxx.xxx
 ```
 
+### Set datetime:
+
+```zsh
+timedatectl set-ntp true
+```
+
 ### Find your device:
 
 Use lsblk to dyplay your disk information, normally the drive will listed as SDA or SDB.
@@ -555,6 +561,10 @@ cd /tmp
 git clone https://aur.archlinux.org/paru.git
 
 cd paru
+
+sudo pacman -S rustup
+
+rustup default stable
 
 makepkg -si
 
