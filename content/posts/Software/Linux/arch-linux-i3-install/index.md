@@ -395,6 +395,18 @@ pacman -S bluez bluez-utils
 systemctl enable bluetooth
 ```
 
+#### Bookmarking:
+
+```zsh
+sudo pacman -S xdotool
+```
+
+Create a text file with lines of bookmarks (Default path is ~/Nextcloud/.bookmarks) and modify the i3 config to match the file location:
+
+```zsh
+bindsym $mod+Insert exec "xdotool type $(grep -v '^#' ~/Nextcloud/.bookmarks | dmenu -i -l 50 | cut -d' ' -f1)"
+```
+
 #### VM:
 
 ```zsh
