@@ -395,6 +395,18 @@ pacman -S bluez bluez-utils
 systemctl enable bluetooth
 ```
 
+#### Bookmarking:
+
+```zsh
+sudo pacman -S xdotool
+```
+
+Create a text file with lines of bookmarks (Default path is ~/Nextcloud/.bookmarks) and modify the i3 config to match the file location:
+
+```zsh
+bindsym $mod+Insert exec "xdotool type $(grep -v '^#' ~/Nextcloud/.bookmarks | dmenu -i -l 50 | cut -d' ' -f1)"
+```
+
 #### VM:
 
 ```zsh
@@ -548,6 +560,15 @@ ssh NAME@xxx.xxx.xxx.xxx
 ```zsh
 timedatectl set-ntp true
 ```
+### Setup Rust (Needed For Paru):
+
+```zsh
+sudo pacman -S rustup
+
+rustup toolchain install stable
+
+rustup default stable
+```
 
 ### Access AUR with Paru:
 
@@ -561,10 +582,6 @@ cd /tmp
 git clone https://aur.archlinux.org/paru.git
 
 cd paru
-
-sudo pacman -S rustup
-
-rustup default stable
 
 makepkg -si
 
@@ -683,7 +700,7 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 
 ### Install i3wm + DE:
 
-`obs-studio-tytan652` has better plugins packaged vs `obs` from main
+~~`obs-studio-tytan652`~~ has better plugins packaged vs `obs` from main. *OBS now has the same abilities*
 
 `feh` will handle the wallpaper (can also use nitrogen)
 
@@ -719,12 +736,14 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 
 `SDDM` is a desktop manager used by kde.
 
+`xclip` allows for copying selected text.
+
 ```zsh
-sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine-staging lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin sddm plasma-sdk plasma-workspace
+sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine-staging lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin sddm plasma-sdk plasma-workspace obs xclip
 
-paru -S wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer obs-studio-tytan652 mangohud gimp jmtpfs librewolf autotiling rustup kdenlive xvidcore ardour libvpx libde265 opencv thunderbird sddm-config-editor-git
+paru -S wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer mangohud gimp jmtpfs librewolf autotiling rustup kdenlive xvidcore ardour libvpx libde265 opencv thunderbird sddm-config-editor-git checkupdates+aur
 
-sudo systemctl enable ly.service
+sudo systemctl enable sddm.service
 ```
 
 ### COPY CONFIGS FROM GIT (Optional):
@@ -848,14 +867,6 @@ sudo pacman -S --needed nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-setti
 
 ```zsh
 sudo betterdiscord-installer
-```
-
-### Setup Rust:
-
-```zsh
-rustup toolchain install stable
-
-rustup default stable
 ```
 
 ### Setup Git:
