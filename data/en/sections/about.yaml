@@ -15,7 +15,7 @@ company:
   url: "https://en.wikipedia.org/wiki/Toyota_Motor_Engineering_%26_Manufacturing_North_America"
 
 # your resume. this file path should be relative to you "static" directory
-resume: "/PDF/KyleRassweiler-CV-Software.pdf"
+resume: "/PDF/KyleRassweiler-CV.pdf"
 
 # a summary about you
 summary: 'Engineering Specialist with experience in: software development, networking, programmable logic controllers, robotics, electronics, and machining. I am currently in a React/Node/Electron deep dive, but also have experience with Python and various sql/nosql databases.'
