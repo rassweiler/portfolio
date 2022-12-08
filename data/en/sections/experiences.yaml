@@ -24,12 +24,15 @@ experiences:
     # give some points about what was your responsibilities at the company.
     responsibilities:
     - PLC Programming.
-    - Robotic/ Computer Vision (Robeye).
+    - Robotic/ Computer Vision (Robeye, Omron, Keyence).
     - 3D Factory Design.
     - Robot Programming.
+    - HMI Design
     - Low Voltage Electrical.
     - CI/CD.
-    - Project Management
+    - Project Management.
+    - Commissioning.
+    - Tools Programming (VBA, PowerBI, Electron).
 
 - company:
     name: FIO
