@@ -49,9 +49,9 @@ projects:
   logo: /images/projects/krello-bg.webp
   role: Developer
   timeline: "August 2019 - Present"
-  repo: https://github.com/rassweiler/krello
-  summary: A simple clone of the well known kanban system Trello. Currently there isn’t a database attached beyond the react browser, but the user is able to add boards and cards.
-  tags: ["hobby", "node", "react", "redux"]
+  repo: https://github.com/rassweiler/krellov2
+  summary: A simple kanban web app made using Nextjs, React, tRPC, NextAuth, Prisma, and Typescript. The app is hosted on Vercel and Planetscale.
+  tags: ["hobby", "node", "react", "nextjs", "trpc", "nextauth", "prisma", "mysql"]
 
 - name: Kawasaki AS Parser
   logo: /images/sections/projects/toha.png
