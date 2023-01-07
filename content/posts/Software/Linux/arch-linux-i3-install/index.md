@@ -739,7 +739,7 @@ Exec = /usr/bin/rsync -a --delete /boot /.bootbackup
 `xclip` allows for copying selected text.
 
 ```zsh
-sudo pacman -S xorg xorg-server xorg-init xterm i3-gaps i3blocks i3status thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine-staging lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin sddm plasma-sdk plasma-workspace obs xclip
+sudo pacman -S xorg xorg-server xorg-init xterm i3-wm i3blocks i3status thunar feh dmenu picom btop mpv nextcloud-client packagekit-qt5 rofi volumeicon firefox neofetch starship code keepassxc gnome-keyring libsecret xfce4-settings lsd exa lm_sensors steam wine-staging lutris wine-mono discord mousepad bat gvfs gvfs-mtp wget usbutils numlockx arandr jre-openjdk jdk-openjdk file-roller flameshot tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin sddm plasma-sdk plasma-workspace obs xclip
 
 paru -S wezterm jellyfin-media-player haruna proton proton-ge-custom protonup-qt betterdiscord-installer mangohud gimp jmtpfs librewolf autotiling rustup kdenlive xvidcore ardour libvpx libde265 opencv thunderbird sddm-config-editor-git checkupdates+aur
 
