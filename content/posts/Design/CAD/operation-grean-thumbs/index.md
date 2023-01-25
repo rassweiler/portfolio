@@ -71,5 +71,11 @@ ___
 
 {{< figure src="images/ogt-18.webp" title="Printed view of parts together" link="images/ogt-18.webp" >}}
 
+## Alternative Testing Setup:
 
+A smaller setup can be made using 5-7 gallon food-grade pales from Home Depot and a hole saw.
+
+{{< figure src="images/ogt-pale-option-01.webp" title="Aeroponic Setup In a 5 Gallon Pale" link="images/ogt-pale-option-01.webp" >}}
+
+{{< figure src="images/ogt-pale-option-02.webp" title="Aeroponic Grow Space In a 5 Gallon Pale" link="images/ogt-pale-option-02.webp" >}}
 ___
