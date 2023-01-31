@@ -358,7 +358,7 @@ Uncomment the following
 **WARNING** choose Y to remove iptables
 
 ```zsh
-pacman -S xdg-desktop-portal base-devel grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog avahi gvfs gvfs-smb nfs-utils cifs-utils ntfs-3g inetutils dnsutils mtools dosfstools snapper snap-pac xdg-utils xdg-user-dirs alsa-utils inetutils usbutils openssh grub-customizer os-prober cups acpi acpi_call acpid iptables-nft ipset firewalld nss-mdns bash-completion fish archlinux-keyring hwinfo upower
+pacman -S xdg-desktop-portal base-devel grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog avahi gvfs gvfs-smb nfs-utils cifs-utils ntfs-3g inetutils dnsutils mtools dosfstools snapper snap-pac xdg-utils xdg-user-dirs alsa-utils inetutils usbutils openssh grub-customizer os-prober cups acpi acpi_call acpid iptables-nft ipset firewalld nss-mdns bash-completion fish archlinux-keyring hwinfo upower neovim stylua
 
 systemctl enable NetworkManager
 systemctl enable cups.service
