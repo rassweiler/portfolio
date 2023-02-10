@@ -1,5 +1,5 @@
 ---
-date: 2021-01-09T10:58:08-04:00
+date: 2023-01-10T10:58:08-04:00
 title: "Network Upgrade"
 description: "Virtual Machines, Storage, and Streaming"
 hero: "images/network-bg.webp"
@@ -47,35 +47,28 @@ ___
 
 ## Amazon Books & Comic Stream Replacement
 
-For all of my digital reading needs I have [Komga](https://github.com/gotson/komga) serving up my PDFs, EPUBs, CBRs, CBZs, etc... It's listed as a comic and manga server but it can handle manuals and textbooks just fine.
-
-On the android mobile end I use Tachiyomi with the Komga extension to access my books.
-
-{{< figure src="images/network-komga-01.webp" title="Komga Book Server UI" link="images/network-komga-01.webp" >}}
-
+Jellyfin has matured enough to be able to handle most digital books and comics. There is room for library metadata improvements though.
 ___
 
 ## Media Automation & Organisation
 
 All the media is organised into a proper folder structure for each server with all meta data collected.
 
-### Jackett
+### Flaresoverr 
 
-[Jackett](https://github.com/Jackett/Jackett) contains a list of places to find torrents and their connection information. 
-
-From their github:
-`It translates queries from apps (Sonarr, Radarr, SickRage, CouchPotato, Mylar3, Lidarr, DuckieTV, qBittorrent, Nefarious etc.) into tracker-site-specific http queries, parses the html or json response, and then sends results back to the requesting software`
-
-{{< figure src="images/network-jackett-01.webp" title="Jackett UI" link="images/network-jackett-01.webp" >}}
-
-### NZBHydra2
-
-[NZBHydra2](https://github.com/theotherp/nzbhydra2) is a single point for conncting to various download sources, making it easier configure various servers. 
+[Flaresolverr](https://github.com/FlareSolverr/FlareSolverr) is a proxy server to bypass Cloudflare and DDoS-GUARD protection. 
 
 From their github:
-`NZBHydra 2 is a meta search for newznab indexers and torznab trackers. It provides easy access to newznab indexers and many torznab trackers via Jackett. You can search all your indexers and trackers from one place and use it as an indexer source for tools like Sonarr, Radarr, Lidarr or CouchPotato.`
+`FlareSolverr starts a proxy server, and it waits for user requests in an idle state using few resources. When some request arrives, it uses Selenium with the undetected-chromedriver to create a web browser (Chrome). It opens the URL with user parameters and waits until the Cloudflare challenge is solved (or timeout). The HTML code and the cookies are sent back to the user, and those cookies can be used to bypass Cloudflare using other HTTP clients.`
 
-{{< figure src="images/network-nzbhydra2-01.webp" title="NZBHydra2 UI" link="images/network-nzbhydra2-01.webp" >}}
+### Prowlarr 
+
+[Prowlarr](https://github.com/Prowlarr/Prowlarr) is an indexer manager/proxy built on the popular *arr .net/reactjs base stack.
+
+From their github:
+`Prowlarr supports management of both Torrent Trackers and Usenet Indexers. It integrates seamlessly with Lidarr, Mylar3, Radarr, Readarr, and Sonarr offering complete management of your indexers with no per app Indexer setup required (we do it all).`
+
+{{< figure src="images/prowlarr.webp" title="Prowlarr UI" link="images/prowlarr.webp" >}}
 
 ### Sonarr
 
@@ -128,8 +121,9 @@ From their github:
 
 ___
 
-## GMail & GDrive & GDocuments & GCalendar & GContacts & GMeetings & Trello
+## GDrive & GDocuments & GCalendar & GContacts & GMeetings & Trello
 
-[Nextcloud](https://nextcloud.com/) is the perfect google replacement for most needs, though I am currently looking into [Mailcow](https://github.com/mailcow/mailcow-dockerized) for emails.
+[Nextcloud](https://nextcloud.com/) is the perfect google replacement for most needs.
 
+{{< figure src="images/nextcloud.webp" title="Nextcloud UI" link="images/nextcloud.webp" >}}
 ___

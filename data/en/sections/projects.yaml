@@ -21,6 +21,14 @@ buttons:
 
 # your projects
 projects:
+- name: Krello
+  logo: /images/projects/krello-bg.webp
+  role: Developer
+  timeline: "August 2019 - Present"
+  repo: https://github.com/rassweiler/krellov2
+  summary: A simple kanban web app made using Nextjs, React, tRPC, NextAuth, Prisma, and Typescript. The app is hosted on Vercel and Planetscale.
+  tags: ["hobby", "node", "react", "nextjs", "trpc", "nextauth", "prisma", "mysql"]
+    
 - name: React Pagination
   logo: /images/projects/react.webp
   role: Developer
@@ -44,14 +52,6 @@ projects:
   url: "https://codepen.io/kylerassweiler/pen/LYdQmMz" 
   summary: A FreeCodeCamp project that will preview markdown input into a seperate editor window.
   tags: ["academic", "node", "react", "js", "frontend","markdown","fcc"]
-
-- name: Krello
-  logo: /images/projects/krello-bg.webp
-  role: Developer
-  timeline: "August 2019 - Present"
-  repo: https://github.com/rassweiler/krellov2
-  summary: A simple kanban web app made using Nextjs, React, tRPC, NextAuth, Prisma, and Typescript. The app is hosted on Vercel and Planetscale.
-  tags: ["hobby", "node", "react", "nextjs", "trpc", "nextauth", "prisma", "mysql"]
 
 - name: Kawasaki AS Parser
   logo: /images/sections/projects/toha.png

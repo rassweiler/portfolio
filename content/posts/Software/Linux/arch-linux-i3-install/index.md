@@ -1,13 +1,11 @@
 ---
-date: 2022-06-20T10:58:08-04:00
+date: 2023-01-10T10:58:08-04:00
 title: "Arch Linux i3wm Install Guide"
 description: "Easy Install Guide For Arch Linux"
 hero: "images/archinstall-bg.webp"
 tags: ["OS","Arch","Linux","BTRFS","Snapper","i3WM"]
 categories: ["Software","Linux"]
 ---
-
-*Updated: 2022-06-22*
 
 This guide is for installing arch linux (UEFI) with Xorg, i3wm, Lightdm, Paru, BTRFS, Snapper, Snap-pac-grub, Snapshots, Qemu, KVM, and Gaming.
 
