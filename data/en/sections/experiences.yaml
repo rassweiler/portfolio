@@ -11,6 +11,28 @@ section:
 # Your experiences
 experiences:
 - company:
+    name: Canopy Growth
+    url: "https://www.canopygrowth.com/"
+    location: Smithfalls
+    # company overview
+    overview: Cannabis production facility.
+  positions:
+  - designation: Automation & Controls Technician
+    start: 2023
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - PLC Programming.
+    - Vision (Cognex).
+    - Electrical Schematics & Diagrams
+    - HMI Design
+    - Low Voltage Electrical.
+    - CI/CD.
+    - Project Management.
+    - Commissioning.
+    - Building Automation Systems
+- company:
     name: TEMA (Toyota NA)
     url: "http://www.toyotageorgetown.com/"
     location: North America
@@ -20,7 +42,7 @@ experiences:
   - designation: Engineering Specialist
     start: 2017
     # don't provide end date if you are currently working there. It will be replaced by "Present"
-    # end: Dec 2020
+    end: 2023
     # give some points about what was your responsibilities at the company.
     responsibilities:
     - PLC Programming.
