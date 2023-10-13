@@ -62,5 +62,3 @@ jobs:
           git config user.email 'dev@kylerassweiler.ca'
           git commit -m 'Updated site'
           git push
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
