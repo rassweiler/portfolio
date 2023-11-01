@@ -1,7 +1,7 @@
 ---
 date: 2023-10-31T19:00:08-04:00
-title: "Arch Linux i3wm Install Guide"
-description: "Easy Install Guide For Arch Linux"
+title: "Arch Linux Hyprland Install Guide"
+description: "Easy Install Guide For Arch Linux With Hyprland"
 hero: "images/archinstall-bg.webp"
 tags: ["OS","Arch","Linux","BTRFS","hyprland"]
 categories: ["Software","Linux"]
@@ -45,7 +45,7 @@ Run the built in archinstall script:
 ```zsh
 archinstall
 ```
-#### The Basics
+### The Basics
 
 {{< figure src="images/Archinstaller_Base.png" title="Archinstall base" link="images/Archinstaller_Base.png" >}}
 
@@ -65,7 +65,7 @@ In the installer setup the base system:
 - Set the time sync
 - Enable the multilib repository in optional repositories
 
-#### Profile
+### Profile
 
 `AMD/Intel`:
 If you aren't using an Nvidia gpu you can set the profile to Desktop-Hyprland:
@@ -75,35 +75,35 @@ If you aren't using an Nvidia gpu you can set the profile to Desktop-Hyprland:
 If you have an Nvidia gpu we need to select a minimal profile and install the nvidia version of hyprland:
 {{< figure src="images/Archinstaller_Profile_Minimal.png" title="Archinstall minimal profile" link="images/Archinstaller_Profile_Minimal.png" >}}
 
-Then under additional packages add the following:
+**NVIDIA ONLY** Then under additional packages add the following:
 
 ```zsh
-wofi qt5-wayland qt6-wayland dunst xdg-desktop-portal-hyprland nvidia-dkms nvidia-utils nvidia-settings polkit sddm
+qt5-wayland qt6-wayland dunst xdg-desktop-portal-hyprland nvidia-dkms nvidia-utils nvidia-settings polkit sddm
 ```
 
-#### Additional Packages
+### Additional Packages
 
 Add the following packages to the base install:
 
 ```zsh
-git wezterm thunar flameshot neovim code firefox thunderbird nfs-utils fish bash-completion base-devel libreoffice-still mpv gvfs tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils grim
+rofi git wezterm thunar flameshot neovim code firefox thunderbird nfs-utils fish bash-completion base-devel libreoffice-still mpv gvfs tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils grim ttf-liberation wl-clipboard python-pywal swayidle swappy cliphist less pacman-contrib swtpm rofi-calc
 
 ```
 
 Personal extras:
 
 ```zsh
-nextcloud godot blender gimp inkscape keepassxc obs-studio lutris steam discord qemu-full xdotool virt-manager libvirt nerd-fonts kdenlive rustup lsd ez gvfsa libvpx libde265 xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza python-pywal
+nextcloud-client godot blender gimp inkscape keepassxc obs-studio lutris steam discord qemu-full xdotool virt-manager libvirt nerd-fonts kdenlive rustup lsd gvfsa libvpx libde265 xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza trizen
 ```
 
-#### Install
+### Finish Installer
 
 Once everything is setup to your needs select the install option.
 
-### Post Install
+## Post Install
 
 After the installer finishes choose the option to chroot into the new system before restarting to finish up the install:
-{{< figure src="images/Archinstaller_Complete.png" title="Archinstall completed" link="images/Archinstaller_Complete.png" >}}
+{{< figure src="images/Archinstaller_Complete.png" title="Archinstall completed" link="images/Archinstaller_Completed.png" >}}
 
 Make sure to switch to user level:
 
@@ -112,7 +112,7 @@ su [username]
 ```
 
 
-#### Rustup
+### Rustup
 
 Rust will be needed to compile paru:
 
@@ -122,7 +122,7 @@ rustup toolchain install stable
 rustup default stable
 ```
 
-#### Paru
+### Paru
 
 Installing Paru will allow access to the AUR, make sure to have switched to the user level first:
 
@@ -140,21 +140,21 @@ cd ~
 paru -Syu
 ```
 
-#### Install AUR Packages
+### Install AUR Packages
 
 Install the rest of the packages from the AUR:
 
 ```zsh
-paru -S ovmf jellyfin-media-player arc-icon-theme mangohud jmtpfs hyprland-nvidia waybar-hyprland swww
+paru -S ovmf jellyfin-media-player arc-icon-theme mangohud jmtpfs hyprland-nvidia waybar-hyprland swww sddm-sugar-dark wlogout ant-dracula-gtk-theme
 ```
 
-#### Setup SDDM:
+### Setup SDDM:
 
 ```zsh
 sudo systemctl enable sddm
 ```
 
-#### Setup VM:
+### Setup VM:
 
 ```zsh
 sudo systemctl enable libvirtd
@@ -162,14 +162,14 @@ sudo systemctl enable virtlogd.socket
 sudo usermod -aG libvirt [user_name]
 ```
 
-#### Setup Git:
+### Setup Git:
 
 ```zsh
 git config --global user.name "Your Name"
 git config --global user.email "youremail@yourdomain.com"
 ```
 
-#### Config Hyprland:
+### Config Hyprland:
 
 Since we aren't using kitty or dolphin we need to change some config options before boot:
 
@@ -192,7 +192,7 @@ bind = $mainMod, Q, exec, wezterm
 bind = $mainMod, E, exec, thunar
 ```
 
-#### Complete and Exit
+### Complete and Exit
 
 ```zsh
 exit
@@ -202,20 +202,26 @@ reboot
 
 ## First Boot
 
-### Login & Open Shell
+Log into the machine and open the terminal
 
 {{< figure src="images/SDDM_Login.png" title="Login Screen" link="images/SDDM_Login.png" >}}
 
-### Finish Setup
+## Finish Setup
 
-#### VM
+### VM
 
 ```zsh
 sudovirsh net-autostart default
 ```
+
+### Pywal
+
+```zsh
+pywal -i [path_to_image]
+```
 ___
 
-### REFERENCES
+## REFERENCES
 
 - [Arch Install Guide](https://wiki.archlinux.org/title/Installation_guide)
 - [Arch PCI Passthrough](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF)
