@@ -86,14 +86,14 @@ qt5-wayland qt6-wayland dunst xdg-desktop-portal-hyprland nvidia-dkms nvidia-uti
 Add the following packages to the base install:
 
 ```zsh
-rofi git wezterm thunar flameshot neovim code firefox thunderbird nfs-utils fish bash-completion base-devel libreoffice-still mpv gvfs tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils grim ttf-liberation wl-clipboard python-pywal swayidle swappy cliphist less pacman-contrib swtpm rofi-calc
+rofi git wezterm thunar neovim code firefox thunderbird nfs-utils fish bash-completion base-devel libreoffice-still mpv gvfs tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils grim ttf-liberation wl-clipboard python-pywal swayidle swappy cliphist less pacman-contrib swtpm rofi-calc sddm-kcm qt5ct
 
 ```
 
 Personal extras:
 
 ```zsh
-nextcloud-client godot blender gimp inkscape keepassxc obs-studio lutris steam discord qemu-full xdotool virt-manager libvirt nerd-fonts kdenlive rustup lsd gvfsa libvpx libde265 xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza trizen
+nextcloud-client godot blender gimp inkscape keepassxc obs-studio lutris steam discord qemu-full xdotool virt-manager libvirt nerd-fonts kdenlive rustup lsd gvfsa libvpx libde265 xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza
 ```
 
 ### Finish Installer
@@ -145,7 +145,7 @@ paru -Syu
 Install the rest of the packages from the AUR:
 
 ```zsh
-paru -S ovmf jellyfin-media-player arc-icon-theme mangohud jmtpfs hyprland-nvidia waybar-hyprland swww sddm-sugar-dark wlogout ant-dracula-gtk-theme
+paru -S ovmf jellyfin-media-player arc-icon-theme mangohud jmtpfs hyprland-nvidia waybar-hyprland swww sddm-sugar-dark wlogout ant-dracula-gtk-theme trizen
 ```
 
 ### Setup SDDM:
