@@ -78,7 +78,7 @@ If you have an Nvidia gpu we need to select a minimal profile and install the nv
 **NVIDIA ONLY** Then under additional packages add the following:
 
 ```zsh
-qt5-wayland qt6-wayland dunst xdg-desktop-portal-hyprland nvidia-dkms nvidia-utils nvidia-settings polkit sddm
+qt5-wayland qt6-wayland dunst xdg-desktop-portal-hyprland nvidia-dkms nvidia-utils nvidia-settings polkit sddm qt5ct libva
 ```
 
 ### Additional Packages
@@ -86,14 +86,14 @@ qt5-wayland qt6-wayland dunst xdg-desktop-portal-hyprland nvidia-dkms nvidia-uti
 Add the following packages to the base install:
 
 ```zsh
-rofi git wezterm thunar neovim code firefox thunderbird nfs-utils fish bash-completion base-devel libreoffice-still mpv gvfs tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils grim ttf-liberation wl-clipboard python-pywal swayidle swappy cliphist less pacman-contrib swtpm rofi-calc sddm-kcm qt5ct
+rofi git wezterm thunar neovim code firefox thunderbird nfs-utils fish bash-completion base-devel libreoffice-still mpv gvfs tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils grim ttf-liberation wl-clipboard python-pywal swayidle swappy cliphist less pacman-contrib swtpm rofi-calc sddm-kcm
 
 ```
 
 Personal extras:
 
 ```zsh
-nextcloud-client godot blender gimp inkscape keepassxc obs-studio lutris steam discord qemu-full xdotool virt-manager libvirt nerd-fonts kdenlive rustup lsd gvfsa libvpx libde265 xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza
+nextcloud-client godot blender gimp inkscape keepassxc obs-studio lutris steam discord qemu-full xdotool virt-manager libvirt nerd-fonts kdenlive rustup lsd libvpx libde265 xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza
 ```
 
 ### Finish Installer
@@ -145,7 +145,7 @@ paru -Syu
 Install the rest of the packages from the AUR:
 
 ```zsh
-paru -S ovmf jellyfin-media-player arc-icon-theme mangohud jmtpfs hyprland-nvidia waybar-hyprland swww sddm-sugar-dark wlogout ant-dracula-gtk-theme trizen
+paru -S ovmf jellyfin-media-player arc-icon-theme mangohud jmtpfs hyprland-nvidia waybar-hyprland swww sddm-sugar-dark wlogout ant-dracula-gtk-theme trizen libva-nvidia-driver-git
 ```
 
 ### Setup SDDM:
@@ -191,6 +191,28 @@ exec-once = waybar
 bind = $mainMod, Q, exec, wezterm
 bind = $mainMod, E, exec, thunar
 ```
+
+### Set Themes
+
+Set the GTK themes:
+
+```zsh
+gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
+gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
+gsettings set org.gnome.desktop.interface icon-theme "Dracula"
+```
+
+### Nvidia BS For Hyprland
+
+**Nvidia** is notoriously garbage for Linux and will need several tweaks:
+
+- Update systemd-boot by adding `nvidia_drm.modeset=1` to the end of `/boot/loader/entries/arch.conf`
+- Update mkinit by adding `nvidia nvidia_modeset nvidia_uvm nvidia_drm` to the *MODULES* section of `/etc/mkinitcpio.conf` then running the generator:
+```zsh
+mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
+```
+- Add `options nvidia-drm modeset=1` to the end of `/etc/modprobe.d/nvidia.conf`, create the file if non existant.
+- 
 
 ### Complete and Exit
 
