@@ -86,14 +86,8 @@ qt5-wayland qt6-wayland dunst xdg-desktop-portal-hyprland nvidia-dkms nvidia-uti
 Add the following packages to the base install:
 
 ```zsh
-rofi git wezterm thunar neovim code firefox thunderbird nfs-utils fish bash-completion base-devel libreoffice-still mpv gvfs tumbler thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils grim ttf-liberation wl-clipboard python-pywal swayidle swappy cliphist less pacman-contrib swtpm rofi-calc sddm-kcm
+rofi git wezterm thunar neovim code firefox thunderbird nfs-utils fish bash-completion base-devel mpv gvfs tumbler grim ttf-liberation wl-clipboard python-pywal swayidle swappy cliphist less rofi-calc sddm-kcm xdotool rustup lsd
 
-```
-
-Personal extras:
-
-```zsh
-nextcloud-client godot blender gimp inkscape keepassxc obs-studio lutris steam discord qemu-full xdotool virt-manager libvirt nerd-fonts kdenlive rustup lsd libvpx libde265 xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza
 ```
 
 ### Finish Installer
@@ -140,12 +134,18 @@ cd ~
 paru -Syu
 ```
 
-### Install AUR Packages
+### Install VM & AUR Packages
+
+Install final packages:
+
+```zsh
+sudo pacman -S pacman-contrib swtpm qemu-guest-agent virt-manager virt-viewer vde2 iptables-nft dnsmasq bridge-utils libvirt libvpx libde265 xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza freerdp thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils libreoffice-still godot blender gimp inkscape keepassxc obs-studio lutris steam discord nerd-fonts kdenlive
+```
 
 Install the rest of the packages from the AUR:
 
 ```zsh
-paru -S ovmf jellyfin-media-player arc-icon-theme mangohud jmtpfs hyprland-nvidia waybar-hyprland swww sddm-sugar-dark wlogout ant-dracula-gtk-theme trizen libva-nvidia-driver-git
+paru -S jellyfin-media-player arc-icon-theme mangohud jmtpfs hyprland-nvidia waybar-hyprland swww sddm-sugar-dark wlogout ant-dracula-gtk-theme trizen libva-nvidia-driver-git ovmf qemu-arch-extra ebtables
 ```
 
 ### Setup SDDM:
@@ -159,7 +159,7 @@ sudo systemctl enable sddm
 ```zsh
 sudo systemctl enable libvirtd
 sudo systemctl enable virtlogd.socket
-sudo usermod -aG libvirt [user_name]
+sudo usermod -aG kvm,libvirt [user_name]
 ```
 
 ### Setup Git:
