@@ -68,26 +68,41 @@ In the installer setup the base system:
 ### Profile
 
 `AMD/Intel`:
+
 If you aren't using an Nvidia gpu you can set the profile to Desktop-Hyprland:
 {{< figure src="images/Archinstaller_Profile_Hyprland.png" title="Archinstall hyprland profile" link="images/Archinstaller_Profile_Hyprland.png" >}}
 
 `Nvidia`:
+
 If you have an Nvidia gpu we need to select a minimal profile and install the nvidia version of hyprland:
 {{< figure src="images/Archinstaller_Profile_Minimal.png" title="Archinstall minimal profile" link="images/Archinstaller_Profile_Minimal.png" >}}
 
 **NVIDIA ONLY** Then under additional packages add the following:
 
 ```zsh
-qt5-wayland qt6-wayland dunst xdg-desktop-portal-hyprland nvidia-dkms nvidia-utils nvidia-settings polkit sddm qt5ct libva
+qt5-wayland qt6-wayland dunst xdg-desktop-portal-hyprland nvidia nvidia-dkms nvidia-utils nvidia-settings polkit sddm qt5ct libva polkit-kde-agent
 ```
 
 ### Additional Packages
 
 Add the following packages to the base install:
 
-```zsh
-rofi git wezterm thunar neovim code firefox thunderbird nfs-utils fish bash-completion base-devel mpv gvfs tumbler grim ttf-liberation wl-clipboard python-pywal swayidle swappy cliphist less rofi-calc sddm-kcm xdotool rustup lsd
+- `rofi` is the modal package.
+- `wezterm` is the terminal package.
+- `thunar` is the file explorer package.
+- `neovim` is the terminal editor package.
+- `fish` is a shell.
+- `gvfs` is the mounting and trash package.
+- `tumbler` is the thumbnail package.
+- `grim` is the wayland screenshot package.
+- `python-pywal` is the colour scheme package.
+- `swappy` is the screenshot package.
+- `lsd` is the upgraded ls package.
+- `rustup` is the rust updater package.
+- `iwd` is the wireless networking package.
 
+```zsh
+rofi git wezterm thunar neovim code firefox thunderbird fish bash-completion base-devel gvfs tumbler grim ttf-liberation wl-clipboard python-pywal swayidle swappy cliphist rustup lsd networkmanager iwd dhcpcd
 ```
 
 ### Finish Installer
@@ -97,7 +112,7 @@ Once everything is setup to your needs select the install option.
 ## Post Install
 
 After the installer finishes choose the option to chroot into the new system before restarting to finish up the install:
-{{< figure src="images/Archinstaller_Complete.png" title="Archinstall completed" link="images/Archinstaller_Completed.png" >}}
+{{< figure src="images/Archinstaller_Completed.png" title="Archinstall completed" link="images/Archinstaller_Completed.png" >}}
 
 Make sure to switch to user level:
 
@@ -105,6 +120,13 @@ Make sure to switch to user level:
 su [username]
 ```
 
+### Fish
+
+Change default shell to fish:
+
+```zsh
+chsh -s /bin/fish
+```
 
 ### Rustup
 
@@ -112,7 +134,6 @@ Rust will be needed to compile paru:
 
 ```zsh
 rustup toolchain install stable
-
 rustup default stable
 ```
 
@@ -122,36 +143,53 @@ Installing Paru will allow access to the AUR, make sure to have switched to the 
 
 ```zsh
 cd /tmp
-
 git clone https://aur.archlinux.org/paru.git
-
 cd paru
-
 makepkg -si
-
 cd ~
-
 paru -Syu
 ```
 
 ### Install VM & AUR Packages
 
-Install final packages:
+Install final packages, select Y to replace iptables:
 
 ```zsh
-sudo pacman -S pacman-contrib swtpm qemu-guest-agent virt-manager virt-viewer vde2 iptables-nft dnsmasq bridge-utils libvirt libvpx libde265 xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza freerdp thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils libreoffice-still godot blender gimp inkscape keepassxc obs-studio lutris steam discord nerd-fonts kdenlive
+sudo pacman -S pacman-contrib swtpm virt-manager virt-viewer vde2 iptables-nft dnsmasq bridge-utils libvirt libvpx libde265 xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza freerdp thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils libreoffice-still godot blender gimp inkscape keepassxc obs-studio lutris steam discord nerd-fonts kdenlive file-roller pavucontrol mpv nextcloud-client rofi-calc nfs-utils ttf-font-awesome ttf-fira-sans ttf-fira-code ttf-firacode-nerd linux-zen-headers wireplumber neofetch starship
+```
+
+If the machine is a VM install the agents:
+
+```zsh
+sudo pacman -S qemu-guest-agent spice-vdagent
 ```
 
 Install the rest of the packages from the AUR:
 
 ```zsh
-paru -S jellyfin-media-player arc-icon-theme mangohud jmtpfs hyprland-nvidia waybar-hyprland swww sddm-sugar-dark wlogout ant-dracula-gtk-theme trizen libva-nvidia-driver-git ovmf qemu-arch-extra ebtables
+paru -S jellyfin-media-player arc-icon-theme mangohud jmtpfs hyprland-nvidia waybar-hyprland swww sddm-sugar-dark wlogout ant-dracula-gtk-theme trizen libva-nvidia-driver-git ovmf qemu-arch-extra ebtables bibata-cursor-theme
+```
+
+### Setup Nvidia:
+
+```zsh
+sudo systemctl enable nvidia-persistenced.service
 ```
 
 ### Setup SDDM:
 
 ```zsh
 sudo systemctl enable sddm
+sudo mkdir /etc/sddm.conf.d
+sudo cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf.d/sddm.conf
+sudo nvim /etc/sddm.conf.d/sddm.conf
+```
+
+Change the theme value:
+
+```yml
+[Theme]
+Current=sugar-dark
 ```
 
 ### Setup VM:
@@ -169,11 +207,84 @@ git config --global user.name "Your Name"
 git config --global user.email "youremail@yourdomain.com"
 ```
 
-### Config Hyprland:
+### Nvidia BS For Hyprland
+
+**Nvidia** is notoriously garbage for Linux and will need several tweaks:
+
+- Update systemd-boot by adding `nvidia_drm.modeset=1` to the end of `/boot/loader/entries/[ENTRY_NAME].conf`:
+
+```zsh
+sudo nvim /boot/loader/entries/[ENTRY_NAME].conf
+```
+
+- Update mkinit by adding `nvidia nvidia_modeset nvidia_uvm nvidia_drm` to the *MODULES* section of `/etc/mkinitcpio.conf`:
+
+```zsh
+sudo nvim /etc/mkinitcpio.conf
+```
+
+```yml
+MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)
+```
+
+then running the generator:
+
+```zsh
+mkinitcpio -p linux-zen
+#sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
+```
+- Add `options nvidia-drm modeset=1` to the end of `/etc/modprobe.d/nvidia.conf`, create the file if non existant:
+
+```zsh
+sudo nvim /etc/modprobe.d/nvidia.conf
+```
+
+```yml
+options nvidia-drm modeset=1
+```
+
+### Remote Setup
+
+```zsh
+sudo pacman -S freerdp
+paru -S xrdp
+sudo systemctl enable xrdp.service
+```
+
+### Config Hyprland With Dotfiles:
+
+If using dotfiles:
+
+```zsh
+git clone https://github.com/rassweiler/dotfiles.git
+cd dotfiles
+git checkout arch-hyprland
+./install
+./init.sh
+```
+
+### Complete and Exit
+
+```zsh
+exit
+exit
+reboot
+```
+
+## First Boot
+
+Log into the machine and open the terminal
+
+{{< figure src="images/SDDM_Login.png" title="Login Screen" link="images/SDDM_Login.png" >}}
+
+## Finish Setup
+
+### Config Hyprland Without Dotfiles:
 
 Since we aren't using kitty or dolphin we need to change some config options before boot:
 
 ```zsh
+cp /usr
 nvim ~/.config/hypr/hyperland.conf
 ```
 
@@ -194,41 +305,14 @@ bind = $mainMod, E, exec, thunar
 
 ### Set Themes
 
-Set the GTK themes:
+Set the GTK themes if **NOT** using my configs:
 
 ```zsh
 gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
 gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
 gsettings set org.gnome.desktop.interface icon-theme "Dracula"
+gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 ```
-
-### Nvidia BS For Hyprland
-
-**Nvidia** is notoriously garbage for Linux and will need several tweaks:
-
-- Update systemd-boot by adding `nvidia_drm.modeset=1` to the end of `/boot/loader/entries/arch.conf`
-- Update mkinit by adding `nvidia nvidia_modeset nvidia_uvm nvidia_drm` to the *MODULES* section of `/etc/mkinitcpio.conf` then running the generator:
-```zsh
-mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
-```
-- Add `options nvidia-drm modeset=1` to the end of `/etc/modprobe.d/nvidia.conf`, create the file if non existant.
-- 
-
-### Complete and Exit
-
-```zsh
-exit
-exit
-reboot
-```
-
-## First Boot
-
-Log into the machine and open the terminal
-
-{{< figure src="images/SDDM_Login.png" title="Login Screen" link="images/SDDM_Login.png" >}}
-
-## Finish Setup
 
 ### VM
 
@@ -236,7 +320,7 @@ Log into the machine and open the terminal
 sudovirsh net-autostart default
 ```
 
-### Pywal
+### Pywal If Not Using Dotfiles
 
 ```zsh
 pywal -i [path_to_image]
