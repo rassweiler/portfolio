@@ -80,7 +80,7 @@ If you have an Nvidia gpu we need to select a minimal profile and install the nv
 **NVIDIA ONLY** Then under additional packages add the following:
 
 ```zsh
-qt5-wayland qt6-wayland dunst xdg-desktop-portal-hyprland nvidia nvidia-dkms nvidia-utils nvidia-settings polkit sddm qt5ct libva polkit-kde-agent
+qt5-wayland qt6-wayland dunst xdg-desktop-portal-hyprland nvidia nvidia-dkms nvidia-utils nvidia-settings polkit sddm qt5ct libva
 ```
 
 ### Additional Packages
@@ -100,9 +100,11 @@ Add the following packages to the base install:
 - `lsd` is the upgraded ls package.
 - `rustup` is the rust updater package.
 - `iwd` is the wireless networking package.
+- `gnome-keyring` is needed for nextcloud-client.
+- `libsecret` is needed for nextcloud-client.
 
 ```zsh
-rofi git wezterm thunar neovim code firefox thunderbird fish bash-completion base-devel gvfs tumbler grim ttf-liberation wl-clipboard python-pywal swayidle swappy cliphist rustup lsd networkmanager iwd dhcpcd
+rofi git wezterm thunar neovim code firefox thunderbird fish bash-completion base-devel gvfs tumbler grim ttf-liberation wl-clipboard python-pywal swayidle swappy cliphist rustup lsd networkmanager iwd dhcpcd gnome-keyring libsecret
 ```
 
 ### Finish Installer
@@ -167,7 +169,7 @@ sudo pacman -S qemu-guest-agent spice-vdagent
 Install the rest of the packages from the AUR:
 
 ```zsh
-paru -S jellyfin-media-player arc-icon-theme mangohud jmtpfs hyprland-nvidia waybar-hyprland swww sddm-sugar-dark wlogout ant-dracula-gtk-theme trizen libva-nvidia-driver-git ovmf qemu-arch-extra ebtables bibata-cursor-theme
+paru -S jellyfin-media-player arc-icon-theme mangohud jmtpfs hyprland-nvidia waybar-hyprland swww sddm-sugar-dark wlogout ant-dracula-gtk-theme trizen libva-nvidia-driver-git ovmf qemu-arch-extra ebtables bibata-cursor-theme xfce-polkit
 ```
 
 ### Setup Nvidia:
