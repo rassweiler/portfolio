@@ -157,7 +157,7 @@ paru -Syu
 Install final packages, select Y to replace iptables:
 
 ```zsh
-sudo pacman -S pacman-contrib swtpm virt-manager virt-viewer vde2 iptables-nft dnsmasq bridge-utils libvirt libvpx libde265 xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza freerdp thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils libreoffice-still godot blender gimp inkscape keepassxc obs-studio lutris steam discord nerd-fonts kdenlive file-roller pavucontrol mpv nextcloud-client rofi-calc nfs-utils ttf-font-awesome ttf-fira-sans ttf-fira-code ttf-firacode-nerd linux-zen-headers wireplumber neofetch starship
+sudo pacman -S pacman-contrib swtpm virt-manager virt-viewer vde2 iptables-nft dnsmasq bridge-utils libvirt libvpx libde265 virtiofsd xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza freerdp thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils libreoffice-still godot blender gimp inkscape keepassxc obs-studio lutris steam discord nerd-fonts kdenlive file-roller pavucontrol mpv nextcloud-client rofi-calc nfs-utils ttf-font-awesome ttf-fira-sans ttf-fira-code ttf-firacode-nerd linux-zen-headers wireplumber neofetch starship cpupower acpi
 ```
 
 If the machine is a VM install the agents:
