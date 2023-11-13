@@ -1,5 +1,5 @@
 ---
-date: 2023-11-13T19:00:08-04:00
+date: 2023-11-12T19:00:08-04:00
 title: "Arch Linux Awesomewm Install Guide"
 description: "Easy Install Guide For Arch Linux With Awesomewm"
 hero: "images/archinstall-bg.webp"
