@@ -11,6 +11,10 @@ section:
 # Your Skills.
 # Give a summary of you each skill in the summary section.
 skills:
+- name: Allen Bradley 
+  logo: /images/skills/allenbradley.webp
+  summary: "Studio 5000, RS500, and Connected Components PLCs."
+
 - name: Arch Linux
   logo: /images/skills/archlinux.webp
   summary: "Main desktop and gaming OS. Capable of writing bash/shell scripts, general software development."
@@ -76,6 +80,10 @@ skills:
 - name: Lua
   logo: /images/skills/lua.webp
   summary: "Know basic Lua programming. Used for scripting language of custom C++/opengl game engine."
+
+- name: Mitsubishi 
+  logo: /images/skills/mitsubishi.webp
+  summary: "GX Works plcs and GT Works HMIs"
 
 - name: MongoDB
   logo: /images/skills/mongodb.webp

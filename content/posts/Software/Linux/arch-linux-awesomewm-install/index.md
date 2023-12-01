@@ -2,7 +2,7 @@
 date: 2023-11-12T19:00:08-04:00
 title: "Arch Linux Awesomewm Install Guide"
 description: "Easy Install Guide For Arch Linux With Awesomewm"
-hero: "images/archinstall-bg.webp"
+hero: "images/Awesomewm.png"
 tags: ["OS","Arch","Linux","BTRFS","Awesomewm"]
 categories: ["Software","Linux"]
 ---
@@ -81,21 +81,10 @@ Select the awesomewm profile and take note of the installed packages:
 
 Add the following packages to the base install (This setup is based on an AMD CPU with Nvidia GPU and Linux Zen):
 
-- `libnotify` is the notification package.
-- `nvidia-dkms` is the graphics driver package.
+- `dunst` is the notification package.
 - `polkit` is the polkit package.
-- `sddm` is the greeter package.
-- `qt5ct` is the Qt5 configuration package.
-- `libva` is the video Acceleration package.
-- `rofi` is the modal package.
-- `wezterm` is the terminal package.
-- `thunar` is the file explorer package.
-- `neovim` is the terminal editor package.
 - `fish` is a shell.
-- `gvfs` is the mounting and trash package.
-- `tumbler` is the thumbnail package.
 - `python-pywal` is the colour scheme package.
-- `lsd` is the upgraded ls package.
 - `rustup` is the rust updater package.
 - `iwd` is the wireless networking package.
 - `gnome-keyring` is needed for nextcloud-client.
@@ -104,7 +93,7 @@ Add the following packages to the base install (This setup is based on an AMD CP
 - `util-linux` contains the tool for disk partitioning
 
 ```zsh
-libnotify nvidia nvidia-dkms nvidia-utils nvidia-settings amd-ucode polkit sddm qt5ct libva rofi git wezterm thunar neovim code firefox fish base-devel gvfs tumbler python-pywal rustup lsd networkmanager network-manager-applet iwd dhcpcd gnome-keyring libsecret less linux-zen-headers wget util-linux openssh
+intel-ucode amd-ucode polkit git fish base-devel python-pywal rustup networkmanager network-manager-applet iwd dhcpcd gnome-keyring libsecret linux-zen-headers wget util-linux openssh pacman-contrib cpupower acpi wireless_tools xdg-utils numlockx fd dosfstools
 ```
 
 ### Finish Installer
@@ -130,78 +119,29 @@ Change default shell to fish:
 chsh -s /bin/fish
 ```
 
-### Rustup
+### Config System With Dotfiles:
 
-Rust will be needed to compile paru:
+This will link the config files over then install all the remaining packages:
 
 ```zsh
-rustup toolchain install stable
-rustup default stable
+git clone https://github.com/rassweiler/dotfiles.git
+cd dotfiles
+git checkout arch-awesome
+./install
+./init.sh
 ```
 
-### Paru
-
-Installing Paru will allow access to the AUR, make sure to have switched to the user level first:
+### Setup LightDM:
 
 ```zsh
-cd /tmp
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-cd ~
-paru -Syu
-```
-
-### Install VM & AUR Packages
-
-Install final packages, select Y to replace iptables:
-
-- `flameshot` is the screenshot package.
-
-```zsh
-sudo pacman -S pacman-contrib swtpm virt-manager virt-viewer vde2 iptables-nft dnsmasq bridge-utils libvirt libvpx libde265 virtiofsd xvidcore winetricks vulkan-icd-loader lib32-vulkan-icd-loader eza freerdp thunar-volman thunar-archive-plugin thunar-media-tags-plugin lib32-nvidia-utils libreoffice-still godot blender gimp inkscape keepassxc obs-studio lutris steam discord nerd-fonts kdenlive file-roller pavucontrol mpv nextcloud-client rofi-calc nfs-utils ttf-font-awesome ttf-fira-sans ttf-fira-code ttf-firacode-nerd wireplumber neofetch starship cpupower acpi thunderbird flameshot awesome-terminal-fonts ttf-liberation noto-fonts-emoji btop dmenu volumeicon wireless_tools xdg-utils nitrogen pipewire-pulse pipewire-jack pipewire-alsa picom edk2-ovmf gst-plugin-pipewire gvfs-mtp libpulse numlockx
-```
-
-If the machine is a VM install the agents:
-
-```zsh
-sudo pacman -S qemu-guest-agent spice-vdagent
-```
-
-Install the rest of the packages from the AUR:
-
-```zsh
-paru -S jellyfin-media-player arc-icon-theme mangohud jmtpfs sddm-sugar-dark ant-dracula-gtk-theme trizen libva-nvidia-driver-git ovmf qemu-arch-extra ebtables bibata-cursor-theme xfce-polkit
-```
-
-### Setup Nvidia:
-
-```zsh
-sudo systemctl enable nvidia-persistenced.service
-```
-
-### Setup SDDM:
-
-```zsh
-sudo systemctl enable sddm
-sudo mkdir /etc/sddm.conf.d
-sudo cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf.d/sddm.conf
-sudo nvim /etc/sddm.conf.d/sddm.conf
+sudo nvim /etc/lightdm/lightdm.conf
 ```
 
 Change the theme value:
 
 ```yml
-[Theme]
-Current=sugar-dark
-```
-
-### Setup VM:
-
-```zsh
-sudo systemctl enable libvirtd
-sudo systemctl enable virtlogd.socket
-sudo usermod -aG kvm,libvirt [user_name]
+[Seat:*]
+greeter-session=lightdm-slick-greeter
 ```
 
 ### Setup Git:
@@ -211,15 +151,7 @@ git config --global user.name "Your Name"
 git config --global user.email "youremail@yourdomain.com"
 ```
 
-### Nvidia BS For Hyprland
-
-**Nvidia** is notoriously garbage for Linux and will need several tweaks:
-
-- Update systemd-boot by adding `nvidia_drm.modeset=1` to the end of `/boot/loader/entries/[ENTRY_NAME].conf`:
-
-```zsh
-sudo nvim /boot/loader/entries/[ENTRY_NAME].conf
-```
+### Mkinitcpio Setup:
 
 - Update mkinit by adding `nvidia nvidia_modeset nvidia_uvm nvidia_drm` to the *MODULES* section of `/etc/mkinitcpio.conf`:
 
@@ -235,36 +167,15 @@ then running the generator:
 
 ```zsh
 mkinitcpio -p linux-zen
-#sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
 ```
-- Add `options nvidia-drm modeset=1` to the end of `/etc/modprobe.d/nvidia.conf`, create the file if non existant:
+
+### Remote Desktop Server Setup:
+
+This will allow RDP connections:
 
 ```zsh
-sudo nvim /etc/modprobe.d/nvidia.conf
-```
-
-```yml
-options nvidia-drm modeset=1
-```
-
-### Remote Setup
-
-```zsh
-sudo pacman -S freerdp
 paru -S xrdp
 sudo systemctl enable xrdp.service
-```
-
-### Config Awesome With Dotfiles:
-
-If using dotfiles:
-
-```zsh
-git clone https://github.com/rassweiler/dotfiles.git
-cd dotfiles
-git checkout arch-awesome
-./install
-./init.sh
 ```
 
 ### Complete and Exit
@@ -283,51 +194,10 @@ Log into the machine and open the terminal
 
 ## Finish Setup
 
-### Config Hyprland Without Dotfiles:
-
-Since we aren't using kitty or dolphin we need to change some config options before boot:
-
-```zsh
-cp /usr
-nvim ~/.config/hypr/hyperland.conf
-```
-
-Comment out the warning:
-
-```yml
-#autogenerated = 1
-```
-
-Uncomment and modify the following:
-
-```yml
-exec-once = waybar
-
-bind = $mainMod, Q, exec, wezterm
-bind = $mainMod, E, exec, thunar
-```
-
-### Set Themes
-
-Set the GTK themes if **NOT** using my configs:
-
-```zsh
-gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
-gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
-gsettings set org.gnome.desktop.interface icon-theme "Dracula"
-gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-```
-
-### VM
+### VM Auto Start:
 
 ```zsh
 sudovirsh net-autostart default
-```
-
-### Pywal If Not Using Dotfiles
-
-```zsh
-pywal -i [path_to_image]
 ```
 ___
 
