@@ -111,6 +111,14 @@ Make sure to switch to user level:
 su [username]
 ```
 
+### SSH Agent
+
+Change default shell to fish:
+
+```zsh
+systemctl --user enable ssh-agent.service
+```
+
 ### Fish
 
 Change default shell to fish:
