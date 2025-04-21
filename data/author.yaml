@@ -1,7 +1,7 @@
   # some information about you
   name: "Kyle Rassweiler"
   nickname: "Kyle"
-  image: "images/site/profile.webp"
+  image: "images/profile.webp"
 
   # greeting message before your name. it will default to "Hi! I am" if not provided
   greeting: "Greetings fellow human, I am"

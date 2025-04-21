@@ -23,16 +23,19 @@ experiences:
     # end: Dec 2020
     # give some points about what was your responsibilities at the company.
     responsibilities:
-    - PLC Programming.
-    - Vision (Cognex).
-    - Electrical Schematics & Diagrams.
-    - HMI Design.
-    - Low Voltage Electrical.
-    - CI/CD.
-    - Project Management.
+    - Software Development.
     - Commissioning.
-    - Building Automation Systems.
-    - SCADA development.
+    - HMI design.
+    - PLC programming (AB, Siemens, Omron).
+    - Vision (Cognex).
+    - SCADA system design.
+    - Building Automation (Ecostruxure).
+    - CAD design.
+    - Project Management.
+    - Additive Part manufacturing.
+    - Electrical Schematics/ Diagrams.
+    - Work order management (Fiix).
+    
 - company:
     name: TEMA (Toyota NA)
     url: "http://www.toyotageorgetown.com/"

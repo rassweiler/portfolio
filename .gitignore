@@ -1,2 +1,16 @@
 _gen/
 public/
+resources/*
+node_modules/*
+public/*
+dist
+tmp
+*.lock
+package-lock.json
+package.hugo.json
+hugo.log
+hugo_stats.json
+.hugo_build.lock
+hugo.exe
+hugo.darwin
+hugo.linux
