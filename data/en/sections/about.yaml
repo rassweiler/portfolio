@@ -14,9 +14,6 @@ company:
   name: Canopy Growth Corp
   url: "https://www.canopygrowth.com/"
 
-# your resume. this file path should be relative to you "static" directory
-resume: "/PDF/KyleRassweiler-CV.pdf"
-
 # a summary about you
 summary: 'Engineering Specialist with experience in: software development, networking, programmable logic controllers, robotics, electronics, and machining. I am currently in an embedded deep dive, but also have experience with Python, JS, and various sql/nosql databases.'
 
@@ -50,6 +47,12 @@ socialLinks:
 - name: FreeCodeCamp
   icon: "fab fa-free-code-camp"
   url: "https://www.freecodecamp.org/kylerassweiler"
+
+# You can put custom buttons to link your relevant resources.
+# For example, you can put link for your resume.
+resourceLinks:
+- title: "My Resume"
+  url: "pdf/KyleRassweiler-CV.pdf"
 
 # Show your badges
 # You can show your verifiable certificates from https://www.credly.com.
