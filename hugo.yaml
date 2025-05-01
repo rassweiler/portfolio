@@ -20,8 +20,6 @@ module:
   mounts:
   - source: static/pdf/
     target: static/pdf/
-  - source: static/CNAME
-    target: CNAME
   - source: ./node_modules/flag-icon-css/flags
     target: static/flags
   - source: ./node_modules/@fontsource/mulish/files
