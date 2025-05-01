@@ -6,11 +6,22 @@ module:
     extended: true
   imports:
   - path: github.com/hugo-toha/toha/v4
+    mounts:
+    - source: content
+      target: content
+    - source: layouts
+      target: layouts
+    - source: data
+      target: data
+    - source: assets
+      target: assets
+    - source: static
+      target: static
   mounts:
   - source: static/pdf/
     target: static/pdf/
   - source: static/CNAME
-    target: static/CNAME
+    target: CNAME
   - source: ./node_modules/flag-icon-css/flags
     target: static/flags
   - source: ./node_modules/@fontsource/mulish/files
