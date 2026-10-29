@@ -17,6 +17,10 @@ module:
       target: assets
     - source: static
       target: static
+    - source: i18n
+      target: i18n
+    - source: archetypes
+      target: archetypes
   mounts:
   - source: static/pdf/
     target: static/pdf/
@@ -89,12 +93,17 @@ params:
   topNavbar:
     maxVisibleSections: 8
 
-  # Enable dark theme
-  darkMode:
-    enable: true
-
   # Configure various features of this theme
   features:
+    # Light/dark/system theme selector in the navbar (wires the
+    # themeMenu dropdown + data-theme switching; icons in /icons are
+    # shipped by the theme's static mount)
+    theme:
+      enable: true
+      services:
+        light: true
+        dark: true
+        default: system
     # Enable and configure portfolio
     portfolio:
       enable: true
