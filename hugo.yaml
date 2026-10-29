@@ -20,7 +20,7 @@ module:
   mounts:
   - source: static/pdf/
     target: static/pdf/
-  - source: ./node_modules/flag-icon-css/flags
+  - source: ./node_modules/flag-icons/flags
     target: static/flags
   - source: ./node_modules/@fontsource/mulish/files
     target: static/files
@@ -31,8 +31,8 @@ module:
 # For any more details, you can check the official documentation: https://gohugo.io/content-management/multilingual/
 languages:
   en:
-    languageCode: en
-    languageName: English
+    locale: en
+    label: English
     title: "Kyle Rassweiler Portfolio"
     subtitle: "A sleek software portfolio"
     owner: "Kyle Rassweiler"
@@ -51,7 +51,7 @@ defaultContentLanguage: en
 markup:
   goldmark:
     renderer:
-      unsafe: false
+      unsafe: true
   tableOfContents:
     startLevel: 1
     endLevel: 4

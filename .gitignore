@@ -2,6 +2,7 @@ _gen/
 public/
 resources/*
 node_modules/*
+packages/
 public/*
 dist
 tmp
@@ -15,3 +16,7 @@ hugo.exe
 hugo.darwin
 hugo.linux
 go.sum
+.opencode/
+.claude/
+.cursor/
+.windsurf/
