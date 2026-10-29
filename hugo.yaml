@@ -274,10 +274,6 @@ params:
     copyCodeButton:
       enable: true
 
-    # Enable reading time support in post cards and in post pages
-    readingTime:
-      enable: false
-    
     # Number of posts to show to each page. Default is "12"
     pagination:
        maxPostsPerPage: 12
@@ -305,14 +301,9 @@ params:
     newsletter:
       enable: false
       provider: mailchimp
-      mailchimpURL: https://github.us1.list-manage.com/subscribe/post?u=19de52a4603135aae97163fd8&amp;id=094a24c76e
+      mailchimpURL: https://github.us1.list-manage.com/subscribe/post?u=19de52a4603135aae97163fd8&id=094a24c76e
 
     # Show/hide disclaimer notice in the footer. Default is "false".
     disclaimer:
       enable: false
 
-  dateFormat:
-    published: 2006-06-02
-    lastUpdated: 2006-06-02 15:04 EST
-
-  rssFullContent: true
