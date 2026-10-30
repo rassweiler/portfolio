@@ -1,8 +1,9 @@
 ---
 date: 2025-04-20T10:58:08-04:00
+lastmod: 2026-10-30T10:47:00-04:00
 title: "Networked Counter"
 description: "3d printed counter using Pi5, python, pyqt6, and sqlite that can export to folders or sharepoint"
-hero: "images/assembly_02.png"
+hero: "images/Assembly_001.png"
 tags: ["Python","Qt","Raspberry Pi","Sharepoint"]
 categories: ["Software","Python"]
 ---
@@ -11,10 +12,42 @@ categories: ["Software","Python"]
 
 <!--more-->
 
+## Source
+
+[Github](https://github.com/rassweiler/pi-networked-counter)
+
 ___
 
-{{< figure src="images/Assembly_01.png" title="Assembly CAD" link="images/Assembly_01.png" >}}
-{{< figure src="images/Assembly_02.png" title="Assembly CAD 2" link="images/Assembly_02.png" >}}
+{{< figure src="images/Assembly_001.png" title="Assembly" link="images/Assembly_001.png" >}}
+{{< figure src="images/Assembly_002.png" title="Assembly IO" link="images/Assembly_002.png" >}}
+{{< figure src="images/Assembly_004.png" title="Assembly Rear" link="images/Assembly_004.png" >}}
+{{< figure src="images/Assembly_005.png" title="Assembly Opened" link="images/Assembly_005.png" >}}
+{{< figure src="images/Assembly_003.png" title="Push Button Mount" link="images/Assembly_003.png" >}}
+
+## Dev Setup (Linux)
+
+- clone repository:
+
+```bash
+git clone https://github.com/rassweiler/pi-networked-counter.git && cd pi-networked-counter
+```
+
+- Setup python environment:
+
+```bash
+python3 -m venv venv
+
+source venv/bin/activate
+
+pip3 install gpiozero lgpio msal msal_extensions python-dotenv pygobject
+```
+
+- Install optional packages:
+
+```bash
+sudo apt install qtcreator sqlitebrowser
+```
+
 
 ## Device Setup (Pi5+):
 
@@ -34,9 +67,12 @@ ___
 - 1 [Ethernet Patch Cable](https://www.amazon.ca/Cat-Ethernet-Cable-0-5ft-Pack/dp/B0CMQG7GS1)
 - 1 [USB C Keystone Jack Adapter USB 3.1](https://www.amazon.ca/AAOTOKK-Keystone-Adapter-Type-C-Coupler/dp/B07Z947FRN)
 - 1 [USB C patch cable](https://www.amazon.ca/Silkland-Charging-Compatible-MacBook-Samsung/dp/B0CQ4SX256)
-- 1 [USB A Keystone Jack Cable](https://www.amazon.ca/Keystone-Haokiang-Adapters-Connector-Cable-20CM/dp/B07JFRLLQF)
+- 1 [USB A Keystone Jack Cable](https://www.amazon.ca/Keystone-Haokiang-Adapters-Connector-Cable-20CM/dp/B07JFRLLQF/)
 - 1 [22awg Wire 2 Conductor 25ft](https://www.digikey.ca/en/products/detail/prysmian/C6348A-46-10/2761061)
 - 1 [Rugged Metal Pushbutton - 16mm White Momentary](https://www.adafruit.com/product/558)
+- 2 [Wire Connector Pack](https://www.amazon.ca/Connector-Solderless-Connectors-Stripping-Electrical/dp/B08929GXGK)
+- 1 [GPIO Ribbon Cable](https://www.adafruit.com/product/1988)
+- 1 [GPIO Header](https://www.pishop.ca/product/40-pin-gpio-connector-header/)
 
 ### Stacklight Version Part List
 - 1 [DC Power Panel Jack](https://www.amazon.ca/DIYhz-Socket-Female-Mounting-Connector/dp/B079D6P26P)
@@ -61,18 +97,66 @@ sudo apt update && sudo apt upgrade
 - Install packages:
 
 ```bash
-sudo apt install git python code wvkbd matchbox-keyboard cmake libcairo2-dev gobject-introspection libgirepository1.0-dev seahorse python3-pyqt6 python3-gpiozero python3-lgpio python3-msal python3-msal-extensions python3-dotenv
+sudo apt install < .packages
 ```
 
-- Setup keyring for sharepoint integration:
-
-Run seahorse and make sure there is a default keystore
-
-- Install optional packages:
+- Disable sudo NOPASSWD:
 
 ```bash
-sudo apt install qtcreator sqlitebrowser
+sudo nano /etc/sudoers.d/010_pi-nopasswd
+
+remove NOPASSWD:
 ```
+
+- Enable sudo logging:
+
+```bash
+sudo visudo
+
+Insert:
+
+Defaults    logfile=/var/log/sudo
+```
+
+- Harden ssh config:
+
+```bash
+sudo nano /etc/ssh/sshd_config
+
+PermitRootLogin prohibit-password
+MaxAuthTries 5
+MaxSessions 3
+MaxStartups 3:90:15
+PasswordAuthentication no
+```
+
+- Harden ssh keys:
+
+```bash
+echo -e "# Restrict key exchange, cipher, and MAC algorithms, as per sshaudit.com\n# hardening guide.\n KexAlgorithms sntrup761x25519-sha512,sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,gss-curve25519-sha256-,diffie-hellman-group16-sha512,gss-group16-sha512-,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha256\n\nCiphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-gcm@openssh.com,aes128-ctr\n\nMACs hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,umac-128-etm@openssh.com\n\nHostKeyAlgorithms sk-ssh-ed25519-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,ssh-ed25519,rsa-sha2-512,rsa-sha2-256\n\nRequiredRSASize 3072\n\nCASignatureAlgorithms sk-ssh-ed25519@openssh.com,ssh-ed25519,rsa-sha2-512,rsa-sha2-256\n\nGSSAPIKexAlgorithms gss-curve25519-sha256-,gss-group16-sha512-\n\nHostbasedAcceptedAlgorithms sk-ssh-ed25519-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,ssh-ed25519,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-256\n\nPubkeyAcceptedAlgorithms sk-ssh-ed25519-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,ssh-ed25519,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-256\n\n" > /etc/ssh/sshd_config.d/ssh-audit_hardening.conf
+```
+
+- Remove avahi:
+
+```bash
+sudo systemctl stop avahi-daemon && sudo systemctl disable avahi-daemon
+
+sudo apt purge avahi-daemon -y
+```
+
+- Remove CUPS:
+
+```bash
+sudo systemctl stop cups && sudo systemctl disable cups
+
+sudo apt purge cups -y
+```
+
+- PI configure
+Set the locale to UTF-8
+
+- Setup keyring for sharepoint integration
+Run seahorse and make sure there is a default keystore
 
 - clone repository to PI:
 
@@ -86,21 +170,13 @@ git clone https://github.com/rassweiler/pi-networked-counter.git && cd pi-networ
 sudo cp objectcounter.desktop /etc/xdg/autostart/objectcounter.desktop
 ```
 
-- Copy the keyboard scripts:
-
-```bash
-sudo cp toggle-keyboard.sh /usr/bin/toggle-keyboard.sh
-sudo chmod +x /usr/bin/toggle-keyboard.sh
-sudo cp toggle-keyboard.desktop /usr/share/raspi-ui-overrides/applications/toggle-keyboard.desktop
-```
-
 - Add panel icon:
 
 ```bash
-mkdir -p ~/.config/lxpanel/LXDE-pi/panels/
-cp /etc/xdg/lxpanel/LXDE-pi/panels/panel ~/.config/lxpanel/LXDE-pi/panels/panel
-cat panel-plugin >> ~/.config/lxpanel/LXDE-pi/panels/panel
+cp objectcounter.desktop ~/.local/share/applications/
 ```
+
+Then restart the system to get the app in the menu under other, then right click the app and select add to taskbar
 
 - Setup startup IO for push button:
 
@@ -108,25 +184,28 @@ cat panel-plugin >> ~/.config/lxpanel/LXDE-pi/panels/panel
 echo "dtoverlay=gpio-poweroff,gpiopin=25,active_low" >> /boot/firmware/config.txt
 ```
 
-### Sharepoint Setup
+### Sharepoint Setup (Optional)
 
-- Create `.env.sharepoint` file with access details:
+- Add to the `.settup.toml` file your sharepoint access details:
 
-```ini
-AUTHORITY="https://login.microsoftonline.com/{AID}"
-CLIENT_ID="{CID}"
-SCOPE="User.ReadBasic.All Files.ReadWrite Sites.ReadWrite.All"
-ENDPOINT="https://graph.microsoft.com/v1.0/me"
+```toml
+[sharepoint]
+authority = "https://login.microsoftonline.com/{AID}"
+client = "{CID}"
+scopes = 'User.ReadBasic.All Files.ReadWrite Sites.ReadWrite.All'
+endpoint = "https://graph.microsoft.com/v1.0/me"
 ```
 
 - run the `get_token.sh` script once to initialise your sharepoint token, it should provide a link and a key to login using a browser.
 
 ### Print Parts
 
-- Print out the [Front case](https://github.com/rassweiler/pi-networked-counter/blob/IR_Sensors/Models/Exports/NetworkCounter_Case_Front_Print.3mf) section (Should contain the screen brackets as well)
-- Print out the [Rear case](https://github.com/rassweiler/pi-networked-counter/blob/IR_Sensors/Models/Exports/NetworkCounter_Case_Back_Print.3mf) section
-- Print out the [Sensor case](https://github.com/rassweiler/pi-networked-counter/blob/IR_Sensors/Models/Exports/NetworkCounter_SensorCase_Front_Print.3mf) sections
+- Print out the Front case section (Should contain the screen brackets as well)
+- Print out the Rear case section
+- Print out the Sensor case sections
 - Print any required brackets/stands
+
+The [3D models](https://github.com/rassweiler/pi-networked-counter/tree/IR_Sensors/Models) are available in the repository.
 
 ### Prepare Sensors
 
@@ -134,23 +213,28 @@ ENDPOINT="https://graph.microsoft.com/v1.0/me"
 - Connect both ground wires together from the IR emitter and receiver
 - Solder the M12 AMP Connector Male to the sensors following the pinout below
 
+{{< figure src="images/SensorAssembly_01.png" title="Sensor Assembly" link="images/SensorAssembly_01.png" >}}
+{{< figure src="images/SensorAssembly_02.png" title="Sensor Assembly 2" link="images/SensorAssembly_02.png" >}}
+{{< figure src="images/SensorAssembly_03.png" title="Sensor Assembly Opened" link="images/SensorAssembly_03.png" >}}
+
 ### Sensor Pinout To Cable
 
-- Pin 1 (Brown): 3.3V 
-- Pin 2 (White): Unused 
-- Pin 3 (Blue): Emitter signal (Yellow) 
-- Pin 4 (Black): Ground 
+- Pin 1 (Brown): 3.3V
+- Pin 2 (White): Unused
+- Pin 3 (Blue): Emitter signal (Yellow)
+- Pin 4 (Black): Ground
 - Pin 5 (Gray): Unused
+
 {{< figure src="images/Connector_Pinout.png" title="Connector Pinout" link="images/Connector_Pinout.png" >}}
 
 ### Lightstack Pinout
 
-- Cable Brown: 12V 
-- Cable Green: Green LED 
-- Cable Yellow: Yellow LED 
-- Cable Red: Red LED 
+- Cable Brown: 12V
+- Cable Green: Green LED
+- Cable Yellow: Yellow LED
+- Cable Red: Red LED
 
-### Pi5 Wiring 
+### Pi5 Wiring
 
 - Pin 1 (3.3V): To infeed sensor pin 1
 - Pin 2 (5V): To Display pin 5 (5V)
@@ -169,6 +253,7 @@ ENDPOINT="https://graph.microsoft.com/v1.0/me"
 
 ### Assembly Schematic
 The Pi5 board is not entirely accurate, the J2 and J8 pins are proper however.
+
 {{< figure src="images/Assembly.png" title="Schematic" link="images/Assembly.png" >}}
 
 ___
