@@ -1,0 +1,11 @@
+{{/*
+  Project override for the theme's scripts.html (both index.html and _default/baseof.html
+  call `partial "scripts.html" .`, so this single file runs on every page).
+
+  Renders the theme's normal JS bundle, then appends a project script that takes over
+  home-page section highlighting from the theme's Bootstrap ScrollSpy
+  (see assets/scripts/scrollspy.js).
+*/}}
+{{ partial "helpers/script-bundle.html" }}
+{{ $spy := resources.Get "scripts/scrollspy.js" | js.Build | fingerprint }}
+<script src="{{ $spy.RelPermalink }}" integrity="{{ $spy.Data.Integrity }}" defer></script>
