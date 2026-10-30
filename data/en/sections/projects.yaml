@@ -23,6 +23,7 @@ buttons:
 projects:
 - name: Networked Counter
   logo: /images/projects/networked-counter.png
+  image: /images/projects/networked-counter-bg.png
   role: Developer
   timeline: "2025 - Present"
   repo: https://github.com/rassweiler/pi-networked-counter
@@ -32,6 +33,7 @@ projects:
 
 - name: Krello
   logo: /images/projects/krello-bg.webp
+  image: /images/projects/krello-board.webp
   role: Developer
   timeline: "2019 - 2023"
   repo: https://github.com/rassweiler/krellov2
@@ -64,6 +66,7 @@ projects:
 
 - name: Kawasaki AS Parser
   logo: /images/sections/projects/toha.png
+  image: /images/projects/kawasaki-parser-bg.webp
   role: Owner
   timeline: "2019 - 2021"
   repo: https://github.com/rassweiler/kawasaki-as-parser
