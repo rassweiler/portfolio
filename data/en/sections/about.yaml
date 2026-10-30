@@ -28,9 +28,13 @@ socialLinks:
   icon: "fab fa-github"
   url: "https://github.com/rassweiler"
 
-- name: Gitea
-  icon: "fab fa-git-alt"
-  url: "https://git.kylerassweiler.ca/kylerassweiler"
+- name: Gitlab
+  icon: "fab fa-gitlab"
+  url: "https://gitlab.com/kylerassweiler"
+
+- name: Codeberg
+  icon: "codeberg-svg"
+  url: "https://codeberg.org/kylerassweiler"
 
 - name: Stackoverflow
   icon: "fab fa-stack-overflow"
