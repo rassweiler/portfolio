@@ -1,0 +1,19 @@
+/*
+  Icon class for social links that have no Font Awesome 6 brand icon
+  (currently: Codeberg, declared in data/en/sections/about.yaml).
+
+  The about section renders icons as `<i class="{{ .icon }}">` from the
+  socialLinks data, so the icon is plain CSS: the official Codeberg logo
+  (static/images/codeberg.svg, from codeberg.org) used as an alpha mask,
+  painted with currentColor so it matches the surrounding fab icons in
+  size and hover color.
+*/
+.codeberg-svg {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  background-color: currentColor;
+  -webkit-mask: url('/images/codeberg.svg') center / contain no-repeat;
+  mask: url('/images/codeberg.svg') center / contain no-repeat;
+}
