@@ -22,8 +22,8 @@ module:
     - source: archetypes
       target: archetypes
   mounts:
-  - source: static/pdf/
-    target: static/pdf/
+  - source: static
+    target: static
   - source: ./node_modules/flag-icons/flags
     target: static/flags
   - source: ./node_modules/@fontsource/mulish/files
@@ -161,19 +161,6 @@ params:
         #   serverURL: cdn.commento.io
         #   autoInit: true
         #   hideDeleted: false
-
-    # Enable Analytics
-    analytics:
-      enable: false
-      services:
-        google:
-          id: UA-XXXXXXXXX-X
-      # # CounterDev
-      # counterDev:
-      #   id: <your counterdev id>
-      # # GoatCounter
-      # goatCounter:
-      #   code: <your goat counter code>
 
     # Enable Support
     support:
